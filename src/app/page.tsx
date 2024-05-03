@@ -83,11 +83,11 @@ export default function Home() {
           width={371}
         />
       </section>
-      <section>
-        <div className="h-[399px] w-full flex flex-wrap justify-around pt-7 pl-2 pr-2 bg-[#E9E9DD]">
+      <section className="py-0">
+        <div className=" w-full flex flex-wrap gap-y-3	 justify-around pt-7 p-2 pr-2 bg-[#E9E9DD]">
           {[1, 2, 3, 4, 5]?.map((item, index) => {
             return (
-              <Card key={index} className="w-[158px] h-[158px] ">
+              <Card key={index} className="w-[158px] h-[168px] ">
                 <div className="flex -space-x-1 overflow-hidden pb-2 pt-[25px]">
                   <img
                     className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
