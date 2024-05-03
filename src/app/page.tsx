@@ -1,12 +1,173 @@
+import { Benefits } from "@/components/home-page/BenefitsSection";
+import { CategoryTabs } from "@/components/home-page/CategoryTabs";
 import SearchBox from "@/components/home-page/SearchBox";
+import { TabStyle2 } from "@/components/home-page/TabStyle2";
+import { TopCarousel } from "@/components/home-page/TopCarousel";
+import { TrendingCollection } from "@/components/home-page/TrendingCollection";
+import TrendingProducts from "@/components/home-page/TrendingProducts";
+import { Card1 } from "@/components/home-page/cards/Card1";
+import ChatWhatsappBtn from "@/components/home-page/chat-whatsapp";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 
 export default function Home() {
-  const noSearch = false
+  const noSearch = false;
   return (
     <>
-    <SearchBox/>
+      <SearchBox />
+      <ChatWhatsappBtn />
+      <TopCarousel />
+      <CategoryTabs />
+      <Image
+        className="w-full h-[122px]"
+        src="/assets/image/homePageImages/banner01.png"
+        alt="banner"
+        height={112}
+        width={371}
+      />
+      <TrendingProducts />
+
+      <section className="mt-6">
+        <div
+          className="container bg-no-repeat bg-[length:51px_89px] pl-5  "
+          style={{
+            backgroundImage: "url('/assets/image/homePageImages/banner02.png')",
+          }}
+        >
+          <h2 className=" text-[18px] text-black font-semibold">Get up to</h2>
+          <h1 className=" text-[47px] text-black font-semibold">60% OFF</h1>
+          <div className="flex justify-around">
+            {[
+              "/assets/image/homePageImages/sunglasses.png",
+              "/assets/image/homePageImages/eyeglasses.png",
+              "/assets/image/homePageImages/zeropower.png",
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="w-24 flex flex-col content-center items-center p-2"
+              >
+                <Image
+                  src={item}
+                  alt="avatar"
+                  height={79}
+                  width={67}
+                  className="glasses"
+                />
+                <span>Sunglasses</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-3">
+        <Image
+          className="w-full h-[96px] pt-3"
+          src="/assets/image/homePageImages/banner03.png"
+          alt="banner"
+          height={112}
+          width={371}
+        />
+      </section>
+
+      <section className="mt-3">
+        <Card1 />
+      </section>
+      <section className="mt-2">
+        <Image
+          className="w-full h-[130px] pt-3"
+          src="/assets/image/homePageImages/banner04.png"
+          alt="banner"
+          height={128}
+          width={371}
+        />
+      </section>
+      <section>
+        <div className="h-[399px] w-full flex flex-wrap justify-around pt-7 pl-2 pr-2 bg-[#E9E9DD]">
+          {[1, 2, 3, 4, 5]?.map((item, index) => {
+            return (
+              <Card key={index} className="w-[158px] h-[158px] ">
+                <div className="flex -space-x-1 overflow-hidden pb-2 pt-[25px]">
+                  <img
+                    className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <img
+                    className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <img
+                    className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <img
+                    className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
+                  <span className="h-[8px] w-[14px] text-[10px] inline-block pl-2 font-medium text-[#0000B7]">
+                    +8
+                  </span>
+                </div>
+                <Image
+                  className="w-[151px] h-[86px]"
+                  src="/assets/image/homePageImages/product01.png"
+                  alt="banner"
+                  height={135}
+                  width={135}
+                />
+                <div className="h-[32px] bg-[#67A290] rounded-b-xl flex pb-2 mt-[4px]">
+                  <span className="text-[14px] font-[600] text-white pl-[7px] pt-[5px]">
+                    Computer Glass
+                  </span>
+                  <Image
+                    className="w-[5px] h-[10px] mt-[11px] ml-4"
+                    src="/assets/image/homePageImages/arrow01.png"
+                    alt="banner"
+                    height={5}
+                    width={5}
+                  />
+                </div>
+              </Card>
+            );
+          })}
+        </div>
+      </section>
+
+      <section>
+        <div className="h-[332px] w-full pl-[25px]">
+          <h1 className="pt-[49px] text-[16px] font-semibold">
+            Premium eyewear
+          </h1>
+          <h1 className="text-[14px] font-semibold text-[#888888]">
+            Set the trend with India’s finest eyewear
+          </h1>
+        </div>
+      </section>
+
+      <section className="mb-4">
+        <TrendingCollection />
+      </section>
+
+      <section>
+        <div className="  w-full bg-[#E2EAF3] mt-3 pb-3">
+          <h1 className="pt-[32px] text-[#010045] pl-[17px] text-[20px] font-extrabold  ">
+            New at Lenskandy
+          </h1>
+          <p className=" text-[#010045] text-[12px] pl-[17px] font-[700] ">
+            Fresh collections every 15 days
+          </p>
+          <TabStyle2 />
+        </div>
+      </section>
+
+      <section>
+        <Benefits />
+      </section>
     </>
   );
 }
