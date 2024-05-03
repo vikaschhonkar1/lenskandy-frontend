@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 import { cn } from "@/lib/utils";
 import TopNav from "@/components/top-nav/TopNavBar";
+import { LoginDialog } from "@/components/login";
 // import Footer from "./footer";
 
 export const fontSans = FontSans({
@@ -27,7 +28,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </main>
 
         {/*<Footer />*/}
+        <LoginDialog />
       </body>
+     
       <Toaster theme="dark" position="top-center" />
     </html>
   );
