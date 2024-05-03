@@ -15,11 +15,11 @@ import { Button } from "@/components/ui/button";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { Cross2Icon } from "@radix-ui/react-icons";
 
-import { useCallback } from "react";
+import { Suspense, useCallback } from "react";
 import { LoginForm, removeLoginParam } from ".";
 import * as Dialog from "@radix-ui/react-dialog";
 
-export function LoginDialog() {
+function Login() {
   const searchParams = useSearchParams();
   const search = searchParams?.get("login");
 
@@ -63,5 +63,13 @@ export function LoginDialog() {
         </AlertDialogContent>
       </AlertDialog>
     </>
+  );
+}
+
+export function LoginDialog() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Login />
+    </Suspense>
   );
 }
