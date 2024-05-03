@@ -40,9 +40,6 @@ function Login() {
   return (
     <>
       <AlertDialog open={!!search}>
-        <AlertDialogTrigger asChild>
-          <Button variant="outline">Show Dialog</Button>
-        </AlertDialogTrigger>
         <AlertDialogContent className="rounded">
           <button
             onClick={removeLoginParam}
