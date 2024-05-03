@@ -1,8 +1,9 @@
 'use server'
 
-import {config} from "@/lib/api-services/config"
-import {refreshTokenFn} from "@/lib/hooks/use-auth"
-import { createCookies } from "@/lib/cookies/cookies";
+import { config } from "@/config";
+import { createCookies } from "../cookies";
+import { refreshTokenFn } from "@/hooks/useAuth";
+// import { authClient } from './client';
 
 export const refreshToken = async () => {
   try {
