@@ -5,10 +5,11 @@ import HeroImage from "@/components/categories/Main Image Area/HeroImage";
 import CategoryIntro from "@/components/categories/Category Intro Area/CategoryIntro";
 import ProductListing from "@/components/categories/Product Listing/ProductListing";
 import AdvertisementImage from "@/components/categories/Advertisement Image Area/AdvertisementImage";
+import APISERVICES from "@/lib/api-services";
 
-const Page = ({ params }: any) => {
+const Page = async({ params }: any) => {
   const arr = params?.slug;
-
+  const res = await APISERVICES.product.get(`?cat=accessories`) 
   let category = "sunglasses";
   let filter = {};
 
@@ -25,8 +26,8 @@ const Page = ({ params }: any) => {
     <>
       <CategoryFilters defaultValue={3}/>
       <HeroImage />
-      <CategoryIntro />
-      <ProductListing />
+      <CategoryIntro categoryName={"Accessories"} categoryDescription={"Lorem ipsum dolor si"}/>
+      <ProductListing data={res?.data}/>
       <AdvertisementImage/>
     </>
   );

@@ -50,6 +50,7 @@ const CategoryFilters = (props: any) => {
       <select
         value={"women"}
         className="border-2 border-gray-50 h-9 w-[100px] rounded-full outline-none my-3 ml-1 mr-1 p-1 bg-white"
+        defaultValue={"women"}
       >
         <option value="men">Men</option>
         <option value="women">Women</option>

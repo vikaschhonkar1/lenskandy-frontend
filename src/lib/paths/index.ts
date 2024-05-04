@@ -1,7 +1,7 @@
 export const paths = {
     index: "/",
     product: {
-      productDetails: "/product/:productId",
+      productDetails: "/product",
     },
     categories: {
       eyeglasses: "/eyeglasses",

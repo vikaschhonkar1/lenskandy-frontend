@@ -1,13 +1,24 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 
-const ProductListing = () => {
-  
+type ProductListingProps = {
+  data: any;
+};
+const ProductListing = (props: ProductListingProps) => {
+  const { data } = props;
   return (
     <section className="grid grid-cols-2 gap-4 p-4">
-      {[1, 2, 3, 4, 5, 6]?.map((item: any, index: any) => (
-        <ProductCard key={index}/>
-      ))}
+      {data &&
+        data?.map((item: any, index: number) => {
+          {
+            return (
+              item?.Variant &&
+              item?.Variant?.length > 0 && (
+                <ProductCard key={index} index={index} productDetails={item} />
+              )
+            );
+          }
+        })}
     </section>
   );
 };

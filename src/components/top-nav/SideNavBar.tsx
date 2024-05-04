@@ -27,7 +27,7 @@ import { cn } from "@/lib/utils";
 // import LoginDialogue from "@/components/auth/loginDialogue";
 // import { refreshTokenFn, user } from "@/hooks/useAuth";
 import Link from "next/link";
-import APISERVICES from "@/lib/api-services/api-service";
+import APISERVICES from "@/lib/api-services";
 
 const ListItem = ({ className, title, children, ...props }:any, ref:any) => {
   return (
