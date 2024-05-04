@@ -82,7 +82,7 @@ export async function AccordionDemo() {
                             <li key={value?.slug}>
                               <a
                                 href={
-                                  "/category/" +
+                                  // "/category/" +
                                   item?.Category?.slug +
                                   "/" +
                                   key +

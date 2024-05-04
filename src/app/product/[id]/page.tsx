@@ -23,6 +23,7 @@ import ProductNav from "@/components/product/ProductNav";
 import ProductDetail from "@/components/product/ProductDetail";
 import CouponCard from "@/components/product/CouponCard";
 import APISERVICES from "@/lib/api-services";
+import { LensTypeDrawerDialog } from "@/components/add-to-cart/lens-type/LensTypeDrawerDialog";
 
 const getSKUFromURL = (slug: string): string => {
   const parts = slug.split('_');
@@ -235,18 +236,7 @@ const Page = async({ params }: any) => {
               ))}
             </section>
             <section className="left-0 right-0 bottom-0 fixed w-full p-2">
-              <Button
-                variant="outline"
-                className="bg-[#F2652F] text-white w-full text-[18px] "
-                // onClick={async () => {
-                //   const res = await AddToCart(data?.productId, data?.id, 1);
-                //   if (res) {
-                //     CustomToast(res);
-                //   }
-                // }}
-              >
-                SELECT LENS (Buy Now)
-              </Button>
+              <LensTypeDrawerDialog/>
             </section>
           </div>
         </>

@@ -3,6 +3,7 @@ import {accessToken} from "@/hooks/useAuth";
 import { refreshToken } from "./auth/refresh-token";
 import { config } from "@/config";
 import { redirect } from "next/navigation";
+import { addLoginParam } from "@/components/login";
 
 const APISERVICES = {
 
@@ -71,7 +72,7 @@ async function fetchData(url, method, data) {
       if (isValid) {
         fetchData(url, method, data)
       } else {
-        // redirect('/')
+        addLoginParam()
       }
     } else if (!response.ok) {
       return res
