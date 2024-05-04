@@ -13,6 +13,7 @@ type TabsContent = {
 export function CategoryFilterTabs(props: TabsContent) {
   const { defaultValue, tabData } = props;
   return (
+    //@ts-ignore
     <Tabs defaultValue={tabData[parseInt(defaultValue)]?.value} className="my-3">
       <TabsList className="flex w-max bg-transparent text-color-none border-none">
         {tabData?.map((item) => (

@@ -17,7 +17,7 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import ProductNav from "@/components/product/ProductNav";
 
-const ProductDetail = (props) => {
+const ProductDetail = (props: any) => {
     const data = {}
     const plugin = React.useRef(
         Autoplay({ delay: 2000, stopOnInteraction: true })
@@ -59,9 +59,11 @@ const ProductDetail = (props) => {
           className="h-[203px] w-full"
         >
           <CarouselContent>
-            {(data?.mainImage || data?.images?.length
-              ? [
-                  data?.mainImage,
+          
+            { //@ts-ignore
+            (data?.mainImage || data?.images?.length
+              ? [//@ts-ignore
+                  data?.mainImage,//@ts-ignore
                   ...data?.images?.map((item: any) => item?.path),
                 ]
               : [
@@ -98,8 +100,10 @@ const ProductDetail = (props) => {
               width={18}
             />
             <span className="text-gray-500 text-[10px] mt-3 ml-1 font-[600]">
-              {data?.product?.Variant?.length || 1}{" "}
-              {(data?.product?.Variant?.length || 1) > 1 ? "Color" : "Colors"}
+              {//@ts-ignore
+              data?.product?.Variant?.length || 1}{" "}
+              {//@ts-ignore
+              (data?.product?.Variant?.length || 1) > 1 ? "Color" : "Colors"}
             </span>
           </a>
           <a>
@@ -121,14 +125,17 @@ const ProductDetail = (props) => {
           <div className="px-2 pt-4 pb-[105px] h-[90px] w-full border-b-2 border-dotted border-gray-500 flex justify-between">
             <div className="ml-2">
               <h1 className="text-[18px] font-[700] capitalize">
-                {data?.product?.name || "Lorem Ipsum"} ({data?.frameColor?.name}{" "}
-                || "NEW")
+                {//@ts-ignore
+                data?.product?.name || "Lorem Ipsum"} ({data?.frameColor?.name || "New"}{" "}
+                )
               </h1>
               <h5 className="text-[14px] text-gray-500 font-[500] pb-2">
-                Product Id: {data?.sku || "LK001"}
+                Product Id: {//@ts-ignore
+                data?.sku || "LK001"}
               </h5>
               <span className="text-[#000080] text-[23px] font-[700]">
-                ₹{data?.price || 200}
+                ₹{//@ts-ignore
+                data?.price || 200}
               </span>
             </div>
             <div className="h-[20px] w-[58px] bg-[#FFF2F2] rounded-3xl mt-1 mr-3 flex pl-1 items-center">

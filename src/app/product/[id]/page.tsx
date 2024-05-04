@@ -78,7 +78,8 @@ const Page = ({ params }: any) => {
               <div className="flex items-center gap-2">
                 <CustomAvatar>
                   <AvatarFallback className="bg-[#F2652F] text-white font-semibold text-xl">
-                    {data?.product?.frameSize?.name?.charAt(0)?.toUpperCase() ||
+                    { //@ts-ignore
+                    data?.product?.frameSize?.name?.charAt(0)?.toUpperCase() ||
                       "A"}
                   </AvatarFallback>
                 </CustomAvatar>
@@ -149,7 +150,8 @@ const Page = ({ params }: any) => {
           <div className="pb-6">
             <h5 className="text-[18px] font-[600] text-black">Frame</h5>
             <p className="pt-2 text-[12px] font-[500] text-gray-500">
-              {data?.product?.frameType?.description}
+              {//@ts-ignore
+              data?.product?.frameType?.description}
             </p>
             <div>
               <Image
