@@ -1,3 +1,4 @@
+"use client"
 import Image from 'next/image'
 import React from 'react'
 import { MdWhatsapp } from "react-icons/md";
@@ -18,7 +19,7 @@ import Autoplay from "embla-carousel-autoplay";
 import ProductNav from "@/components/product/ProductNav";
 
 const ProductDetail = (props: any) => {
-    const data = {}
+    const {data} = props
     const plugin = React.useRef(
         Autoplay({ delay: 2000, stopOnInteraction: true })
       );

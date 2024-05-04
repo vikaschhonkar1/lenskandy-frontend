@@ -1,4 +1,4 @@
-"use client";
+
 import { CustomAvatar } from "@/components/home-page/CustomAvatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -21,8 +21,15 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import ProductNav from "@/components/product/ProductNav";
 import ProductDetail from "@/components/product/ProductDetail";
+import CouponCard from "@/components/product/CouponCard";
+import APISERVICES from "@/lib/api-services";
 
-const Page = ({ params }: any) => {
+const getSKUFromURL = (slug: string): string => {
+  const parts = slug.split('_');
+  return parts[parts.length - 1];
+}
+
+const Page = async({ params }: any) => {
   const accordionData = [
     {
       id: "item-1",
@@ -41,46 +48,30 @@ const Page = ({ params }: any) => {
     },
     // Add more items as needed
   ];
+  const skuId = getSKUFromURL(params?.id)
+  const res = await APISERVICES.productVariants.get(skuId)
+  console.log(res)
+
   const data = {};
-  const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
-  );
+ 
   return (
     <>
-      <ProductNav productName={"Lorem Ipsum"} frameColor={"Black"} />
-      <ProductDetail/>
-      
+      <ProductNav productName={res?.data?.product?.name} frameColor={res?.data?.frameColor?.name} />
+      <ProductDetail data={res?.data}/>
+      <CouponCard />
       <Card>
-        
-
-
-        <section className="m-5">
-          <>
-            <Card className="h-[100px] w-full p-2">
-              <h1 className="text-[16px] pl-1">OFFERS</h1>
-              <span className="rounded-full h-[22px] w-20 bg-[#FFF2F2] text-[12px] text-black px-2 py-1 font-bold">
-                OFFER CODE
-              </span>
-              <div className="flex justify-between mt-1">
-                <p className="text-[12px] text-gray-500 py-1">
-                  Lorem ipsum dolor sit amet Lorem
-                </p>
-                <span className="rounded-full w-[83px] bg-[#F2652F] text-[12px] text-white pl-1 py-1 px-1 font-[500] ml-2 items-center">
-                  APPLY NOW
-                </span>
-              </div>
-            </Card>
-          </>
-        </section>
         <section className="mt-4">
           <div className="flex justify-between px-5 pb-4 pt-1">
             <div className="">
               <div className="flex items-center gap-2">
                 <CustomAvatar>
                   <AvatarFallback className="bg-[#F2652F] text-white font-semibold text-xl">
-                    { //@ts-ignore
-                    data?.product?.frameSize?.name?.charAt(0)?.toUpperCase() ||
-                      "A"}
+                    {
+                      //@ts-ignore
+                      data?.product?.frameSize?.name
+                        ?.charAt(0)
+                        ?.toUpperCase() || "A"
+                    }
                   </AvatarFallback>
                 </CustomAvatar>
 
@@ -150,8 +141,10 @@ const Page = ({ params }: any) => {
           <div className="pb-6">
             <h5 className="text-[18px] font-[600] text-black">Frame</h5>
             <p className="pt-2 text-[12px] font-[500] text-gray-500">
-              {//@ts-ignore
-              data?.product?.frameType?.description}
+              {
+                //@ts-ignore
+                data?.product?.frameType?.description
+              }
             </p>
             <div>
               <Image
