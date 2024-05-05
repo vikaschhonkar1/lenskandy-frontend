@@ -9,18 +9,36 @@ import {
 } from "@/components/ui/drawer";
 import React from "react";
 import LensTypeForm from "./LensTypeForm";
+import { Cross1Icon } from "@radix-ui/react-icons";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import { MdWhatsapp } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa6";
 
 const LensTypeDrawerContent = () => {
   return (
     <DrawerContent>
       <DrawerHeader className="text-left">
-        <DrawerTitle>Which eyeglasses do you wear?</DrawerTitle>
+        <div className="flex items-center justify-between mx-1">
+          <DrawerTitle>Which eyeglasses do you wear</DrawerTitle>
+          <DrawerClose asChild>
+            <Cross1Icon />
+          </DrawerClose>
+        </div>
       </DrawerHeader>
-      <LensTypeForm/>
+      <ScrollArea className=" max-h-[80vh] overflow-auto">
+        <LensTypeForm />
+      </ScrollArea>
+
       <DrawerFooter className="pt-2">
-        <DrawerClose asChild>
-          <Button variant="outline">Cancel</Button>
-        </DrawerClose>
+        <div className="">
+          <Separator/>
+          <div className="flex gap-1 items-center pt-2">
+            <FaWhatsapp color="green" />
+            <p>Get Expert Help on Whatsapp</p>
+          </div>
+
+        </div>
       </DrawerFooter>
     </DrawerContent>
   );

@@ -45,28 +45,30 @@ const lensTypeData = [
 ];
 
 const LensTypeForm = () => {
-  
-  const [selectedValue, setSelectedValue] = useState('card'); // Initial selected value
-
-  const handleRadioChange = (value: any) => {
-    setSelectedValue(value);
-  };
   return (
     <section className="px-4">
-      <RadioGroup defaultValue={selectedValue} className="grid grid-1 gap-4" onChange={handleRadioChange}>
+      <RadioGroup className="grid grid-1 gap-4">
         {lensTypeData &&
           lensTypeData.map((item, index) => (
             <LensPackageDrawerDialog
               key={index}
               trigger={
-                <div key={index} className="space-y-2">
-                  <RadioGroupItem value={item.id} 
-                    id={item.id} 
+                <div key={index} className="space-y-2 w-12/12">
+                  <RadioGroupItem
+                    value={item.id}
+                    id={item.id}
                     className="peer sr-only"
                   />
                   <div className="flex">
-                    <Image src={item?.image} alt={"Single Visopn"} width={50} height={50} />
-                    <Label className={`peer-checked:bg-blue-500 peer-checked:text-white px-3 py-2 rounded-md cursor-pointer`}>
+                    <Image
+                      src={item?.image}
+                      alt={"Single Visopn"}
+                      width={50}
+                      height={50}
+                    />
+                    <Label
+                      className={`peer-checked:bg-blue-500 peer-checked:text-white px-3 py-2 rounded-md cursor-pointer`}
+                    >
                       {item?.name}
                       <div>
                         <p>{item?.description}</p>
@@ -76,7 +78,7 @@ const LensTypeForm = () => {
                   </div>
                 </div>
               }
-              selectedId={item?.id} 
+              selectedId={item?.id}
             />
           ))}
       </RadioGroup>
