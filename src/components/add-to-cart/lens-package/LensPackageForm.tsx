@@ -243,7 +243,7 @@ const LensPackageForm = ({ id }: any) => {
                     <Separator />
                     <div className="flex flex-col">
                       {item?.features &&
-                        item?.features.map((val, index) => {
+                        item?.features.map((val: any, index: number) => {
                           return (
                             <div key={index} className="flex gap-2">
                               <div>

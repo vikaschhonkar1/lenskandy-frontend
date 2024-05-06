@@ -55,7 +55,9 @@ const LensTypeForm = () => {
               trigger={
                 <div key={index} className="space-y-2 w-12/12">
                   <RadioGroupItem
+                  //@ts-ignore
                     value={item.id}
+                    //@ts-ignore
                     id={item.id}
                     className="peer sr-only"
                   />
