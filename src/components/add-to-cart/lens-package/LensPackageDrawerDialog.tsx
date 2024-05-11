@@ -28,9 +28,10 @@ import { Label } from "@/components/ui/label";
 import LensTypeForm from "../lens-type/LensTypeForm";
 import LensPackageDrawerContent from "./LensPackageDrawerContent";
 
-const LensPackageDrawerDialog = ({ trigger, selectedId }: any) => {
+const LensPackageDrawerDialog = ({ trigger, selectedId, productDetails }: any) => {
   const [open, setOpen] = React.useState(false);
   // const isDesktop = useMediaQuery("(min-width: 768px)")
+  // console.log(productDetails)
   const isDesktop = false;
   if (isDesktop) {
     return (
@@ -58,7 +59,7 @@ const LensPackageDrawerDialog = ({ trigger, selectedId }: any) => {
   return (
     <Drawer>
       <DrawerTrigger asChild>{trigger}</DrawerTrigger>
-      <LensPackageDrawerContent selectedId={selectedId}/>
+      <LensPackageDrawerContent selectedId={selectedId} productDetails={productDetails}/>
     </Drawer>
   );
 };

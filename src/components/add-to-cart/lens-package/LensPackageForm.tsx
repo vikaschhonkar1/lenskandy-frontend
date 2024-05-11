@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
+import APISERVICES from "@/lib/api-services";
 import { paths } from "@/lib/paths";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
 
 const lensPackageData: any = [
@@ -211,7 +212,18 @@ const lensPackageData: any = [
     ],
   },
 ];
-const LensPackageForm = ({ id }: any) => {
+const LensPackageForm = ({ id, productDetails }: any) => {
+  const [lensPackageData, setLensPackageData] = useState(null);
+  const [selectedLensPackageId, setLensPackageId] = useState("")
+  const fetchLensPackage = async () => {
+    const res = await APISERVICES.lensPackage.get(id);
+
+    setLensPackageData(res?.data)
+  }
+  useEffect(()=> {
+    fetchLensPackage()
+  }, [id])
+
   const router = useRouter();
   return (
     <section className="px-4">
@@ -220,7 +232,7 @@ const LensPackageForm = ({ id }: any) => {
           {lensPackageData &&
             lensPackageData.map((item: any, index: number) => {
               return (
-                <div key={item?.name}>
+                <div key={item?.name} onClick={() => setLensPackageId(item?.id)}>
                   <RadioGroupItem
                     value={item?.id}
                     id={"package_" + item?.id}
@@ -233,7 +245,7 @@ const LensPackageForm = ({ id }: any) => {
                     <div className="mb-1">{item?.name}</div>
                     <div className="mb-1">
                       {item?.tags &&
-                        item?.tags?.map((val: any, newIndex: number) => (
+                        JSON.parse(item?.tags)?.map((val: any, newIndex: number) => (
                           <Badge key={newIndex} variant={"outline"}>
                             {val?.tagName}
                           </Badge>
@@ -243,7 +255,7 @@ const LensPackageForm = ({ id }: any) => {
                     <Separator />
                     <div className="flex flex-col">
                       {item?.features &&
-                        item?.features.map((val: any, index: number) => {
+                        JSON.parse(item?.features).map((val: any, index: number) => {
                           return (
                             <div key={index} className="flex gap-2">
                               <div>
@@ -275,6 +287,9 @@ const LensPackageForm = ({ id }: any) => {
           className="bg-[#F2652F] text-white w-full text-[18px] "
           onClick={() => {
             router.push(paths.checkout.cart);
+            localStorage.setItem("cart", JSON.stringify({productDetails, id}))
+            
+            // console.log(productDetails, id)
           }}
         >
           Proceed To Cart

@@ -6,12 +6,13 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
-import React from "react";
+import React, { useEffect } from "react";
 import LensPackageForm from "./LensPackageForm";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Cross1Icon } from "@radix-ui/react-icons";
 
-const LensPackageDrawerContent = ({ selectedId }: any) => {
+const LensPackageDrawerContent = ({ selectedId, productDetails }: any) => {
+// console.log(productDetails)
   return (
     <DrawerContent>
       <DrawerHeader className="text-left">
@@ -23,7 +24,7 @@ const LensPackageDrawerContent = ({ selectedId }: any) => {
         </div>
       </DrawerHeader>
       <ScrollArea className="pb-5 max-h-[80vh] overflow-auto">
-        <LensPackageForm id={selectedId} />
+        <LensPackageForm id={selectedId} productDetails={productDetails} />
       </ScrollArea>
       <DrawerFooter className="pt-2"></DrawerFooter>
     </DrawerContent>

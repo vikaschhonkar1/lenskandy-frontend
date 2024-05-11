@@ -5,6 +5,7 @@ import CartTopNav from "@/components/add-to-cart/cart/CartTopNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import useLocalStorage from "@/hooks/use-local-storage";
 import { paths } from "@/lib/paths";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -14,7 +15,8 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 const Page = () => {
   const router = useRouter();
   const cartItems = {};
-
+  const [cart, setCart] = useLocalStorage("cart", "")
+  console.log(cart)
   return (
     <>
       <CartTopNav itemsInCart={2} />

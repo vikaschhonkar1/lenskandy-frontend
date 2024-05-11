@@ -39,7 +39,8 @@ const APISERVICES = {
 
 
 
-
+  lensType: createApiFunction("lens-power"), 
+  lensPackage: createApiFunction("lens-package")
 
 };
 

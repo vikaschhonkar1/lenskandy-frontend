@@ -27,7 +27,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import LensTypeDrawerContent from "./LensTypeDrawerContent";
 
-export function LensTypeDrawerDialog() {
+export function LensTypeDrawerDialog(props: any) {
+  const {categoryId, productDetails} = props
+  // console.log(productDetails)
   const [open, setOpen] = React.useState(false);
   // const isDesktop = useMediaQuery("(min-width: 768px)")
   const isDesktop = false;
@@ -65,7 +67,7 @@ export function LensTypeDrawerDialog() {
           Buy Now
         </Button>
       </DrawerTrigger>
-      <LensTypeDrawerContent/>
+      <LensTypeDrawerContent categoryId={categoryId} productDetails={productDetails}/>
     </Drawer>
   );
 }

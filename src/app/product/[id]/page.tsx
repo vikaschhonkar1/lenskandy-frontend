@@ -1,4 +1,3 @@
-
 import { CustomAvatar } from "@/components/home-page/CustomAvatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -26,11 +25,11 @@ import APISERVICES from "@/lib/api-services";
 import { LensTypeDrawerDialog } from "@/components/add-to-cart/lens-type/LensTypeDrawerDialog";
 
 const getSKUFromURL = (slug: string): string => {
-  const parts = slug.split('_');
+  const parts = slug.split("_");
   return parts[parts.length - 1];
-}
+};
 
-const Page = async({ params }: any) => {
+const Page = async ({ params }: any) => {
   const accordionData = [
     {
       id: "item-1",
@@ -49,16 +48,18 @@ const Page = async({ params }: any) => {
     },
     // Add more items as needed
   ];
-  const skuId = getSKUFromURL(params?.id)
-  const res = await APISERVICES.productVariants.get(skuId)
-  console.log(res)
+  const skuId = getSKUFromURL(params?.id);
+  const res = await APISERVICES.productVariants.get(skuId);
 
-  const data = {};
- 
+
+const data = {}
   return (
     <>
-      <ProductNav productName={res?.data?.product?.name} frameColor={res?.data?.frameColor?.name} />
-      <ProductDetail data={res?.data}/>
+      <ProductNav
+        productName={res?.data?.product?.name}
+        frameColor={res?.data?.frameColor?.name}
+      />
+      <ProductDetail data={res?.data} />
       <CouponCard />
       <Card>
         <section className="mt-4">
@@ -236,7 +237,7 @@ const Page = async({ params }: any) => {
               ))}
             </section>
             <section className="left-0 right-0 bottom-0 fixed w-full p-2">
-              <LensTypeDrawerDialog/>
+              <LensTypeDrawerDialog categoryId={res?.data?.product?.Category?.id} productDetails={res?.data}/>
             </section>
           </div>
         </>
