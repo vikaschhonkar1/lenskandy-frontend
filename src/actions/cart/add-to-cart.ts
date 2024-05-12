@@ -12,6 +12,7 @@ const AddToCart = async (productId:number, variantId:number, lensPackageId: numb
     variantId,
     lensPackageId,
   });
+  console.log(res)
   if (res?.statusCode === 200) {
     redirect("/cart");
   } else {

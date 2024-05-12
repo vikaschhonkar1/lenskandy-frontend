@@ -234,10 +234,11 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
     <section className="px-4">
       <section className="mx-3 mt-2  pt-3">
         <RadioGroup
-          defaultValue={`package_${lensPackageData?.[0]?.id}`}
+          defaultValue={//@ts-ignore
+            `package_${lensPackageData?.[0]?.id}`}
           className="grid gap-4"
         >
-          {lensPackageData &&
+          {lensPackageData && //@ts-ignore
             lensPackageData?.map((item: any, index: number) => {
               return (
                 <div

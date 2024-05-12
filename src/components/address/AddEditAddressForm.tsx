@@ -15,10 +15,24 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import APISERVICES from "@/lib/api-services";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+
 const AddressSchema = z.object({
   name: z.string().min(1),
-  phone: z.string().min(1),
-  alternatePhone: z.string().min(1).optional(),
+  phone: z.string().refine((value) => /^\d{10}$/.test(value), {
+    message:
+      "Please enter a 10-digit number without spaces or special characters.",
+  }),
+  alternatePhone: z
+    .string()
+    .min(1)
+    .optional()
+    .refine((value) => !value || /^\d{10}$/.test(value), {
+      message:
+        "Please enter a 10-digit number without spaces or special characters for the alternate phone number, or leave it empty.",
+    }),
   street: z.string().min(1),
   city: z.string().min(1),
   state: z.string().min(1),
@@ -28,6 +42,8 @@ const AddressSchema = z.object({
 });
 
 export function AddEditAddressForm() {
+
+  const router = useRouter()
   // 1. Define your form.
   const form = useForm<z.infer<typeof AddressSchema>>({
     resolver: zodResolver(AddressSchema),
@@ -44,10 +60,22 @@ export function AddEditAddressForm() {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof AddressSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof AddressSchema>) {
     console.log(values);
+
+    const payload = {
+      street: values?.street,
+      city: values?.city,
+      state: values?.state,
+      postalCode: values?.postalCode,
+      countryId: values?.countryId,
+      category: values?.category,
+      name: values?.name,
+      phone: values?.phone,
+    };
+
+    const res = await APISERVICES.address.post(payload);
+    router.push("/checkout/shipping-address");
   }
 
   return (

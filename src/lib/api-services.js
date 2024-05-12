@@ -34,6 +34,8 @@ const APISERVICES = {
 
   lensType: createApiFunction("lens-power"),
   lensPackage: createApiFunction("lens-package"),
+
+  order: createApiFunction("order")
 };
 
 export default APISERVICES;

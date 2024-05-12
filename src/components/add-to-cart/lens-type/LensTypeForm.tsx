@@ -61,8 +61,8 @@ const LensTypeForm = (props: any) => {
   return (
     <section className="px-4">
       <RadioGroup className="grid grid-1 gap-4">
-        {lensTypeData1 &&
-          lensTypeData1?.map((item, index) => (
+        {lensTypeData1 && //@ts-ignore
+          lensTypeData1?.map((item: any, index: any) => (
             <LensPackageDrawerDialog
               key={index}
               trigger={
