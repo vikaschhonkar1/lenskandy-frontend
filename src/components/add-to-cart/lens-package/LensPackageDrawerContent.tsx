@@ -11,7 +11,7 @@ import LensPackageForm from "./LensPackageForm";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Cross1Icon } from "@radix-ui/react-icons";
 
-const LensPackageDrawerContent = ({ selectedId, productDetails }: any) => {
+const LensPackageDrawerContent = ({ selectedId, productDetails, isLoggedIn }: any) => {
 // console.log(productDetails)
   return (
     <DrawerContent>
@@ -24,7 +24,7 @@ const LensPackageDrawerContent = ({ selectedId, productDetails }: any) => {
         </div>
       </DrawerHeader>
       <ScrollArea className="pb-5 max-h-[80vh] overflow-auto">
-        <LensPackageForm id={selectedId} productDetails={productDetails} />
+        <LensPackageForm id={selectedId} productDetails={productDetails} isLoggedIn={isLoggedIn}/>
       </ScrollArea>
       <DrawerFooter className="pt-2"></DrawerFooter>
     </DrawerContent>

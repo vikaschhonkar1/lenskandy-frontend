@@ -15,7 +15,7 @@ import { Separator } from "@/components/ui/separator";
 import { MdWhatsapp } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa6";
 
-const LensTypeDrawerContent = ({categoryId, productDetails}: any) => {
+const LensTypeDrawerContent = ({categoryId, productDetails, isLoggedIn}: any) => {
   // console.log(productDetails)
   return (
     <DrawerContent>
@@ -28,7 +28,7 @@ const LensTypeDrawerContent = ({categoryId, productDetails}: any) => {
         </div>
       </DrawerHeader>
       <ScrollArea className=" max-h-[80vh] overflow-auto">
-        <LensTypeForm categoryId={categoryId} productDetails={productDetails} />
+        <LensTypeForm categoryId={categoryId} productDetails={productDetails} isLoggedIn={isLoggedIn} />
       </ScrollArea>
 
       <DrawerFooter className="pt-2">

@@ -1,27 +1,24 @@
-"use client"
+"use client";
 
-import { Card } from '@/components/ui/card';
-import { config } from '@/config';
-import Image from 'next/image';
-import React from 'react'
+import { Card } from "@/components/ui/card";
+import { config } from "@/config";
+import Image from "next/image";
+import React from "react";
 import { BsDot } from "react-icons/bs";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-  } from "@/components/ui/popover";
-  
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { DeleteFromCart } from "@/actions/cart/add-to-cart";
+import { CustomToast } from "@/components/generic-components/custom-toast";
 
-const CartProductCard = ({data}: any) => {
-    const handleQuantity = async (qty:number) => {
-        // const res = await UpdateToCart(data?.id, qty);
-        // CustomToast(res || "Quantity updated successfully");
-      };
-      const handleDelete = async () => {
-        // const res = await DeleteFromCart(data?.id);
-        // CustomToast(res || "Item Removed successfully");
-      };
+const CartProductCard = ({ data }: any) => {
+  const handleDelete = async () => {
+    const res = await DeleteFromCart(data?.id);
+    CustomToast(res || "Item Removed successfully");
+  };
   return (
     <Card className="flex  gap-7 py-2 mx-2 mt-8">
       <div className="pl-5">
@@ -69,64 +66,9 @@ const CartProductCard = ({data}: any) => {
             className="font-[600] text-[13px]"
             dangerouslySetInnerHTML={{ __html: data?.product?.description }}
           />
-          <form className="max-w-xs mx-auto my-2">
-            <div className="relative flex items-center">
-              <button
-                disabled={data?.quantity == 1}
-                onClick={() => handleQuantity(data?.quantity - 1)}
-                type="button"
-                id="decrement-button"
-                data-input-counter-decrement="counter-input"
-                className="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-5 w-5 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
-              >
-                <svg
-                  className="w-2.5 h-2.5 text-gray-900 dark:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 2"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M1 1h16"
-                  />
-                </svg>
-              </button>
-              <span className=" text-sm font-normal max-w-[2.5rem] text-center mx-3">
-                {data?.quantity}
-              </span>
 
-              <button
-                disabled={data?.quantity > 9}
-                onClick={() => handleQuantity(data?.quantity + 1)}
-                type="button"
-                id="increment-button"
-                data-input-counter-increment="counter-input"
-                className="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-5 w-5 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
-              >
-                <svg
-                  className="w-2.5 h-2.5 text-gray-900 dark:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 18"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 1v16M1 9h16"
-                  />
-                </svg>
-              </button>
-            </div>
-          </form>
           <span className="font-[600] text-[14px]">
-            ₹{Number(data?.variant?.price) * data?.quantity}
+            ₹{Number(data?.variant?.price)}
           </span>
         </div>
 
@@ -150,7 +92,7 @@ const CartProductCard = ({data}: any) => {
         </Popover>
       </div>
     </Card>
-  )
-}
+  );
+};
 
-export default CartProductCard
+export default CartProductCard;

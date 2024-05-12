@@ -23,6 +23,7 @@ import ProductDetail from "@/components/product/ProductDetail";
 import CouponCard from "@/components/product/CouponCard";
 import APISERVICES from "@/lib/api-services";
 import { LensTypeDrawerDialog } from "@/components/add-to-cart/lens-type/LensTypeDrawerDialog";
+import { accessToken } from "@/hooks/useAuth";
 
 const getSKUFromURL = (slug: string): string => {
   const parts = slug.split("_");
@@ -50,9 +51,8 @@ const Page = async ({ params }: any) => {
   ];
   const skuId = getSKUFromURL(params?.id);
   const res = await APISERVICES.productVariants.get(skuId);
-
-
-const data = {}
+  const isLoggedIn = await accessToken();
+  const data = {};
   return (
     <>
       <ProductNav
@@ -237,7 +237,11 @@ const data = {}
               ))}
             </section>
             <section className="left-0 right-0 bottom-0 fixed w-full p-2">
-              <LensTypeDrawerDialog categoryId={res?.data?.product?.Category?.id} productDetails={res?.data}/>
+              <LensTypeDrawerDialog
+                categoryId={res?.data?.product?.Category?.id}
+                productDetails={res?.data}
+                isLoggedIn = {isLoggedIn ? true : false}
+              />
             </section>
           </div>
         </>

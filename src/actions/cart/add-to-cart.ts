@@ -5,11 +5,12 @@ import { redirect } from "next/navigation";
 
 
 
-const AddToCart = async (productId:number, variantId:number, quantity = 1) => {
+const AddToCart = async (productId:number, variantId:number, lensPackageId: number) => {
+  console.log("hits")
   const res = await APISERVICES.cart.post({
     productId,
     variantId,
-    quantity,
+    lensPackageId,
   });
   if (res?.statusCode === 200) {
     redirect("/cart");
@@ -24,7 +25,7 @@ const UpdateToCart = async (id:number, quantity = 1) => {
   });
 
   if (res?.statusCode === 200) {
-    redirect("/cart");
+    // redirect("/cart");
   } else {
     return res?.message || res?.errors[0]?.quantity;
   }

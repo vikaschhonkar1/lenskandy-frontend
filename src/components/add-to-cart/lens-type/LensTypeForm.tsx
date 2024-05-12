@@ -45,19 +45,19 @@ const lensTypeData = [
   },
 ];
 
-const LensTypeForm =  (props: any) => {
-  const {categoryId, productDetails} = props
-  const [lensTypeData1, setLensTypeData] = useState(null)
-  const [selectedId, setSelectedId] = useState("")
+const LensTypeForm = (props: any) => {
+  const { categoryId, productDetails, isLoggedIn } = props;
+  const [lensTypeData1, setLensTypeData] = useState(null);
+  const [selectedId, setSelectedId] = useState("");
   const fetchLensType = async () => {
-    const res = await APISERVICES.lensType.get(`?categoryId=${categoryId}`)
-    if(res?.success) setLensTypeData(res?.data)
-  }
-// console.log(productDetails)
+    const res = await APISERVICES.lensType.get(`?categoryId=${categoryId}`);
+    if (res?.success) setLensTypeData(res?.data);
+    console.log(res, "fsdf");
+  };
 
-  useEffect(()=> {
+  useEffect(() => {
     fetchLensType();
-  }, [categoryId])
+  }, [categoryId]);
   return (
     <section className="px-4">
       <RadioGroup className="grid grid-1 gap-4">
@@ -66,9 +66,13 @@ const LensTypeForm =  (props: any) => {
             <LensPackageDrawerDialog
               key={index}
               trigger={
-                <div key={index} className="space-y-2 w-12/12" onClick={()=> setSelectedId(item?.id)}>
+                <div
+                  key={index}
+                  className="space-y-2 w-12/12"
+                  onClick={() => setSelectedId(item?.id)}
+                >
                   <RadioGroupItem
-                  //@ts-ignore
+                    //@ts-ignore
                     value={item.id}
                     //@ts-ignore
                     id={item.id}
@@ -95,6 +99,7 @@ const LensTypeForm =  (props: any) => {
               }
               selectedId={selectedId}
               productDetails={productDetails}
+              isLoggedIn={isLoggedIn}
             />
           ))}
       </RadioGroup>

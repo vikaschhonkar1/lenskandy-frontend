@@ -11,6 +11,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
+import { accessToken, user } from "@/hooks/useAuth";
+// import { cookies } from "next/headers";
+import { allCookies } from "@/lib/auth/AuthClient";
+import { AddToCart } from "@/actions/cart";
+import { addLoginParam } from "@/components/login";
 
 const lensPackageData: any = [
   {
@@ -212,27 +217,33 @@ const lensPackageData: any = [
     ],
   },
 ];
-const LensPackageForm = ({ id, productDetails }: any) => {
+const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
   const [lensPackageData, setLensPackageData] = useState(null);
-  const [selectedLensPackageId, setLensPackageId] = useState("")
+  const [selectedLensPackageId, setLensPackageId] = useState("");
   const fetchLensPackage = async () => {
-    const res = await APISERVICES.lensPackage.get(id);
-
-    setLensPackageData(res?.data)
-  }
-  useEffect(()=> {
-    fetchLensPackage()
-  }, [id])
-
+    const res = await APISERVICES.lensPackage.get(`?lensPower=${id}`);
+    console.log(res);
+    setLensPackageData(res?.data);
+  };
+  console.log(isLoggedIn);
+  useEffect(() => {
+    fetchLensPackage();
+  }, [id]);
   const router = useRouter();
   return (
     <section className="px-4">
       <section className="mx-3 mt-2  pt-3">
-        <RadioGroup defaultValue={`package_${lensPackageData?.[0]?.id}`} className="grid gap-4">
+        <RadioGroup
+          defaultValue={`package_${lensPackageData?.[0]?.id}`}
+          className="grid gap-4"
+        >
           {lensPackageData &&
-            lensPackageData.map((item: any, index: number) => {
+            lensPackageData?.map((item: any, index: number) => {
               return (
-                <div key={item?.name} onClick={() => setLensPackageId(item?.id)}>
+                <div
+                  key={item?.name}
+                  onClick={() => setLensPackageId(item?.id)}
+                >
                   <RadioGroupItem
                     value={item?.id}
                     id={"package_" + item?.id}
@@ -245,33 +256,37 @@ const LensPackageForm = ({ id, productDetails }: any) => {
                     <div className="mb-1">{item?.name}</div>
                     <div className="mb-1">
                       {item?.tags &&
-                        JSON.parse(item?.tags)?.map((val: any, newIndex: number) => (
-                          <Badge key={newIndex} variant={"outline"}>
-                            {val?.tagName}
-                          </Badge>
-                        ))}
+                        JSON.parse(item?.tags)?.map(
+                          (val: any, newIndex: number) => (
+                            <Badge key={newIndex} variant={"outline"}>
+                              {val?.tagName}
+                            </Badge>
+                          )
+                        )}
                     </div>
 
                     <Separator />
                     <div className="flex flex-col">
                       {item?.features &&
-                        JSON.parse(item?.features).map((val: any, index: number) => {
-                          return (
-                            <div key={index} className="flex gap-2">
-                              <div>
-                                <Image
-                                  src={
-                                    "/assets/image/AddToCart/SingleVision.webp"
-                                  }
-                                  alt={"Image"}
-                                  height={10}
-                                  width={10}
-                                />
+                        JSON.parse(item?.features).map(
+                          (val: any, index: number) => {
+                            return (
+                              <div key={index} className="flex gap-2">
+                                <div>
+                                  <Image
+                                    src={
+                                      "/assets/image/AddToCart/SingleVision.webp"
+                                    }
+                                    alt={"Image"}
+                                    height={10}
+                                    width={10}
+                                  />
+                                </div>
+                                <div>{val?.feature}</div>
                               </div>
-                              <div>{val?.feature}</div>
-                            </div>
-                          );
-                        })}
+                            );
+                          }
+                        )}
                     </div>
                     <>{item?.combo}</>
                     <>Price: {item?.price}</>
@@ -286,10 +301,20 @@ const LensPackageForm = ({ id, productDetails }: any) => {
           variant="outline"
           className="bg-[#F2652F] text-white w-full text-[18px] "
           onClick={() => {
-            router.push(paths.checkout.cart);
-            localStorage.setItem("cart", JSON.stringify({productDetails, id}))
-            
-            // console.log(productDetails, id)
+            // router.push(paths.checkout.cart);
+            if (isLoggedIn) {
+              AddToCart(
+                parseInt(productDetails?.productId),
+                parseInt(productDetails?.id),
+                id
+              );
+            } else {
+              AddToCart(
+                parseInt(productDetails?.productId),
+                parseInt(productDetails?.id),
+                id
+              );
+            }
           }}
         >
           Proceed To Cart

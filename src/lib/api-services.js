@@ -49,8 +49,9 @@ export default APISERVICES;
 async function fetchData(url, method, data) {
 
   // const { token } = await authClient.getUser();
+  const token =  await accessToken();
   const headers = {
-    Authorization: 'Bearer ' + accessToken() || '',
+    Authorization: 'Bearer ' + token || '',
     "Access-Control-Allow-Origin": "*",
   };
 
@@ -73,7 +74,7 @@ async function fetchData(url, method, data) {
       if (isValid) {
         fetchData(url, method, data)
       } else {
-        addLoginParam()
+        // addLoginParam()
       }
     } else if (!response.ok) {
       return res

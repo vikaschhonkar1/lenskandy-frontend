@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import BillDetailsCard from "@/components/add-to-cart/cart/BillDetailsCard";
 import CartProductCard from "@/components/add-to-cart/cart/CartProductCard";
 import CartTopNav from "@/components/add-to-cart/cart/CartTopNav";
@@ -6,17 +6,20 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import useLocalStorage from "@/hooks/use-local-storage";
+import { accessToken } from "@/hooks/useAuth";
+import APISERVICES from "@/lib/api-services";
 import { paths } from "@/lib/paths";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
-const Page = () => {
-  const router = useRouter();
-  const cartItems = {};
-  const [cart, setCart] = useLocalStorage("cart", "")
-  console.log(cart)
+const Page =  () => {
+  const cartItems = {}
+  // useEffect(() => {
+
+  //   const res = await  APISERVICES.cart.get()
+  // }, [])
+  // const cartItems1 = res?.data
   return (
     <>
       <CartTopNav itemsInCart={2} />
@@ -25,8 +28,8 @@ const Page = () => {
       </div>
 
       <section>
-        {[1, 2, 3]
-          ? [1, 2, 3]?.map((item: any) => (
+        {cartItems?.length
+          ? cartItems?.map((item: any) => (
               <CartProductCard key={item?.id} data={item} />
             ))
           : ""}
@@ -113,7 +116,9 @@ const Page = () => {
         <Button
           variant="outline"
           className="bg-[#F2652F] text-white w-full text-[18px] px-8 py-6"
-          onClick={() => {router.push(paths.checkout.shippingAddress)}}
+          // onClick={() => {
+          //   router.push(paths.checkout.shippingAddress);
+          // }}
         >
           Proceed to Checkout
         </Button>
