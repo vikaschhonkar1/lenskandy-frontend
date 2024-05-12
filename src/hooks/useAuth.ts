@@ -6,6 +6,7 @@ const allCookies = (name: string) => {
   return cookies().get(name)?.value || "";
 };
 export const accessToken = () => allCookies("accessToken");
+export const sessionId = () => allCookies("temp_session")
 export const refreshTokenFn = () => allCookies("refreshToken");
 export const user = () => {
   const user = allCookies("lenskandy_user");

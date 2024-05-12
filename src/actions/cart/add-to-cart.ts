@@ -25,7 +25,7 @@ const UpdateToCart = async (id:number, quantity = 1) => {
   });
 
   if (res?.statusCode === 200) {
-    // redirect("/cart");
+    redirect("/cart");
   } else {
     return res?.message || res?.errors[0]?.quantity;
   }

@@ -1,12 +1,10 @@
-
-import {accessToken} from "@/hooks/useAuth";
+import { accessToken, sessionId } from "@/hooks/useAuth";
 import { refreshToken } from "./auth/refresh-token";
 import { config } from "@/config";
 import { redirect } from "next/navigation";
 import { addLoginParam } from "@/components/login";
 
 const APISERVICES = {
-
   //Cart
   cart: createApiFunction("cart"),
   address: createApiFunction("address"),
@@ -17,9 +15,6 @@ const APISERVICES = {
   logout: createApiFunction("auth/logout"),
   loginOtp: createApiFunction("auth/login-otp"),
   refressToken: createApiFunction("auth/refresh-token"),
-
-
-
 
   category: createApiFunction("category"),
   brand: createApiFunction("brand"),
@@ -37,24 +32,20 @@ const APISERVICES = {
   productVariants: createApiFunction("products/variants"),
   allvariants: createApiFunction("products/allvariants"),
 
-
-
-  lensType: createApiFunction("lens-power"), 
-  lensPackage: createApiFunction("lens-package")
-
+  lensType: createApiFunction("lens-power"),
+  lensPackage: createApiFunction("lens-package"),
 };
 
 export default APISERVICES;
 
 async function fetchData(url, method, data) {
-
   // const { token } = await authClient.getUser();
-  const token =  await accessToken();
+  const token = await accessToken();
+  const session = await sessionId();
   const headers = {
-    Authorization: 'Bearer ' + token || '',
+    Authorization: "Bearer " + token || "",
     "Access-Control-Allow-Origin": "*",
   };
-
 
   if (!(data instanceof FormData)) {
     headers["Content-Type"] = "application/json";
@@ -67,17 +58,25 @@ async function fetchData(url, method, data) {
       body: data ? createRequestBody(data) : undefined,
     };
 
-    const response = await fetch(config.site.apiBaseUrl + replaceAndRemoveTrailingSlash(url), options);
+    let apiUrl = replaceAndRemoveTrailingSlash(url);
+    const hasQuery = apiUrl?.includes("?");
+    if (hasQuery) {
+      apiUrl += "&sessionId=" + session;
+    } else {
+      apiUrl += "?sessionId=" + session;
+    }
+
+    const response = await fetch(config.site.apiBaseUrl + apiUrl, options);
     const res = await response.json();
     if (response.status === 423) {
       const isValid = await refreshToken();
       if (isValid) {
-        fetchData(url, method, data)
+        fetchData(url, method, data);
       } else {
-        // addLoginParam()
+        addLoginParam()
       }
     } else if (!response.ok) {
-      return res
+      return res;
     }
 
     return res;

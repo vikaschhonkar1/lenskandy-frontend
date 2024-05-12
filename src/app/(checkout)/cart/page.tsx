@@ -1,7 +1,7 @@
-"use client"
 import BillDetailsCard from "@/components/add-to-cart/cart/BillDetailsCard";
 import CartProductCard from "@/components/add-to-cart/cart/CartProductCard";
 import CartTopNav from "@/components/add-to-cart/cart/CartTopNav";
+import ProceedToCartButton from "@/components/add-to-cart/cart/ProceedToCartButton";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -13,13 +13,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
-const Page =  () => {
-  const cartItems = {}
-  // useEffect(() => {
+const Page = async () => {
+  const res = await APISERVICES.cart.get();
+  const isLoggedIn = await accessToken();
+  const cartItems = res?.data;
 
-  //   const res = await  APISERVICES.cart.get()
-  // }, [])
-  // const cartItems1 = res?.data
   return (
     <>
       <CartTopNav itemsInCart={2} />
@@ -113,15 +111,7 @@ const Page =  () => {
         </div>
       </section>
       <section className="fixed bottom-0 p-4 w-full">
-        <Button
-          variant="outline"
-          className="bg-[#F2652F] text-white w-full text-[18px] px-8 py-6"
-          // onClick={() => {
-          //   router.push(paths.checkout.shippingAddress);
-          // }}
-        >
-          Proceed to Checkout
-        </Button>
+        <ProceedToCartButton isLoggedIn={isLoggedIn} />
       </section>
     </>
   );

@@ -7,17 +7,17 @@ import { nanoid } from "nanoid";
 export default async function middleware(req: NextRequest) {
   const response = NextResponse.next();
 
-  
-  response.cookies.set({
-    name: "temp_session",
-    value: nanoid(),
-    path: "/",
-    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-  });
+  if (!req.cookies.has("temp_session"))
+    response.cookies.set({
+      name: "temp_session",
+      value: nanoid(),
+      path: "/",
+      expires: Date.now() + 30 * 24 * 60 * 60 * 1000,
+    });
 
   return response;
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|.\\.png$).)",'/'],
+  matcher: ["/((?!api|_next/static|_next/image|.\\.png$).)", "/"],
 };

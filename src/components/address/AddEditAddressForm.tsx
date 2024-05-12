@@ -1,0 +1,150 @@
+"use client";
+import { Textarea } from "@/components/ui/textarea";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+const AddressSchema = z.object({
+  name: z.string().min(1),
+  phone: z.string().min(1),
+  alternatePhone: z.string().min(1).optional(),
+  street: z.string().min(1),
+  city: z.string().min(1),
+  state: z.string().min(1),
+  postalCode: z.string().min(1),
+  countryId: z.number(),
+  category: z.enum(["HOME", "OFFICE", "OTHER"]),
+});
+
+export function AddEditAddressForm() {
+  // 1. Define your form.
+  const form = useForm<z.infer<typeof AddressSchema>>({
+    resolver: zodResolver(AddressSchema),
+    defaultValues: {
+      name: "",
+      phone: "",
+      street: "",
+      city: "",
+      state: "",
+      postalCode: "",
+      countryId: 1,
+      category: "HOME",
+    },
+  });
+
+  // 2. Define a submit handler.
+  function onSubmit(values: z.infer<typeof AddressSchema>) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    console.log(values);
+  }
+
+  return (
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-4 overflow-y-auto"
+      >
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem className="space-y-0">
+              <FormLabel>Full Name</FormLabel>
+              <FormControl>
+                <Input placeholder="Full Name (Required*)" {...field} />
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem className="space-y-0">
+              <FormLabel>Phone Number</FormLabel>
+              <FormControl>
+                <Input placeholder="Phone Number (Required*)" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="postalCode"
+          render={({ field }) => (
+            <FormItem className="space-y-0">
+              <FormLabel>Pincode</FormLabel>
+              <FormControl>
+                <Input placeholder="Pincode (Required*)" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <div className="flex items-center gap-10">
+          <FormField
+            control={form.control}
+            name="state"
+            render={({ field }) => (
+              <FormItem className="space-y-0">
+                <FormLabel>State</FormLabel>
+                <FormControl>
+                  <Input placeholder="State (Required*)" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="city"
+            render={({ field }) => (
+              <FormItem className="space-y-0">
+                <FormLabel>City</FormLabel>
+                <FormControl>
+                  <Input placeholder="City (Required*)" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <FormField
+          control={form.control}
+          name="street"
+          render={({ field }) => (
+            <FormItem className="space-y-0">
+              <FormLabel>Street Address</FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="House No. Building name(Required)*"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Button type="submit" className="w-full bg-[#F2652F]">
+          Submit
+        </Button>
+      </form>
+    </Form>
+  );
+}
