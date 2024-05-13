@@ -5,7 +5,6 @@ import ProceedToCartButton from "@/components/add-to-cart/cart/ProceedToCartButt
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import useLocalStorage from "@/hooks/use-local-storage";
 import { accessToken } from "@/hooks/useAuth";
 import APISERVICES from "@/lib/api-services";
 import { paths } from "@/lib/paths";

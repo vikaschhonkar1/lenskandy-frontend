@@ -54,7 +54,7 @@ function Login() {
           <AlertDialogHeader>
             <AlertDialogTitle>Login/Signup</AlertDialogTitle>
             <AlertDialogDescription>
-              <LoginForm />
+              <LoginForm onClose={removeLoginParam}/>
             </AlertDialogDescription>
           </AlertDialogHeader>
         </AlertDialogContent>

@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/lib/api-services.js", "src/lib/logger/default-logger.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/lib/api-services.js", "src/lib/logger/default-logger.js", "src/app/(checkout)/order-summary"],
   "exclude": ["node_modules"]
 }

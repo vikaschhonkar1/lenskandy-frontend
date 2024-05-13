@@ -27,6 +27,9 @@ import { AddEditAddressForm } from "./AddEditAddressForm";
 
 export function AddEditAddressDrawer() {
   const [open, setOpen] = useState(false);
+  const closeDrawer = () => {
+    setOpen(false);
+  };
   const isDesktop = false;
   //   const isDesktop = useMediaQuery("(min-width: 768px)");
 
@@ -43,7 +46,7 @@ export function AddEditAddressDrawer() {
               Make changes to your profile here. Click save when youre done.
             </DialogDescription>
           </DialogHeader>
-          <AddEditAddressForm />
+          <AddEditAddressForm onClose={closeDrawer} />
         </DialogContent>
       </Dialog>
     );
@@ -52,16 +55,21 @@ export function AddEditAddressDrawer() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant="outline" className="mx-5  bg-[#F2652F] text-white text-[16px]">Add Address</Button>
+        <Button
+          variant="outline"
+          className="mx-5  bg-[#F2652F] text-white text-[16px]"
+        >
+          Add Address
+        </Button>
       </DrawerTrigger>
       <DrawerContent className="px-5 pb-4">
         <DrawerHeader className="text-left">
-          <DrawerTitle >Add delivery address</DrawerTitle>
+          <DrawerTitle>Add delivery address</DrawerTitle>
           {/* <DrawerDescription>
               Make changes to your profile here. Click save when youre done.
             </DrawerDescription> */}
         </DrawerHeader>
-        <AddEditAddressForm />
+        <AddEditAddressForm onClose={closeDrawer} />
         {/* <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button

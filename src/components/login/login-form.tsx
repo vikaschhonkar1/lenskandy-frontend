@@ -44,7 +44,7 @@ const formSchemaWithOTP = z.object({
   }),
 });
 
-function LoginForm() {
+function LoginForm({onClose}: any) {
   const [isOTPFieldActive, setIsOTPFieldActive] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -85,6 +85,7 @@ function LoginForm() {
         await createCookies("accessToken", res?.data?.accessToken);
         await createCookies("refreshToken", res?.data?.refreshToken);
         setIsOTPFieldActive(true);
+        if(onClose) onClose()
       }
     } catch (err) {
       console.log(err);

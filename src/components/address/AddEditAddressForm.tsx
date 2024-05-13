@@ -41,7 +41,8 @@ const AddressSchema = z.object({
   category: z.enum(["HOME", "OFFICE", "OTHER"]),
 });
 
-export function AddEditAddressForm() {
+//@ts-ignore
+export function AddEditAddressForm({onClose}) {
 
   const router = useRouter()
   // 1. Define your form.
@@ -75,6 +76,10 @@ export function AddEditAddressForm() {
     };
 
     const res = await APISERVICES.address.post(payload);
+    // if(res?.success) {
+      if(onClose) onClose()
+    
+    router.refresh()
     router.push("/checkout/shipping-address");
   }
 
