@@ -1,15 +1,17 @@
-import { Card } from '@/components/ui/card'
-import Image from 'next/image'
+"use client"
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React from 'react'
-import { RxDotFilled } from "react-icons/rx";
-import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward } from 'react-icons/io';
 
-const Page = () => {
+const Page = ({params}: any) => {
+
+  const orderId = params?.id;
+  const router = useRouter();
+  
   return (
     <>
-
-<>
-      <div className="flex justify-center pt-52 pb-6">
+     <div className="flex justify-center pt-52 pb-6">
         <Image
           className="h-[90px] w-[90px]"
           src="/assets/image/categoriesImages/orderConfrm.png"
@@ -26,20 +28,16 @@ const Page = () => {
           delivery date.
         </p>
       </div>
-      <div className="flex justify-center gap-4 text-center items-center">
+      <div className="flex justify-center gap-4 text-center items-center" onClick={()=> router.push(`/order-summary/${orderId}`)}>
         <h4 className="text-[#F2652F] text-[26px] border-b-2 border-dotted border-[#F2652F] font-[500]">Go to Your Orders</h4>
         <IoIosArrowForward className="mt-[4px] text-[#F2652F]" />
       </div>
-      <section className="fixed bottom-0 w-full">
-        <Card className="bg-blue-50 h-24 w-full pt-6 mb-2 px-5 rounded-none">
-          {/* <Button3 /> */}
-        </Card>
-      </section>
+      <div className="flex justify-center gap-4 text-center items-center" onClick={() => router.push("/")}>
+        <h4 className="text-[#555] border-b-2 border-dotted border-[#555] font-[500]">Go to Your Home</h4>
+        <IoIosArrowForward className="mt-[4px] text-[#555]" />
+      </div>
+      
     </>
-    
-
-   
-  </>
   )
 }
 

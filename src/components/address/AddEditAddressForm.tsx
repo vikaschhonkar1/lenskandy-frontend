@@ -80,7 +80,7 @@ export function AddEditAddressForm({onClose}) {
       if(onClose) onClose()
     
     router.refresh()
-    router.push("/checkout/shipping-address");
+    // router.push("/checkout/shipping-address");
   }
 
   return (

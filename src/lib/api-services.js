@@ -35,7 +35,8 @@ const APISERVICES = {
   lensType: createApiFunction("lens-power"),
   lensPackage: createApiFunction("lens-package"),
 
-  order: createApiFunction("order")
+  order: createApiFunction("order"),
+  verifyPayment: createApiFunction("order/verify-payment")
 };
 
 export default APISERVICES;
