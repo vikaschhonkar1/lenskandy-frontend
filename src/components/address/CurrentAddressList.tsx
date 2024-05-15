@@ -45,13 +45,13 @@ const CurrentAddressList = ({ addressList }: any) => {
 
     // Make API call to the serverless API
     var options = {
-      key: "rzp_test_kfwkOyghb8DB4h", // Enter the Key ID generated from the Dashboard
-      name: "Manu Arora Pvt Ltd",
+      key: "rzp_test_UmD9vSJDnQsrPz", // Enter the Key ID generated from the Dashboard
+      name: "ELITE LIFESTYLE",
       currency: data?.currency || "INR",
       amount: data?.amount,
       order_id: data?.id,
       description: "Thankyou for your test donation",
-      image: "https://manuarora.in/logo.png",
+      image: "/assets/image/HomePageImages/logo.png",
       //@ts-ignore
       handler: function (response) {
         // Validate payment at server - using webhooks is a better idea.
