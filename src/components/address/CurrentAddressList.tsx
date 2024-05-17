@@ -29,11 +29,13 @@ const CurrentAddressList = ({ addressList }: any) => {
         razorpay_signature: signature
       })
       if(res?.success) {
-        const successfulOrderId = res?.orderId;
+        console.log(res)
+        const successfulOrderId = res?.data?.orderId;
         router.push(`/order-confirmation/${successfulOrderId}`)
       }
     } catch (error) { //@ts-ignore
       toast.error(error?.message)
+      router.push("/cart")
     }
   }
   const initializeRazorpay = () => {

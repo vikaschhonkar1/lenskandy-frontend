@@ -1,20 +1,18 @@
-import { Card } from '@/components/ui/card'
-import Image from 'next/image'
-import React from 'react'
+import { Card } from "@/components/ui/card";
+import Image from "next/image";
+import React from "react";
 import { RxDotFilled } from "react-icons/rx";
 import { IoIosArrowForward } from "react-icons/io";
-import APISERVICES from '@/lib/api-services';
+import APISERVICES from "@/lib/api-services";
 
-const Page = async({params}: any) => {
-  const orderId = params?.id
-  const res = await APISERVICES.order.get(orderId)
-  console.log(res)
+const Page = async ({ params }: any) => {
+  const orderId = params?.id;
+  console.log(orderId);
+  const res = await APISERVICES.order.get(orderId);
+  console.log(res?.data?.address);
   return (
     <>
-
-
-
-    <section>
+      <section>
         <Card className="m-4">
           <section className=" border-b-2 border-dotted border-slate-500 pb-[4px]  flex gap-3  items-center">
             <div className="mx-2">
@@ -43,9 +41,12 @@ const Page = async({params}: any) => {
               </div>
               <div>
                 <h5 className="text-nowrap text-[15px] font-[500] ">
-                  Rectangular Black Sunglasses
+                  {/* {res?.items?.[0]?.product?.name} */}
+                  {res?.data?.items?.[0]?.product?.name}
                 </h5>
-                <h5 className="font-[500] text-[15px]">Total : ₹1999</h5>
+                <h5 className="font-[500] text-[15px]">
+                  Total : ₹{res?.data?.items?.[0]?.variant?.price}
+                </h5>
               </div>
             </div>
             {/*<div className="mx-2">
@@ -67,33 +68,45 @@ const Page = async({params}: any) => {
       <section className="my-3 ml-2">
         <div className="flex justify-between mx-4 my-4">
           <h4 className="font-[500]">Delivery Address:</h4>
-          <span className="text-[#F2652F]">Edit</span>
+          {/* <span className="text-[#F2652F]">Edit</span> */}
         </div>
         <div className="mx-4 pb-4">
-          <h4 className="font-[500] pb-1">Name</h4>
-          <h4 className="font-[500] text-gray-400">Full Address</h4>
-          <h4 className="font-[500] text-gray-400">Phone Number</h4>
-          <h4 className="font-[500] text-gray-400">Pin code</h4>
+          <h4 className="font-[500] pb-1">{res?.data?.address?.name}</h4>
+          <h4 className="font-[500] text-gray-400">
+            {" "}
+            {res?.data?.address?.street}, {res?.data?.address?.city},{" "}
+            {res?.data?.address?.state}
+          </h4>
+          <h4 className="font-[500] text-gray-400">
+            (+91)-{res?.data?.address?.phone}
+          </h4>
+          <h4 className="font-[500] text-gray-400">
+            {res?.data?.address?.postalCode}
+          </h4>
         </div>
         <div className="mx-4">
           <h5 className="font-[500] pb-3">Price Breakup:</h5>
-          <h5 className="font-[500]">Sub total</h5>
-          <h5 className="font-[500] pb-3">Discount</h5>
-          <h5 className="font-[500]">Total</h5>
+          <h5 className="font-[500]">
+            Sub total: ₹{res?.data?.items?.[0]?.variant?.price}
+          </h5>
+          <h5 className="font-[500] pb-3">Discount: 0</h5>
+          <h5 className="font-[500]">
+            Total: ₹{res?.data?.items?.[0]?.variant?.price}
+          </h5>
         </div>
       </section>
       <section className="m-3 mb-5">
         <Card className="flex justify-center py-3">
           <h5 className="font-[600] text-[19px]">
-            <span className="text-[#F2652F] font-[700]">₹1999/- </span>
+            <span className="text-[#F2652F] font-[700]">
+              ₹{res?.data?.items?.[0]?.variant?.price} -{" "}
+            </span>
             Total Including GST
           </h5>
         </Card>
       </section>
+    </>
+  );
+};
 
-   
-  </>
-  )
-}
-
-export default Page
+export default Page;
