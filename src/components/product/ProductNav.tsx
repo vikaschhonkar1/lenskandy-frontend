@@ -13,7 +13,7 @@ const ProductNav = (props: ProductNavProps) => {
   return (
     <div className="border-0 rounded-none h-[54px] sticky top-0 z-10 bg-white mt-[1px] shadow-lg">
       <div className="container w-full ">
-        <header className="flex justify-between">
+        <header className="flex justify-between items-center">
           <p className="text-[18px] ml-2 flex flex-start mt-3 font-light ">
             <FaArrowLeftLong
               className="mr-6 mt-2"
