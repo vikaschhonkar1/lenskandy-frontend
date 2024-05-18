@@ -76,7 +76,7 @@ const Page = async () => {
           }
         />
       </section>
-      <section className="mb-7">
+      <section className="mb-16">
         <div className="w-full flex justify-around border-b-2 border-slate-600 border-dotted mt-6 pb-5">
           <div>
             <Image

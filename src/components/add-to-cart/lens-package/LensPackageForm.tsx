@@ -232,8 +232,8 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
   const router = useRouter();
   // console.log(id)
   return (
-    <section className="px-4">
-      <section className="mx-3 mt-2  pt-3">
+    <section className="px-4 mt-2 ">
+      <section className=" pt-3">
         <RadioGroup
           defaultValue={
             //@ts-ignore
@@ -251,34 +251,38 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
                     setLensPackageId(item?.id);
                   }}
                 >
-                  <RadioGroupItem
-                    value={item?.id}
-                    id={"package_" + item?.id}
-                    className="peer sr-only"
-                  />
+                  
                   <Label
                     htmlFor={"package_" + item?.id}
                     className="flex flex-col  justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                   >
-                    <div className="mb-1">{item?.name}</div>
-                    <div className="mb-1">
+                    <div className="flex justify-between w-full">
+                      <div className="mb-2 font-bold">{item?.name}</div>
+                      <RadioGroupItem
+                        value={item?.id}
+                        id={"package_" + item?.id}
+                        className=""
+                      />
+                    </div>
+                    
+                    <div className="mb-2 flex gap-2">
                       {item?.tags &&
                         JSON.parse(item?.tags)?.map(
                           (val: any, newIndex: number) => (
                             <Badge key={newIndex} variant={"outline"}>
-                              {val?.tagName}
+                              {val?.tag}
                             </Badge>
                           )
                         )}
                     </div>
 
                     <Separator />
-                    <div className="flex flex-col">
+                    <div className="flex flex-col gap-2 my-4">
                       {item?.features &&
                         JSON.parse(item?.features).map(
                           (val: any, index: number) => {
                             return (
-                              <div key={index} className="flex gap-2">
+                              <div key={index} className="flex gap-2 items-center">
                                 <div>
                                   <Image
                                     src={
@@ -289,24 +293,26 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
                                     width={10}
                                   />
                                 </div>
-                                <div>{val?.feature}</div>
+                                <div className="capitalize text-gray-800">{val?.feature}</div>
                               </div>
                             );
                           }
                         )}
                     </div>
-                    <>{item?.combo}</>
-                    <>Price: {item?.price}</>
+                    <span>{item?.combo}</span>
+                    <Separator />
+                    <span className="mt-3">Price: ₹ {item?.price}</span>
                   </Label>
                 </div>
               );
             })}
         </RadioGroup>
       </section>
-      <section className="left-0 right-0 bottom-0 fixed w-full p-2">
+      <section className=" w-full fixed  px-4 left-0 bottom-2 ">
         <Button
           variant="outline"
-          className="bg-[#F2652F] text-white w-full text-[18px] "
+          className="bg-[#F2652F] text-white h-[40px] w-full text-[18px] "
+          disabled={selectedLensPackageId ? false : true}
           onClick={() => {
             // router.push(paths.checkout.cart);
             if (isLoggedIn) {

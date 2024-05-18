@@ -3,9 +3,11 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { FaArrowRight } from "react-icons/fa6";
+import { MdKeyboardArrowRight } from "react-icons/md";
 import LensPackageDrawerDialog from "../lens-package/LensPackageDrawerDialog";
 import APISERVICES from "@/lib/api-services";
+import { config } from "@/config";
+import LineProgress from "@/components/progress/lineProgress"
 
 const lensTypeData = [
   {
@@ -55,6 +57,11 @@ const LensTypeForm = (props: any) => {
     console.log(res, "fsdf");
   };
 
+  function createMarkup(html: any) {
+    return {
+       __html:   html  };
+ };
+
   useEffect(() => {
     fetchLensType();
   }, [categoryId]);
@@ -79,21 +86,28 @@ const LensTypeForm = (props: any) => {
                     className="peer sr-only"
                   />
                   <div className="flex">
-                    {/* <Image
-                      src={item?.image}
+                    <Image
+                      src={config.site.apiimageBaseUrl + item?.image}
                       alt={"Single Visopn"}
                       width={50}
                       height={50}
-                    /> */}
+                    />
+                    
+                      
+
                     <Label
-                      className={`peer-checked:bg-blue-500 peer-checked:text-white px-3 py-2 rounded-md cursor-pointer`}
+                      className={`peer-checked:bg-blue-500 peer-checked:text-white px-3 rounded-md cursor-pointer`}
                     >
-                      {item?.name}
-                      <div>
-                        <p>{item?.description}</p>
-                      </div>
+                      <h4 className="text-md font-bold capitalize">{item?.name}</h4>
+                      <div className="text-gray-600 font-normal mt-2 text-sm" dangerouslySetInnerHTML={createMarkup(item?.description)} /> 
                     </Label>
-                    <FaArrowRight />
+
+                    <div className="ml-auto">
+                      <MdKeyboardArrowRight className="text-2xl" />
+                    </div>
+
+                    
+                    
                   </div>
                 </div>
               }

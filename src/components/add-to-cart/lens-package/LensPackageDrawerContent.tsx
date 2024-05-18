@@ -23,10 +23,10 @@ const LensPackageDrawerContent = ({ selectedId, productDetails, isLoggedIn }: an
           </DrawerClose>
         </div>
       </DrawerHeader>
-      <ScrollArea className="pb-5 max-h-[80vh] overflow-auto">
+      <ScrollArea className=" max-h-[80vh] overflow-auto">
         <LensPackageForm id={selectedId} productDetails={productDetails} isLoggedIn={isLoggedIn}/>
       </ScrollArea>
-      <DrawerFooter className="pt-2"></DrawerFooter>
+      <DrawerFooter className="h-[60px] p-0"></DrawerFooter>
     </DrawerContent>
   );
 };
