@@ -222,20 +222,23 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
   const [selectedLensPackageId, setLensPackageId] = useState("");
   const fetchLensPackage = async () => {
     const res = await APISERVICES.lensPackage.get(`?lensPower=${id}`);
-    console.log(res);
+    // console.log(res);
     setLensPackageData(res?.data);
   };
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
   useEffect(() => {
     fetchLensPackage();
   }, [id]);
   const router = useRouter();
+  // console.log(id)
   return (
     <section className="px-4">
       <section className="mx-3 mt-2  pt-3">
         <RadioGroup
-          defaultValue={//@ts-ignore
-            `package_${lensPackageData?.[0]?.id}`}
+          defaultValue={
+            //@ts-ignore
+            `package_${lensPackageData?.[0]?.id}`
+          }
           className="grid gap-4"
         >
           {lensPackageData && //@ts-ignore
@@ -243,7 +246,10 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
               return (
                 <div
                   key={item?.name}
-                  onClick={() => setLensPackageId(item?.id)}
+                  onClick={() => {
+                    console.log(item?.id);
+                    setLensPackageId(item?.id);
+                  }}
                 >
                   <RadioGroupItem
                     value={item?.id}
@@ -307,15 +313,16 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
               AddToCart(
                 parseInt(productDetails?.productId),
                 parseInt(productDetails?.id),
-                id
+                Number(selectedLensPackageId)
               );
             } else {
               AddToCart(
                 parseInt(productDetails?.productId),
                 parseInt(productDetails?.id),
-                id
+                Number(selectedLensPackageId)
               );
             }
+            // console.log(id)
           }}
         >
           Proceed To Cart

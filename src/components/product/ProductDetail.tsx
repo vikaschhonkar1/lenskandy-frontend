@@ -53,7 +53,7 @@ const ProductDetail = (props: any) => {
             </section>
           </div>
         </div>
-        {/* <Carousel
+        <Carousel
           plugins={[plugin.current]}
           onMouseEnter={plugin.current.stop}
           onMouseLeave={plugin.current.reset}
@@ -90,7 +90,7 @@ const ProductDetail = (props: any) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-        </Carousel> */}
+        </Carousel>
         <div className="flex justify-between bg-gradient-to-b from-transparent to-blue-100 h-12 w-full">
           <a className="flex items-center ">
             <Image

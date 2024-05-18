@@ -9,7 +9,7 @@ const Page = async ({ params }: any) => {
   const orderId = params?.id;
   console.log(orderId);
   const res = await APISERVICES.order.get(orderId);
-  console.log(res?.data?.address);
+  console.log(res?.data);
   return (
     <>
       <section>
@@ -30,7 +30,8 @@ const Page = async ({ params }: any) => {
             </div>
           </section>
           <section className=" my-2">
-            <div className="flex gap-6 items-center mt-3">
+            {res?.data?.items?.map((item: any, index: number) => {
+              return (<div key={item} className="flex gap-6 items-center mt-3">
               <div className="mx-4 py-3">
                 <Image
                   src="/assets/image/categoriesImages/cartGlass.png"
@@ -45,10 +46,15 @@ const Page = async ({ params }: any) => {
                   {res?.data?.items?.[0]?.product?.name}
                 </h5>
                 <h5 className="font-[500] text-[15px]">
-                  Total : ₹{res?.data?.items?.[0]?.variant?.price}
+                  
+                  ({res?.data?.items?.[0]?.lensPackage?.name})
                 </h5>
               </div>
-            </div>
+            </div>)
+            })
+            
+            
+            }
             {/*<div className="mx-2">
               <h2 className="text-[12px] font-[600]" >Tracking Details</h2>
               <div className="mx-2 flex flex-col">
@@ -84,7 +90,7 @@ const Page = async ({ params }: any) => {
             {res?.data?.address?.postalCode}
           </h4>
         </div>
-        <div className="mx-4">
+        {/* <div className="mx-4">
           <h5 className="font-[500] pb-3">Price Breakup:</h5>
           <h5 className="font-[500]">
             Sub total: ₹{res?.data?.items?.[0]?.variant?.price}
@@ -93,13 +99,13 @@ const Page = async ({ params }: any) => {
           <h5 className="font-[500]">
             Total: ₹{res?.data?.items?.[0]?.variant?.price}
           </h5>
-        </div>
+        </div> */}
       </section>
       <section className="m-3 mb-5">
         <Card className="flex justify-center py-3">
           <h5 className="font-[600] text-[19px]">
             <span className="text-[#F2652F] font-[700]">
-              ₹{res?.data?.items?.[0]?.variant?.price} -{" "}
+              ₹{res?.data?.total} -{" "}
             </span>
             Total Including GST
           </h5>

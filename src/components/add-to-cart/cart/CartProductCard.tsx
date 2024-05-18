@@ -68,7 +68,8 @@ const CartProductCard = ({ data }: any) => {
           />
 
           <span className="font-[600] text-[14px]">
-            ₹{Number(data?.variant?.price)}
+            ₹{Number(data?.variant?.price) + Number(data?.lensPackage?.price)}{" "}
+            {`(Frame Price: ₹${data?.variant?.price} -- Lens Price: ₹${data?.lensPackage?.price})`}
           </span>
         </div>
 
