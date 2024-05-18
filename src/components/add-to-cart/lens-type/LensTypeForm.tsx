@@ -7,7 +7,7 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import LensPackageDrawerDialog from "../lens-package/LensPackageDrawerDialog";
 import APISERVICES from "@/lib/api-services";
 import { config } from "@/config";
-import LineProgress from "@/components/progress/lineProgress"
+// import LineProgress from "@/components/progress/lineProgress"
 
 const lensTypeData = [
   {

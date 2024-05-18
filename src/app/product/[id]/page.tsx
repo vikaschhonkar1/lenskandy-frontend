@@ -52,6 +52,7 @@ const Page = async ({ params }: any) => {
   const skuId = getSKUFromURL(params?.id);
   const res = await APISERVICES.productVariants.get(skuId);
   const isLoggedIn = await accessToken();
+  console.log(res?.data)
   const data = {};
   return (
     <>
