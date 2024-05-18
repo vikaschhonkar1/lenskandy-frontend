@@ -21,7 +21,7 @@ const CartTopNav = (props: CartTopNavProps) => {
             >
               <FaArrowLeftLong className="mr-3 " />
               <span className="text-[18px] font-[700]">
-                Cart ({itemsInCart > 1 ? itemsInCart + " Items" : itemsInCart + "item"})
+                Cart ({itemsInCart > 1 ? itemsInCart + " Items" : itemsInCart + " item"})
               </span>
             </p>
             <nav className="md:ml-auto flex items-center mt-3 mr-1 ">

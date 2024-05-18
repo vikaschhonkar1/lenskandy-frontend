@@ -16,10 +16,11 @@ const Page = async () => {
   const res = await APISERVICES.cart.get();
   const isLoggedIn = await accessToken();
   const cartItems = res?.data;
+  console.log(cartItems)
 
   return (
     <>
-      <CartTopNav itemsInCart={2} />
+      <CartTopNav itemsInCart={cartItems?.length} />
       <div className='h-[47px] bg-[url("/assets/image/categoriesImages/cartUpperBg.png")] text-center pt-2 text-white'>
         Offer Here
       </div>
@@ -67,8 +68,8 @@ const Page = async () => {
           itemTotal={
             cartItems?.length
               ? cartItems?.reduce((accumulator: number, item: any) => {
-                  const itemPrice =
-                    (item?.quantity || 0) * Number(item?.variant?.price || 0);
+
+                  const itemPrice = Number(item?.variant?.price || 0) + Number(item?.lensPackage?.price || 0);
                   return accumulator + itemPrice;
                 }, 0)
               : 0

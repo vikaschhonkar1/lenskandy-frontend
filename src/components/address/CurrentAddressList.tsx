@@ -13,31 +13,31 @@ import { IoIosArrowForward } from "react-icons/io";
 import Image from "next/image";
 import { toast } from "sonner";
 
-
 const CurrentAddressList = ({ addressList }: any) => {
   const [selectedAddress, setSelectedAddress] = useState(
     addressList?.[0]?.id || null
   );
-  const router = useRouter()
+  const router = useRouter();
 
   //@ts-ignore
   const verifyPayment = async (paymentId, orderId, signature) => {
     try {
       const res = await APISERVICES.verifyPayment.post({
-        razorpay_order_id: orderId, 
-        razorpay_payment_id: paymentId, 
-        razorpay_signature: signature
-      })
-      if(res?.success) {
-        console.log(res)
+        razorpay_order_id: orderId,
+        razorpay_payment_id: paymentId,
+        razorpay_signature: signature,
+      });
+      if (res?.success) {
+        console.log(res);
         const successfulOrderId = res?.data?.orderId;
-        router.push(`/order-confirmation/${successfulOrderId}`)
+        router.push(`/order-confirmation/${successfulOrderId}`);
       }
-    } catch (error) { //@ts-ignore
-      toast.error(error?.message)
-      router.push("/cart")
+    } catch (error) {
+      //@ts-ignore
+      toast.error(error?.message);
+      router.push("/cart");
     }
-  }
+  };
   const initializeRazorpay = () => {
     return new Promise((resolve) => {
       const script = document.createElement("script");
@@ -65,21 +65,23 @@ const CurrentAddressList = ({ addressList }: any) => {
     // Make API call to the serverless API
     var options = {
       key: "rzp_test_UmD9vSJDnQsrPz", // Enter the Key ID generated from the Dashboard
-      name: "ELITE LIFESTYLE",
+      name: "LENSKANDY",
       currency: data?.currency || "INR",
       amount: data?.amount,
       order_id: data?.id,
-      description: "Thankyou for your test donation",
+      description: "Thank you for shopping with us",
       image: "/assets/image/HomePageImages/logo.png",
       //@ts-ignore
       handler: function (response) {
         // Validate payment at server - using webhooks is a better idea.
-        verifyPayment(response.razorpay_payment_id, response.razorpay_order_id, response.razorpay_signature)
+        verifyPayment(
+          response.razorpay_payment_id,
+          response.razorpay_order_id,
+          response.razorpay_signature
+        );
       },
       prefill: {
-        name: "Manu Arora",
-        email: "manuarorawork@gmail.com",
-        contact: "9999999999",
+        contact: data?.phone,
       },
     };
     //@ts-ignore
@@ -88,14 +90,12 @@ const CurrentAddressList = ({ addressList }: any) => {
   };
   const bookOrder = async () => {
     const res = await APISERVICES.order.post({ addressId: selectedAddress });
-    console.log(res);
-    if(res?.success) {
-      makePayment(res?.data)
+    if (res?.success) {
+      makePayment(res?.data);
     }
   };
   return (
     <>
-      
       <section className="mx-3 mt-2  pt-3">
         <RadioGroup
           defaultValue={`package_${addressList?.[0]?.id}`}
@@ -143,12 +143,11 @@ const CurrentAddressList = ({ addressList }: any) => {
                 bookOrder();
               }}
             >
-              ₹1999/- Verify & Pay Now
+              Pay Now
             </Button>
           )}
         </Card>
       </section>
-      
     </>
   );
 };
