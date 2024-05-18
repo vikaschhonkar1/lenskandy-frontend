@@ -36,7 +36,7 @@ const APISERVICES = {
   lensPackage: createApiFunction("lens-package"),
 
   order: createApiFunction("order"),
-  verifyPayment: createApiFunction("order/verify-payment")
+  verifyPayment: createApiFunction("order/verify-payment"),
 };
 
 export default APISERVICES;
@@ -72,12 +72,12 @@ async function fetchData(url, method, data) {
     const response = await fetch(config.site.apiBaseUrl + apiUrl, options);
     const res = await response.json();
     if (response.status === 423) {
-      const isValid = await refreshToken();
-      if (isValid) {
-        fetchData(url, method, data);
-      } else {
-        addLoginParam()
-      }
+      addLoginParam();
+      // const isValid = await refreshToken();
+      // if (isValid) {
+      //   fetchData(url, method, data);
+      // } else {
+      // }
     } else if (!response.ok) {
       return res;
     }

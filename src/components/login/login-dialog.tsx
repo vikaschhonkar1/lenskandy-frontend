@@ -25,6 +25,7 @@ function Login() {
 
   const router = useRouter();
   const pathname = usePathname();
+  console.log(pathname == "/account");
 
   // Get a new searchParams string by merging the current
   // searchParams with a provided key/value pair
@@ -54,7 +55,18 @@ function Login() {
           <AlertDialogHeader>
             <AlertDialogTitle>Login/Signup</AlertDialogTitle>
             <AlertDialogDescription>
-              <LoginForm onClose={removeLoginParam}/>
+              <LoginForm
+                onClose={() => {
+                  // removeLoginParam();
+                  if (pathname == "/account") {
+                    console.log("path...");
+
+                    router?.replace("/");
+                  } else {
+                    removeLoginParam();
+                  }
+                }}
+              />
             </AlertDialogDescription>
           </AlertDialogHeader>
         </AlertDialogContent>
