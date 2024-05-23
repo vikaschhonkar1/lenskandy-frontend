@@ -20,20 +20,20 @@ export function TopCarousel() {
       plugins={[plugin.current]}
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
-      className="h-[203px] w-full">
+      className=" w-full"
+    >
       <CarouselContent>
         {[
-          "/assets/image/categoriesImages/catBanner01.png",
-          "/assets/image/homePageImages/caursel01.png",
-          "/assets/image/homePageImages/caursel02.png",
-          "/assets/image/homePageImages/caursel03.png",
-          "/assets/image/homePageImages/caursel04.png",
+          "/assets/images/Banner1.png",
+          "/assets/images/Banner2.png",
+          "/assets/images/Banner3.png",
+          "/assets/images/Banner4.png",
         ].map((item, index) => (
           <CarouselItem key={index}>
             <div>
-              <CardContent className="h-[206px] w-full lg:h-[360px]  flex  p-1 ">
+              <CardContent className=" w-full  flex  px-2 pt-2">
                 <Image
-                  className="h-[204px] w-full "
+                  className="w-full "
                   src={item}
                   alt="item"
                   height={204}
