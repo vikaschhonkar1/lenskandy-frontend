@@ -6,7 +6,7 @@ export const TrendingProduct = () => {
   return (
     <>
       {" "}
-      <section className="container my-2 flex flex-col gap-2 bg-[#ebe2e4] p-4">
+      <section className=" my-1 flex flex-col gap-2 bg-[#ebe2e4] shadow-md">
         <div className="rounded-md  w-full bg-white pl-2 shadow-[ rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px]">
           <div className="flex h-full w-full ">
             <div className=" w-2/3  ">
@@ -54,7 +54,7 @@ export const TrendingProduct = () => {
               <p className="text-[7px] font-medium text-gray-400 ">
                 size: Extra wide,Lorem ipsum dolor sit amet.
               </p>
-              <div className="flex contai">
+              <div className="flex">
                 <Image
                   style={{ height: "8px", width: "50px", marginTop: "4px" }}
                   src="/assets/image/homePageImages/rating.png"
@@ -87,8 +87,8 @@ export const TrendingProduct = () => {
                   />
                 </div>
               </div>
-              <div className="h-4 w-full mt-[18.8px] rounded-b-md bg-gradient-to-r from-white to-[#eace8b]  ">
-                <p className="text-[8px] text-[#AB7500] pt-1 ml-[70px]">
+              <div className="w-full mt-[16.8px] rounded-b-md bg-gradient-to-r py-[3px] from-white to-[#eace8b]  ">
+                <p className="text-[8px] text-[#AB7500] text-right mr-3">
                   {" "}
                   Buy 1 Get 1 + Free Membership
                 </p>

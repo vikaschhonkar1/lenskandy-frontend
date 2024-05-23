@@ -64,7 +64,7 @@ export function TabsStyle({ tabData }: TabsContent) {
                 </a>
               </div>
               {new Array(3).fill("")?.map((item) => (
-                <div key={item} className="shadow-lg mb-3">
+                <div key={item}>
                   <TrendingProduct />
                 </div>
               ))}
