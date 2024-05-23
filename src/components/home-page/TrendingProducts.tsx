@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 
-const TrendingProduct = () => {
+export const TrendingProduct = () => {
   return (
     <>
       {" "}
@@ -104,7 +104,6 @@ const TrendingProduct = () => {
 function TrendingProducts() {
   return (
     <>
-      {" "}
       <section className="container my- flex flex-col gap-2 bg-[#ebe2e4] p-4">
         <div className="flex justify-between items-center">
           <h1 className="text-xl font-bold pb-3">Now Trendings</h1>

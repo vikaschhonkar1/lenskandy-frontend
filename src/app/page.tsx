@@ -1,4 +1,5 @@
 import { Benefits } from "@/components/home-page/BenefitsSection";
+import CategorySection from "@/components/home-page/CategorySection/CategorySection";
 import { CategoryTabs } from "@/components/home-page/CategoryTabs";
 import SearchBox from "@/components/home-page/SearchBox";
 import { TabStyle2 } from "@/components/home-page/TabStyle2";
@@ -18,15 +19,9 @@ export default function Home() {
       <SearchBox />
       <ChatWhatsappBtn />
       <TopCarousel />
-      <CategoryTabs />
-      <Image
-        className="w-full h-[122px]"
-        src="/assets/image/homePageImages/banner01.png"
-        alt="banner"
-        height={112}
-        width={371}
-      />
-      <TrendingProducts />
+      <CategorySection />
+      
+      
 
       <section className="mt-6">
         <div
@@ -167,6 +162,12 @@ export default function Home() {
 
       <section>
         <Benefits />
+      </section>
+      <section>
+        <div
+          className="relative bg-[#D9D9D9]
+          w-full h-[51px] bottom-0"
+        ></div>
       </section>
     </>
   );
