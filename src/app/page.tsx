@@ -12,6 +12,13 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 
+const typesOfGlasses = [
+  "EyeGlasses",
+  "SunGlasses",
+  "Computer Glass",
+  "Reading Glasses",
+];
+
 export default function Home() {
   const noSearch = false;
   return (
@@ -20,8 +27,6 @@ export default function Home() {
       <ChatWhatsappBtn />
       <TopCarousel />
       <CategorySection />
-      
-      
 
       <section className="mt-6">
         <div
@@ -34,22 +39,31 @@ export default function Home() {
           <h1 className=" text-[47px] text-black font-semibold">60% OFF</h1>
           <div className="flex justify-around">
             {[
-              "/assets/image/homePageImages/sunglasses.png",
-              "/assets/image/homePageImages/eyeglasses.png",
-              "/assets/image/homePageImages/zeropower.png",
+              {
+                image: "/assets/image/homePageImages/sunglasses.png",
+                label: "Sunglasses",
+              },
+              {
+                image: "/assets/image/homePageImages/eyeglasses.png",
+                label: "Eyeglasses",
+              },
+              {
+                image: "/assets/image/homePageImages/zeropower.png",
+                label: "Zero Power",
+              },
             ].map((item, index) => (
               <div
                 key={index}
-                className="w-24 flex flex-col content-center items-center p-2"
+                className=" flex flex-col content-center items-center p-2 rounded-lg "
               >
                 <Image
-                  src={item}
+                  src={item?.image}
                   alt="avatar"
-                  height={79}
-                  width={67}
-                  className="glasses"
+                  height={98}
+                  width={98}
+                  className="glasses "
                 />
-                <span>Sunglasses</span>
+                <span>{item?.label}</span>
               </div>
             ))}
           </div>
@@ -79,8 +93,8 @@ export default function Home() {
         />
       </section>
       <section className="py-0">
-        <div className=" w-full flex flex-wrap gap-y-3	 justify-around pt-7 p-2 pr-2 bg-[#E9E9DD]">
-          {[1, 2, 3, 4, 5]?.map((item, index) => {
+        <div className=" w-full flex flex-wrap gap-y-3	 justify-around pt-7 p-2 pr-2 bg-[#E9E9DD] pb-5">
+          {typesOfGlasses?.map((item, index) => {
             return (
               <Card key={index} className="w-[158px] h-[168px] ">
                 <div className="flex -space-x-1 overflow-hidden pb-2 pt-[25px]">
@@ -115,9 +129,9 @@ export default function Home() {
                   height={135}
                   width={135}
                 />
-                <div className="h-[32px] bg-[#67A290] rounded-b-xl flex pb-2 mt-[4px]">
+                <div className="h-[32px] bg-[#67A290] rounded-b-xl flex pb-2 mt-[4px] justify-between pl-1 pr-4">
                   <span className="text-[14px] font-[600] text-white pl-[7px] pt-[5px]">
-                    Computer Glass
+                    {item}
                   </span>
                   <Image
                     className="w-[5px] h-[10px] mt-[11px] ml-4"
@@ -134,13 +148,19 @@ export default function Home() {
       </section>
 
       <section>
-        <div className="h-[332px] w-full pl-[25px]">
-          <h1 className="pt-[49px] text-[16px] font-semibold">
+        <div className="h-[332px] w-full ">
+          <h1 className="pt-[49px] text-[16px] font-semibold pl-4">
             Premium eyewear
           </h1>
-          <h1 className="text-[14px] font-semibold text-[#888888]">
+          <h1 className="text-[14px] font-semibold text-[#888888] pl-4">
             Set the trend with India’s finest eyewear
           </h1>
+          <Image
+            src={"/assets/images/HomePage/Premium Eyewear/One.png"}
+            height={221}
+            width={389}
+            alt="Premium Eyewear"
+          />
         </div>
       </section>
 

@@ -21,6 +21,7 @@ type TabsContent = {
     label: any;
     content: React.ReactNode;
     descImage: string;
+    glasses: string[];
   }[];
 };
 
@@ -63,9 +64,9 @@ export function TabsStyle({ tabData }: TabsContent) {
                   View All
                 </a>
               </div>
-              {new Array(3).fill("")?.map((item) => (
+              {item?.glasses?.map((item) => (
                 <div key={item}>
-                  <TrendingProduct />
+                  <TrendingProduct image={item} />
                 </div>
               ))}
             </section>
@@ -112,6 +113,11 @@ export const CategoryTabs = () => {
             </div>
           ),
           descImage: "/assets/images/EyeGlasses/DescImage.png",
+          glasses: [
+            "/assets/images/EyeGlasses/One.png",
+            "/assets/images/EyeGlasses/Two.png",
+            "/assets/images/EyeGlasses/Three.png",
+          ],
         },
         {
           value: "sunglasses",
@@ -140,7 +146,12 @@ export const CategoryTabs = () => {
               />
             </div>
           ),
-          descImage: "",
+          descImage: "/assets/images/SunGlasses/DescImage.png",
+          glasses: [
+            "/assets/images/SunGlasses/One.png",
+            "/assets/images/SunGlasses/Two.png",
+            "/assets/images/SunGlasses/Three.png",
+          ],
         },
         {
           value: "computer-glasses",
@@ -150,63 +161,65 @@ export const CategoryTabs = () => {
               <CustomAvatar
                 data={[
                   {
-                    Image: "/assets/image/homePageImages/eyeglasses01.png",
+                    Image: "/assets/images/ComputerGlasses/Men.png",
                     label: "Men",
                   },
                   {
-                    Image: "/assets/image/homePageImages/eyeglasses02.png",
+                    Image: "/assets/images/ComputerGlasses/Men.png",
                     label: "Women",
                   },
                   {
-                    Image: "/assets/image/homePageImages/eyeglasses03.png",
-                    label: "Child",
+                    Image: "/assets/images/ComputerGlasses/Men.png",
+                    label: "Kids",
                   },
                   {
-                    Image: "/assets/image/homePageImages/eyeglasses04.png",
-                    label: "Men",
-                  },
-                  {
-                    Image: "/assets/image/homePageImages/eyeglasses04.png",
-                    label: "Men",
+                    Image: "/assets/images/ComputerGlasses/Men.png",
+                    label: "Blue Block",
                   },
                 ]}
               />
             </div>
           ),
-          descImage: "",
+          descImage: "/assets/images/ComputerGlasses/DescImage.png",
+          glasses: [
+            "/assets/images/ComputerGlasses/One.png",
+            "/assets/images/ComputerGlasses/Two.png",
+            "/assets/images/ComputerGlasses/Three.png",
+          ],
         },
         {
-          value: "Sunglasses4",
-          label: "Contact Glasses",
+          value: "contact-lenses",
+          label: "Contact Lenses",
           content: (
             <div className="flex pt-2">
               <CustomAvatar
                 data={[
                   {
-                    Image: "/assets/image/homePageImages/eyeglasses01.png",
+                    Image: "/assets/images/ContactLenses/Men.png",
                     label: "Men",
                   },
                   {
-                    Image: "/assets/image/homePageImages/eyeglasses02.png",
+                    Image: "/assets/images/ContactLenses/Women.png",
                     label: "Women",
                   },
                   {
-                    Image: "/assets/image/homePageImages/eyeglasses03.png",
-                    label: "Child",
+                    Image: "/assets/images/ContactLenses/Kids.png",
+                    label: "Kids",
                   },
                   {
-                    Image: "/assets/image/homePageImages/eyeglasses04.png",
-                    label: "Men",
-                  },
-                  {
-                    Image: "/assets/image/homePageImages/eyeglasses04.png",
-                    label: "Men",
+                    Image: "/assets/images/ContactLenses/BlueRock.png",
+                    label: "Blue Block",
                   },
                 ]}
               />
             </div>
           ),
-          descImage: "",
+          descImage: "/assets/images/ContactLenses/DescImage.png",
+          glasses: [
+            "/assets/images/ContactLenses/One.png",
+            "/assets/images/ContactLenses/Two.png",
+            "/assets/images/ContactLenses/Three.png",
+          ],
         },
       ]}
     />

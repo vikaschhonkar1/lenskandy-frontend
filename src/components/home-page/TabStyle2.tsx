@@ -48,21 +48,14 @@ export function TabStyle2() {
             >
               Embossing
             </TabsTrigger>
-            <TabsTrigger
-              value="embrosing"
-              className="inline-block rounded-3xl text-gray-400 mr-2 py-1 border-2 border-gray-200 
-            data-[state=active]:bg-[#0000B7] data-[state=active]:text-white data-[state=active]:shadow"
-            >
-              Embossing
-            </TabsTrigger>
           </TabsList>
           <ScrollBar className="mt-6 hidScrollbar" orientation="horizontal" />
         </ScrollArea>
         <TabsContent value="collection">
-          <div className="w-full  ">
+          <div className="w-full rounded-lg">
             <Image
-              className=" w-full ml-1  object-fill"
-              src="/assets/image/homePageImages/newProduct01.png"
+              className=" w-full  rounded-lg object-fill pb-2"
+              src="/assets/images/HomePage/New At Lenskandy/One.png"
               alt="banner"
               height={125}
               width={135}
@@ -72,8 +65,8 @@ export function TabStyle2() {
         <TabsContent value="engraving">
           <div className="w-full  ">
             <Image
-              className=" w-full ml-1  object-fill"
-              src="/assets/image/homePageImages/newProduct01.png"
+              className=" w-full  rounded-lg object-fill pb-2"
+              src="/assets/images/HomePage/New At Lenskandy/Two.png"
               alt="banner"
               height={125}
               width={135}
@@ -83,8 +76,8 @@ export function TabStyle2() {
         <TabsContent value="prints">
           <div className="w-full  ">
             <Image
-              className=" w-full ml-1  object-fill"
-              src="/assets/image/homePageImages/newProduct01.png"
+              className=" w-full  rounded-lg object-fill pb-2"
+              src="/assets/images/HomePage/New At Lenskandy/three.png"
               alt="banner"
               height={125}
               width={135}
@@ -94,8 +87,8 @@ export function TabStyle2() {
         <TabsContent value="Embossing">
           <div className="w-full  ">
             <Image
-              className=" w-full ml-1  object-fill"
-              src="/assets/image/homePageImages/newProduct01.png"
+              className=" w-full  rounded-lg object-fill pb-2"
+              src="/assets/images/HomePage/New At Lenskandy/Four.png"
               alt="banner"
               height={125}
               width={135}

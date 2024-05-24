@@ -8,12 +8,13 @@ import PeopleIcon from "../../../public/assets/icons/PeopleIcon";
 const TopNav = () => {
   return (
     <>
-      <div className="border-0 rounded-none  sticky top-0 z-10 bg-white ">
-        <div className="container w-full ">
-          <header className="flex justify-between items-center ">
+      <div className="border-0 rounded-none  sticky top-0 z-10 bg-white py-2 h-[55px]">
+        <div className=" w-full ">
+          <header className="flex justify-between items-center px-3 pr-4 ">
             <Image
-              src="/assets/image/homePageImages/logo.png"
+              src="/assets/images/Logo.png"
               alt="Logo"
+              className="py-2"
               height={30}
               width={64}
               style={{
@@ -24,7 +25,7 @@ const TopNav = () => {
 
             <nav className="md:ml-auto flex bg  gap-6 items-center ">
               <a className=" hover:text-gray-900 text-center">
-                <PeopleIcon/>
+                <PeopleIcon />
               </a>
               <a href="/dashboard/wishlist" className=" hover:text-gray-900">
                 <svg
@@ -62,21 +63,7 @@ const TopNav = () => {
                 </svg>
               </a>
               <a className=" hover:text-gray-900">
-                {/* <SideNav /> */}
-                <svg
-                  width="17"
-                  height="13"
-                  viewBox="0 0 17 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M0.902161 4.5C0.902161 4.36739 0.954982 4.24021 1.04901 4.14645C1.14303 4.05268 1.27055 4 1.40352 4H12.7422C12.8752 4 13.0027 4.05268 13.0968 4.14645C13.1908 4.24021 13.2436 4.36739 13.2436 4.5C13.2436 4.63261 13.1908 4.75979 13.0968 4.85355C13.0027 4.94732 12.8752 5 12.7422 5H1.40352C1.27055 5 1.14303 4.94732 1.04901 4.85355C0.954982 4.75979 0.902161 4.63261 0.902161 4.5ZM0.902161 0.5C0.902161 0.367392 0.954982 0.240215 1.04901 0.146447C1.14303 0.0526785 1.27055 0 1.40352 0H16.4443C16.5772 0 16.7048 0.0526785 16.7988 0.146447C16.8928 0.240215 16.9456 0.367392 16.9456 0.5C16.9456 0.632608 16.8928 0.759785 16.7988 0.853553C16.7048 0.947321 16.5772 1 16.4443 1H1.40352C1.27055 1 1.14303 0.947321 1.04901 0.853553C0.954982 0.759785 0.902161 0.632608 0.902161 0.5ZM0.902161 8.5C0.902161 8.36739 0.954982 8.24021 1.04901 8.14645C1.14303 8.05268 1.27055 8 1.40352 8H16.4443C16.5772 8 16.7048 8.05268 16.7988 8.14645C16.8928 8.24021 16.9456 8.36739 16.9456 8.5C16.9456 8.63261 16.8928 8.75979 16.7988 8.85355C16.7048 8.94732 16.5772 9 16.4443 9H1.40352C1.27055 9 1.14303 8.94732 1.04901 8.85355C0.954982 8.75979 0.902161 8.63261 0.902161 8.5ZM0.902161 12.5C0.902161 12.3674 0.954982 12.2402 1.04901 12.1464C1.14303 12.0527 1.27055 12 1.40352 12H12.7422C12.8752 12 13.0027 12.0527 13.0968 12.1464C13.1908 12.2402 13.2436 12.3674 13.2436 12.5C13.2436 12.6326 13.1908 12.7598 13.0968 12.8536C13.0027 12.9473 12.8752 13 12.7422 13H1.40352C1.27055 13 1.14303 12.9473 1.04901 12.8536C0.954982 12.7598 0.902161 12.6326 0.902161 12.5Z"
-                    fill="#010045"
-                  />
-                </svg>
+                <SideNav />
               </a>
             </nav>
           </header>

@@ -4,7 +4,7 @@ const SearchBox = ({ noSearch = false }) => {
   return (
     <>
       {!noSearch && (
-        <div className="relative container rounded-md h-[45px] mt-[6px] mb-1 ">
+        <div className="relative container rounded-md h-[45px] mt-[6px] mb-1 px-3">
           <Input
             type="text"
             placeholder="Search premium bestsellers"

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 
-export const TrendingProduct = () => {
+export const TrendingProduct = ({image}: any) => {
   return (
     <>
       {" "}
@@ -15,7 +15,7 @@ export const TrendingProduct = () => {
               </Badge>
               <Image
                 className="px-4 "
-                src="/assets/image/homePageImages/trending01.png"
+                src={image}
                 alt="trendingProduct"
                 height="100"
                 width="100"

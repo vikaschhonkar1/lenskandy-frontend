@@ -4,7 +4,7 @@ import { MobileIcon, ChatBubbleIcon, Half1Icon } from "@radix-ui/react-icons";
 
 function ChatWhatsappBtn() {
   return (
-    <section className="grid grid-cols-2 py-2 justify-around container gap-2 rounded-lg">
+    <section className="grid grid-cols-2 py-2 justify-around container gap-2 rounded-lg px-3">
       <Button
         variant={"outline"}
         style={{
