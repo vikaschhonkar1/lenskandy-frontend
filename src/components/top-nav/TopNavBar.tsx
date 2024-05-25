@@ -24,9 +24,9 @@ const TopNav = () => {
             />
 
             <nav className="md:ml-auto flex bg  gap-6 items-center ">
-              <a className=" hover:text-gray-900 text-center">
+              <div className=" hover:text-gray-900 text-center">
                 <PeopleIcon />
-              </a>
+              </div>
               <a href="/dashboard/wishlist" className=" hover:text-gray-900">
                 <svg
                   width="20"

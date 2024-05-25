@@ -161,19 +161,19 @@ export const CategoryTabs = () => {
               <CustomAvatar
                 data={[
                   {
-                    Image: "/assets/images/ComputerGlasses/Men.png",
+                    Image: "/assets/images/ComputerGlasses/re.png",
                     label: "Men",
                   },
                   {
-                    Image: "/assets/images/ComputerGlasses/Men.png",
+                    Image: "/assets/images/ComputerGlasses/Women.png",
                     label: "Women",
                   },
                   {
-                    Image: "/assets/images/ComputerGlasses/Men.png",
+                    Image: "/assets/images/ComputerGlasses/Kids.png",
                     label: "Kids",
                   },
                   {
-                    Image: "/assets/images/ComputerGlasses/Men.png",
+                    Image: "/assets/images/ComputerGlasses/BLueBlock.png",
                     label: "Blue Block",
                   },
                 ]}

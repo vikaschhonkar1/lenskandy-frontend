@@ -4,6 +4,8 @@ import { CategoryTabs } from "@/components/home-page/CategoryTabs";
 import SearchBox from "@/components/home-page/SearchBox";
 import { TabStyle2 } from "@/components/home-page/TabStyle2";
 import { TopCarousel } from "@/components/home-page/TopCarousel";
+import { MidLevelCarousel } from "@/components/home-page/MidLevelCaraousel";
+import { LastLevelCarousel } from "@/components/home-page/LastLevelCaraousel";
 import { TrendingCollection } from "@/components/home-page/TrendingCollection";
 import TrendingProducts from "@/components/home-page/TrendingProducts";
 import { Card1 } from "@/components/home-page/cards/Card1";
@@ -27,7 +29,6 @@ export default function Home() {
       <ChatWhatsappBtn />
       <TopCarousel />
       <CategorySection />
-
       <section className="mt-6">
         <div
           className="container bg-no-repeat bg-[length:51px_89px] pl-5  "
@@ -69,8 +70,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       <section className="mt-3">
+       
         <Image
           className="w-full h-[96px] pt-3"
           src="/assets/image/homePageImages/banner03.png"
@@ -84,13 +85,8 @@ export default function Home() {
         <Card1 />
       </section>
       <section className="mt-2">
-        <Image
-          className="w-full h-[130px] pt-3"
-          src="/assets/image/homePageImages/banner04.png"
-          alt="banner"
-          height={128}
-          width={371}
-        />
+      <MidLevelCarousel />
+        
       </section>
       <section className="py-0">
         <div className=" w-full flex flex-wrap gap-y-3	 justify-around pt-7 p-2 pr-2 bg-[#E9E9DD] pb-5">
@@ -146,7 +142,6 @@ export default function Home() {
           })}
         </div>
       </section>
-
       <section>
         <div className="h-[332px] w-full ">
           <h1 className="pt-[49px] text-[16px] font-semibold pl-4">
@@ -155,19 +150,13 @@ export default function Home() {
           <h1 className="text-[14px] font-semibold text-[#888888] pl-4">
             Set the trend with India’s finest eyewear
           </h1>
-          <Image
-            src={"/assets/images/HomePage/Premium Eyewear/One.png"}
-            height={221}
-            width={389}
-            alt="Premium Eyewear"
-          />
+          <LastLevelCarousel/>
+          
         </div>
       </section>
-
       <section className="mb-4">
         <TrendingCollection />
       </section>
-
       <section>
         <div className="  w-full bg-[#E2EAF3] mt-3 pb-3">
           <h1 className="pt-[32px] text-[#010045] pl-[17px] text-[20px] font-extrabold  ">
@@ -179,7 +168,6 @@ export default function Home() {
           <TabStyle2 />
         </div>
       </section>
-
       <section>
         <Benefits />
       </section>

@@ -5,9 +5,11 @@ import { Card } from "@/components/ui/card";
 
 const cardImage = [
   "/assets/image/homePageImages/card02.png",
-  "/assets/image/homePageImages/card01.png",
-  "/assets/image/homePageImages/card02.png",
-  "/assets/image/homePageImages/card01.png",
+  "/assets/images/Special Tabs/Two.png",
+  "/assets/images/Special Tabs/Three.png",
+  "/assets/images/Special Tabs/Four.png",
+  "/assets/images/Special Tabs/Five.png",
+  ,
 ];
 export function Card1() {
   return (
@@ -16,9 +18,12 @@ export function Card1() {
         <div className="flex p-2 ">
           {cardImage?.map((item, index) => {
             return (
-              <div key={index} className="w-[135px] h-[135px] mr-4 shadow-md rounded-lg">
+              <div
+                key={index}
+                className="w-[135px] h-[135px] mr-4 shadow-md rounded-lg"
+              >
                 <Image
-                  className="w-full"
+                  className="w-full"//@ts-ignore
                   src={item}
                   alt="banner"
                   height={135}

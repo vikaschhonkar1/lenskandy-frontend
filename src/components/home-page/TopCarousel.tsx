@@ -16,34 +16,36 @@ export function TopCarousel() {
   );
 
   return (
-    <Carousel
-      plugins={[plugin.current]}
-      onMouseEnter={plugin.current.stop}
-      onMouseLeave={plugin.current.reset}
-      className=" w-full"
-    >
-      <CarouselContent>
-        {[
-          "/assets/images/Banner1.png",
-          "/assets/images/Banner2.png",
-          "/assets/images/Banner3.png",
-          "/assets/images/Banner4.png",
-        ].map((item, index) => (
-          <CarouselItem key={index}>
-            <div>
-              <CardContent className=" w-full  flex  px-2 pt-2">
-                <Image
-                  className="w-full "
-                  src={item}
-                  alt="item"
-                  height={204}
-                  width={204}
-                />
-              </CardContent>
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
+    <div className="">
+      <Carousel
+        plugins={[plugin.current]}
+        onMouseEnter={plugin.current.stop}
+        onMouseLeave={plugin.current.reset}
+        className=" w-full"
+      >
+        <CarouselContent>
+          {[
+            "/assets/images/Banner1.png",
+            "/assets/images/Banner2.png",
+            "/assets/images/Banner3.png",
+            "/assets/images/Banner4.png",
+          ].map((item, index) => (
+            <CarouselItem key={index}>
+              <div>
+                <CardContent className=" w-full  flex  px-2 pt-2">
+                  <Image
+                    className="w-full "
+                    src={item}
+                    alt="item"
+                    height={204}
+                    width={204}
+                  />
+                </CardContent>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+    </div>
   );
 }
