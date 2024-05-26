@@ -16,7 +16,6 @@ const Page = async () => {
   const res = await APISERVICES.cart.get();
   const isLoggedIn = await accessToken();
   const cartItems = res?.data;
-  console.log(cartItems)
 
   return (
     <>

@@ -7,9 +7,9 @@ import ProductListing from "@/components/categories/Product Listing/ProductListi
 import AdvertisementImage from "@/components/categories/Advertisement Image Area/AdvertisementImage";
 import APISERVICES from "@/lib/api-services";
 
-const Page = async({ params }: any) => {
+const Page = async ({ params }: any) => {
   const arr = params?.slug;
-  const res = await APISERVICES.product.get(`?cat=sunglasses`) 
+  const res = await APISERVICES.product.get(`?cat=sunglasses`);
   let filter = {};
 
   if (arr && arr.length > 0) {
@@ -19,16 +19,23 @@ const Page = async({ params }: any) => {
       filter[arr[i]] = arr[i + 1]?.split("-");
     }
   }
-  console.log(filter);
+  const heroImage = "/assets/images/HeroImage/MenSunglasses.png";
+
+  //@ts-ignore
+  const gender = filter?.["gender"]?.[0];
   return (
     <>
-      <CategoryFilters defaultValue={1} />
-      <HeroImage />
+      <CategoryFilters
+        defaultValue={1}
+        gender={gender}
+        category={"sunglasses"}
+      />
+      <HeroImage image={heroImage} />
       <CategoryIntro
         categoryName={"Sunglasses"}
         categoryDescription={"Lorem ipsum dolor si"}
       />
-      <ProductListing data={res?.data}/>
+      <ProductListing data={res?.data} />
       <AdvertisementImage />
     </>
   );

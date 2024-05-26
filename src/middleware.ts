@@ -21,7 +21,6 @@ export default async function middleware(req: NextRequest) {
   const isAccountsPage =
     urlPath === "/account" || urlPath === "/account/addresses" ? true : false;
   const isLoggedIn = await accessToken();
-  console.log(isLoggedIn ? true : false, "login");
 
   if (isAccountsPage && !isLoggedIn && !currentUrl.searchParams.has("login")) {
     currentUrl.searchParams.set("login", "true");

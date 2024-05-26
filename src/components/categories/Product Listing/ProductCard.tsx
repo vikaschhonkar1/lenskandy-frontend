@@ -10,7 +10,7 @@ import Link from "next/link";
 import React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { config } from "@/config";
-import {generateSlug} from "@/lib/generate-slug";
+import { generateSlug } from "@/lib/generate-slug";
 
 type ProductCardProps = {
   productDetails: any;
@@ -18,7 +18,7 @@ type ProductCardProps = {
 };
 const ProductCard = (props: ProductCardProps) => {
   const { productDetails, index } = props;
-  console.log(productDetails);
+ 
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
@@ -28,7 +28,13 @@ const ProductCard = (props: ProductCardProps) => {
     productDetails?.Variant &&
     productDetails?.Variant?.length > 0
   ) {
-    const redirectionURL = "/product/" + generateSlug(productDetails?.name, productDetails?.brand?.name , productDetails?.Variant?.[0]?.sku);
+    const redirectionURL =
+      "/product/" +
+      generateSlug(
+        productDetails?.name,
+        productDetails?.brand?.name,
+        productDetails?.Variant?.[0]?.sku
+      );
     return (
       <Link key={index} href={redirectionURL}>
         <Card className=" w-full rounded-xl p-2">
@@ -40,10 +46,10 @@ const ProductCard = (props: ProductCardProps) => {
               height={18}
               width={18}
             />
-            <div className="h-[203px] w-full">
-              <CardContent className="h-[206px] w-full lg:h-[360px]  flex  p-1 ">
+            <div className="h-[203px] w-full flex items-center">
+              <CardContent className="w-full lg:h-[360px]  flex  p-1 ">
                 <Image
-                  className="h-[204px] w-full "
+                  className=" w-full "
                   src={
                     config.site.apiimageBaseUrl +
                     productDetails?.Variant?.[0]?.mainImage

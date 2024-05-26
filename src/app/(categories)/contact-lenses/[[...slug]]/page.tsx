@@ -21,11 +21,11 @@ const Page = async({ params }: any) => {
       filter[arr[i]] = arr[i + 1]?.split("-");
     }
   }
-  console.log(params);
+  const heroImage = "/assets/images/HeroImage/ContactLenses.png";
   return (
     <>
       <CategoryFilters defaultValue={2} />
-      <HeroImage />
+      <HeroImage image={heroImage}/>
       <CategoryIntro categoryName={"Contact Lenses"} categoryDescription={"Lorem ipsum dolor si"}/>
       <ProductListing data={res?.data}/>
       <AdvertisementImage />

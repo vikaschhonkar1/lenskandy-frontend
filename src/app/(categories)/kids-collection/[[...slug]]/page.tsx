@@ -21,11 +21,11 @@ const Page = async({ params }: any) => {
       filter[arr[i]] = arr[i + 1]?.split("-");
     }
   }
-  console.log(params)
+  const heroImage = "/assets/images/HeroImage/KidsSunglasses.png";
   return (
     <>
       <CategoryFilters  defaultValue={5} />
-      <HeroImage />
+      <HeroImage image={heroImage}/>
       <CategoryIntro categoryName={"Kids Collection"} categoryDescription={"Lorem ipsum dolor si"}/>
       <ProductListing data={res?.data}/>
       <AdvertisementImage/>

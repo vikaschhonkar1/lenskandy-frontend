@@ -7,9 +7,9 @@ import APISERVICES from "@/lib/api-services";
 
 const Page = async ({ params }: any) => {
   const orderId = params?.id;
-  console.log(orderId);
+
   const res = await APISERVICES.order.get(orderId);
-  console.log(res?.data);
+ 
   return (
     <>
       <section>

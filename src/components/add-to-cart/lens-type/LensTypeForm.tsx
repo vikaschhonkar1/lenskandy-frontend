@@ -54,7 +54,7 @@ const LensTypeForm = (props: any) => {
   const fetchLensType = async () => {
     const res = await APISERVICES.lensType.get(`?categoryId=${categoryId}`);
     if (res?.success) setLensTypeData(res?.data);
-    console.log(res, "fsdf");
+   
   };
 
   function createMarkup(html: any) {

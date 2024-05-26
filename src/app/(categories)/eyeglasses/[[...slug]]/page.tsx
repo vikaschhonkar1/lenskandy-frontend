@@ -7,10 +7,10 @@ import ProductListing from "@/components/categories/Product Listing/ProductListi
 import AdvertisementImage from "@/components/categories/Advertisement Image Area/AdvertisementImage";
 import APISERVICES from "@/lib/api-services";
 
-const Page = async({ params }: any) => {
+const Page = async ({ params }: any) => {
   const arr = params?.slug;
-  
-  const res = await APISERVICES.product.get(`?cat=eyeglasses`) 
+
+  const res = await APISERVICES.product.get(`?cat=eyeglasses`);
   let category = "sunglasses";
   let filter = {};
 
@@ -23,15 +23,17 @@ const Page = async({ params }: any) => {
     }
   }
 
-
-  console.log(filter)
+  const heroImage = "/assets/images/HeroImage/MenEyeglassses.png";
   return (
     <>
-      <CategoryFilters defaultValue={0}/>
-      <HeroImage />
-      <CategoryIntro categoryName={"Eyeglasses"} categoryDescription={"Lorem ipsum dolor si"}/>
-      <ProductListing data={res?.data}/>
-      <AdvertisementImage/>
+      <CategoryFilters defaultValue={0} />
+      <HeroImage image={heroImage} />
+      <CategoryIntro
+        categoryName={"Eyeglasses"}
+        categoryDescription={"Lorem ipsum dolor si"}
+      />
+      <ProductListing data={res?.data} />
+      <AdvertisementImage />
     </>
   );
 };

@@ -27,6 +27,10 @@ import { cn } from "@/lib/utils";
 // import { refreshTokenFn, user } from "@/hooks/useAuth";
 import Link from "next/link";
 import APISERVICES from "@/lib/api-services";
+import { ScrollArea } from "../ui/scroll-area";
+import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+import { Separator } from "../ui/separator";
 
 const ListItem = ({ className, title, children, ...props }: any, ref: any) => {
   return (
@@ -48,6 +52,7 @@ const ListItem = ({ className, title, children, ...props }: any, ref: any) => {
 export async function AccordionDemo() {
   const res = await APISERVICES.home.get();
   const data = res?.data;
+  // console.log(data?.categories)
 
   if (!data) {
     throw new Error(res?.message);
@@ -55,14 +60,14 @@ export async function AccordionDemo() {
 
   return (
     <Accordion type="single" collapsible className="w-full">
-      {data?.categories?.map((item: any) => {
+      {data?.categories?.map((item: any, index: number) => {
         const objects = { ...item };
         delete objects.Category;
 
         return (
-          <AccordionItem key={item?.Category?.slug} value="item-1">
+          <AccordionItem key={item?.Category?.slug} value={`item-${index}`}>
             <AccordionTrigger className="capitalize">
-              Shop for {item?.Category?.name}
+              Shop {item?.Category?.name}
             </AccordionTrigger>
             <AccordionContent className="w-full">
               <ol className="list-disc grid w-[400px] gap-3 p-4 md:w-[300px] md:grid-cols-2 ">
@@ -81,8 +86,7 @@ export async function AccordionDemo() {
                             <li key={value?.slug}>
                               <a
                                 href={
-                                  // "/category/" +
-                                  item?.Category?.slug +
+                                  "/" + item?.Category?.slug +
                                   "/" +
                                   key +
                                   "/" +
@@ -126,49 +130,26 @@ export async function SideNav() {
           />
         </svg>
       </DrawerTrigger>
-      <DrawerContent className="border-none h-full w-[80%] hideTopBar rounded-none rounded-r-sm">
-        <div className="mx-auto w-full max-w-sm p-4 ">
-          <h1 className="border-b-2">
+      <DrawerContent className="border-none h-full w-9/12 hideTopBar rounded-none rounded-r-sm">
+        <div className="flex items-center justify-between px-2 pr-5">
+          <div>
             <Image
-              src="/assets/image/homePageImages/logo.png"
+              src={"/assets/image/homePageImages/logo.png"}
               alt="Logo"
-              height={30}
-              width={100}
-              style={{
-                maxWidth: "180px",
-                maxHeight: "55px",
-              }}
+              height={60}
+              width={60}
             />
-          </h1>
-          {/* <LoginDialogue /> */}
-          {/* {refreshTokenFn() ? (
-            <Link href={"/dashboard"}>
-              <div className="h-[100px] w-full flex  px-4 gap-3 items-center">
-                <Image
-                  className="w-[44px] h-[44px]"
-                  src="/assets/image/categoriesImages/sideNav01.png"
-                  alt="user"
-                  height={48}
-                  width={48}
-                />
-                <div>
-                  <h1 className="text-[#000000] font-[700] text-[18px]">
-                    Hello {user() ? user()?.name || "" : ""} !
-                  </h1>
-                  <span className="text-[#000000] font-[700] text-[15px]">
-                    +91 {user() ? user()?.phone : ""}
-                  </span>
-                </div>
-              </div>
-            </Link>
-          ) : (
-            <LoginDialogue />
-          )} */}
-
-          {/* <LoginDialogue /> */}
-
-          {AccordionDemo()}
+          </div>
+          <div>
+            <DrawerClose>
+              <IoMdCloseCircleOutline size={20} />
+            </DrawerClose>
+          </div>
         </div>
+        <Separator color="#000" />
+        <ScrollArea>
+          <div className="mx-auto w-full max-w-sm p-4 ">{AccordionDemo()}</div>
+        </ScrollArea>
       </DrawerContent>
     </Drawer>
   );
