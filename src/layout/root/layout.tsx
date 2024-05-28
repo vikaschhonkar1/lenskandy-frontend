@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import TopNav from "@/components/top-nav/TopNavBar";
 import { LoginDialog } from "@/components/login";
 // import Footer from "./footer";
+import Footer from "@/components/generic-components/Footer"
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -27,7 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {children}
         </main>
 
-        {/*<Footer />*/}
+        <Footer/>
         <LoginDialog />
       </body>
      
