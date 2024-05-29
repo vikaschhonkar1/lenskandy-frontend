@@ -31,6 +31,7 @@ const APISERVICES = {
   product: createApiFunction("products"),
   productVariants: createApiFunction("products/variants"),
   allvariants: createApiFunction("products/allvariants"),
+  relatedVariantsbyProductId: createApiFunction("products/variants/related"),
 
   lensType: createApiFunction("lens-power"),
   lensPackage: createApiFunction("lens-package"),
