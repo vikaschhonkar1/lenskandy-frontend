@@ -14,8 +14,10 @@ async function RelatedProducts({ productId }: { productId: number }) {
 
   return (
     <section className="grid grid-cols-2 gap-4  p-3 mt-4 mb-7 ">
-        
-      {data?.map((item, index) => (
+        {/* //@ts-ignore */}
+      {
+      //@ts-ignore
+      data?.map((item, index) => (
         <>
           <ProductVariantCard
             key={item?.sku}
