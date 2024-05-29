@@ -69,7 +69,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 pb-20">
           <h3 className="font-semibold mb-4 text-[20px]">Download App</h3>
           <a href="#" className="block mb-2 pb-6">
             <svg
