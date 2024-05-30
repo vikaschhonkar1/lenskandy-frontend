@@ -4,60 +4,60 @@
 
 
 @font-face {
-  font-family: "futura";
+  font-family: futura;
   font-style: normal;
   font-weight: 300;
-  font-display: swap;
-  src: url('/assets/fonts/FUTURA45LIGHT.TTF') format("ttf");
+ 
+  src: url('../fonts/FUTURA45LIGHT.TTF') format("ttf");
 }
 @font-face {
-  font-family: "futura";
+  font-family: future;
   font-style: italic;
   font-weight: 300;
-  font-display: swap;
-  src: url('/assets/fonts/FUTURA46LIGHTITALIC.TTF') format("ttf");
+ 
+  src: url('../fonts/FUTURA46LIGHTITALIC.TTF') format("ttf");
 }
 @font-face {
-  font-family: "futura";
+  font-family: future;
   font-style: normal;
   font-weight: 400;
-  font-display: swap;
-  src: url('/assets/fonts/FUTURA55REGULAR.TTF') format("ttf");
+ 
+  src: url('../fonts/FUTURA55REGULAR.TTF') format("ttf");
 }
 @font-face {
-  font-family: "futura";
+  font-family: future;
   font-style: italic;
   font-weight: 400;
-  font-display: swap;
-  src: url('/assets/fonts/FUTURA56ITALIC.TTF') format("ttf");
+ 
+  src: url('../fonts/FUTURA56ITALIC.TTF') format("ttf");
 }
 @font-face {
-  font-family: "futura";
+  font-family: future;
   font-style: normal;
   font-weight: 500;
-  font-display: swap;
-  src: url('/assets/fonts/FUTURA65MEDIUM.TTF') format('TTF');
+ 
+  src: url('../fonts/FUTURA65MEDIUM.TTF') format('TTF');
 }
 @font-face {
-  font-family: "futura";
+  font-family: future;
   font-style: italic;
   font-weight: 500;
-  font-display: swap;
-  src: url('/assets/fonts/FUTURA66MEDIUMITALIC.TTF') format("ttf");
+ 
+  src: url('../fonts/FUTURA66MEDIUMITALIC.TTF') format("ttf");
 }
 @font-face {
-  font-family: "futura";
+  font-family: future;
   font-style: normal;
   font-weight: bold;
-  font-display: swap;
-  src: url('/assets/fonts/FUTURA75BOLD.TTF') format("ttf");
+ 
+  src: url('../fonts/FUTURA75BOLD.TTF') format("ttf");
 }
 @font-face {
-  font-family: "futura";
+  font-family: future;
   font-style: italic;
   font-weight: bold;
-  font-display: swap;
-  src: url('/assets/fonts/FUTURA76BOLDITALIC.TTF') format("ttf");
+ 
+  src: url('../fonts/FUTURA76BOLDITALIC.TTF') format("ttf");
 }
 
 
