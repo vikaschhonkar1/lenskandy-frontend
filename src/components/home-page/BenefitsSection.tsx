@@ -13,7 +13,7 @@ export function Benefits() {
         Benifits of Lenskandy
       </h1>
       <ScrollArea className="w-full rounded-md flex">
-        <div className="flex mt-4 mb-4">
+        <div className="grid grid-cols-3 mt-4 mb-4">
           <BenefitOne />
           <BenefitTwo />
           <BenefitThree />

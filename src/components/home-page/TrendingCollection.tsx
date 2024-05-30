@@ -4,7 +4,7 @@ const trenCollection = [1, 2, 3];
 export function TrendingCollection() {
   return (
     <>
-      <div className="h-[432px] w-full pl-[25px]">
+      <div className="hidden h-[432px] w-full pl-[25px]">
         <h1 className="pt-[49px] text-[16px] font-semibold">
           Trending collections
         </h1>

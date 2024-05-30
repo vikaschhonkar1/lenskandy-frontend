@@ -2,7 +2,7 @@ import React from 'react'
 
 const BenefitOne = () => {
   return (
-    <div><svg width="109" height="139" viewBox="0 0 109 139" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg fill="none" xmlns="http://www.w3.org/2000/svg">
     <g filter="url(#filter0_d_1409_1976)">
     <rect x="4" width="100.213" height="131" rx="50.1063" fill="white"/>
     <rect x="4.5" y="0.5" width="99.2126" height="130" rx="49.6063" stroke="url(#paint0_linear_1409_1976)"/>
@@ -35,7 +35,6 @@ const BenefitOne = () => {
     </linearGradient>
     </defs>
     </svg>
-    </div>
   )
 }
 
