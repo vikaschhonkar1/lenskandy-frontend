@@ -86,7 +86,8 @@ export async function AccordionDemo() {
                             <li key={value?.slug}>
                               <a
                                 href={
-                                  "/" + item?.Category?.slug +
+                                  "/" +
+                                  item?.Category?.slug +
                                   "/" +
                                   key +
                                   "/" +
@@ -131,15 +132,17 @@ export async function SideNav() {
         </svg>
       </DrawerTrigger>
       <DrawerContent className="border-none h-full w-9/12 hideTopBar rounded-none rounded-r-sm">
-        <div className="flex items-center justify-between px-2 pr-5">
-          <div>
-            <Image
-              src={"/assets/image/homePageImages/logo.png"}
-              alt="Logo"
-              height={60}
-              width={60}
-            />
-          </div>
+        <div className="flex items-center justify-between px-2 pr-5 py-6">
+          <Link href="/">
+            <DrawerClose>
+              <Image
+                src={"/assets/images/logo.svg"}
+                alt="Logo"
+                height={80}
+                width={124}
+              />
+            </DrawerClose>
+          </Link>
           <div>
             <DrawerClose>
               <IoMdCloseCircleOutline size={20} />

@@ -91,22 +91,27 @@ export const CategoryTabs = () => {
                   {
                     Image: "/assets/images/Eyeglasses/Men.png",
                     label: "Men",
+                    link:'/eyeglasses/gender/male'
                   },
                   {
                     Image: "/assets/images/Eyeglasses/Women.png",
                     label: "Women",
+                    link:'/eyeglasses/gender/female'
                   },
                   {
                     Image: "/assets/images/Eyeglasses/Kids.png",
                     label: "Kids",
+                    link:'/eyeglasses/gender/kids'
                   },
                   {
                     Image: "/assets/images/Eyeglasses/Reading.png",
                     label: "Reading",
+                    link:'/reading-glasses'
                   },
                   {
                     Image: "/assets/images/Eyeglasses/Accessories.png",
                     label: "Accessories",
+                    link:'/accessories'
                   },
                 ]}
               />
@@ -129,18 +134,22 @@ export const CategoryTabs = () => {
                   {
                     Image: "/assets/images/SunGlasses/Men.png",
                     label: "Men",
+                    link:'/sunglasses/gender/male'
                   },
                   {
                     Image: "/assets/images/SunGlasses/Women.png",
                     label: "Women",
+                    link:'/sunglasses/gender/female'
                   },
                   {
                     Image: "/assets/images/SunGlasses/Kids.png",
                     label: "Kids",
+                    link:'/sunglasses/gender/kids'
                   },
                   {
                     Image: "/assets/images/SunGlasses/WithPower.png",
                     label: "With Power",
+                    link:'/sunglasses/prescription/power'
                   },
                 ]}
               />
@@ -163,18 +172,22 @@ export const CategoryTabs = () => {
                   {
                     Image: "/assets/images/ComputerGlasses/re.png",
                     label: "Men",
+                    link:'/computer-glasses/gender/male'
                   },
                   {
                     Image: "/assets/images/ComputerGlasses/Women.png",
                     label: "Women",
+                    link:'/computer-glasses/gender/female'
                   },
                   {
                     Image: "/assets/images/ComputerGlasses/Kids.png",
                     label: "Kids",
+                    link:'/computer-glasses/gender/kids'
                   },
                   {
                     Image: "/assets/images/ComputerGlasses/BLueBlock.png",
                     label: "Blue Block",
+                    link:'/computer-glasses/lens-technology-sunglasses/blue-block'
                   },
                 ]}
               />
@@ -197,18 +210,22 @@ export const CategoryTabs = () => {
                   {
                     Image: "/assets/images/ContactLenses/Men.png",
                     label: "Men",
+                    link:'/contact-lenses/gender/male'
                   },
                   {
                     Image: "/assets/images/ContactLenses/Women.png",
                     label: "Women",
+                    link:'/contact-lenses/gender/female'
                   },
                   {
                     Image: "/assets/images/ContactLenses/Kids.png",
                     label: "Kids",
+                    link:'/contact-lenses/gender/kids'
                   },
                   {
                     Image: "/assets/images/ContactLenses/BlueRock.png",
                     label: "Blue Block",
+                    link:'/contact-lenses/lens-technology/blue-block'
                   },
                 ]}
               />

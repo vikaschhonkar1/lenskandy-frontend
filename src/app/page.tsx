@@ -13,6 +13,7 @@ import ChatWhatsappBtn from "@/components/home-page/chat-whatsapp";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import Link from "next/link";
 
 const typesOfGlasses = [
   "EyeGlasses",
@@ -43,17 +44,21 @@ export default function Home() {
               {
                 image: "/assets/image/homePageImages/sunglasses.png",
                 label: "Sunglasses",
+                link: "/sunglasses",
               },
               {
                 image: "/assets/image/homePageImages/eyeglasses.png",
                 label: "Eyeglasses",
+                link: "/eyeglasses",
               },
               {
                 image: "/assets/image/homePageImages/zeropower.png",
-                label: "Zero Power",
+                label: "Computer Glasses",
+                link: "/computer-glasses",
               },
             ].map((item, index) => (
-              <div
+              <Link
+                href={item?.link}
                 key={index}
                 className=" flex flex-col content-center items-center p-2 rounded-lg "
               >
@@ -65,18 +70,17 @@ export default function Home() {
                   className="glasses "
                 />
                 <span>{item?.label}</span>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
       <section className="mt-3">
-       
         <Image
-          className="w-full h-[96px] pt-3"
-          src="/assets/image/homePageImages/banner03.png"
+          className="w-full pt-3"
+          src="/assets/images/HomePage/lenskandy reading glasses banner.png"
           alt="banner"
-          height={112}
+          height={160}
           width={371}
         />
       </section>
@@ -85,8 +89,7 @@ export default function Home() {
         <Card1 />
       </section>
       <section className="mt-2">
-      <MidLevelCarousel />
-        
+        <MidLevelCarousel />
       </section>
       <section className="py-0">
         <div className=" w-full flex flex-wrap gap-y-3	 justify-around pt-7 p-2 pr-2 bg-[#E9E9DD] pb-5">
@@ -150,8 +153,7 @@ export default function Home() {
           <h1 className="text-[14px] font-semibold text-[#888888] pl-4">
             Set the trend with India’s finest eyewear
           </h1>
-          <LastLevelCarousel/>
-          
+          <LastLevelCarousel />
         </div>
       </section>
       <section className="mb-4">

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { SideNav } from "@/components/top-nav/SideNavBar";
 import PeopleIcon from "../../../public/assets/icons/PeopleIcon";
+import Link from "next/link";
 // import CartPopover from "@/components/cart/cartPopover";
 
 const TopNav = () => {
@@ -11,17 +12,20 @@ const TopNav = () => {
       <div className="border-0 rounded-none  sticky top-0 z-10 bg-white py-2 h-[55px]">
         <div className=" w-full ">
           <header className="flex justify-between items-center px-3 pr-4 ">
+           
+           <Link href='/'>
             <Image
-              src="/assets/images/Logo.png"
+              src="/assets/images/logo.svg"
               alt="Logo"
-              className="py-2"
-              height={30}
-              width={64}
+              className="py-2 object-contain"
+              height={60}
+              width={120}
               style={{
                 maxWidth: "180px",
                 maxHeight: "55px",
               }}
             />
+            </Link>
 
             <nav className="md:ml-auto flex bg  gap-6 items-center ">
               <div className=" hover:text-gray-900 text-center">

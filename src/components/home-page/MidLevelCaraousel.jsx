@@ -32,10 +32,12 @@ export function MidLevelCarousel() {
           ].map((item, index) => (
             <CarouselItem key={index}>
               <Image
-                className="w-full h-[130px] pt-3"
+                className="w-full pt-3 object-cover	"
+                alt={item}
                 src={item}
-                height={128}
-                width={371}
+                
+                height={180}
+                width={460}
               />
             </CarouselItem>
           ))}

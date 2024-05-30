@@ -32,7 +32,7 @@ export function TopCarousel() {
           ].map((item, index) => (
             <CarouselItem key={index}>
               <div>
-                <CardContent className=" w-full  flex  px-2 pt-2">
+                <CardContent className=" w-full h-[260px]  flex  px-2 pt-2">
                   <Image
                     className="w-full "
                     src={item}
