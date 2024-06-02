@@ -69,7 +69,7 @@ export default function Home() {
                   width={98}
                   className="glasses "
                 />
-                <span>{item?.label}</span>
+                <span className="text-center">{item?.label}</span>
               </Link>
             ))}
           </div>
