@@ -42,73 +42,166 @@ const ListItem = ({ className, title, children, ...props }: any, ref: any) => {
       {...props}
     >
       <div className="text-sm font-medium leading-none capitalize">{title}</div>
-      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+      <p className="line-clamp-3 text-sm leading-snug text-muted-foreground">
         {children}
       </p>
     </li>
   );
 };
 
+const drawerData = [
+  {
+    id: 1,
+    heading: "Shop for Eyeglasses",
+    subCategories: [
+      {
+        id: 1,
+        title: "Gender",
+        items: [
+          {
+            id: 1,
+            title: "Men",
+            href: "/eyeglasses/gender/male",
+          },
+          {
+            id: 2,
+            title: "Women",
+            href: "/eyeglasses/gender/female",
+          },
+          {
+            id: 3,
+            title: "Kids",
+            href: "/eyeglasses/gender/kids",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    heading: "Shop for Sunglasses",
+    subCategories: [
+      {
+        id: 1,
+        title: "Gender",
+        items: [
+          {
+            id: 1,
+            title: "Men",
+            href: "/sunglasses/gender/male",
+          },
+          {
+            id: 2,
+            title: "Women",
+            href: "/sunglasses/gender/female",
+          },
+          {
+            id: 3,
+            title: "Kids",
+            href: "/sunglasses/gender/kids",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 3,
+    heading: "Shop for Computer Glasses",
+    subCategories: [
+      {
+        id: 1,
+        title: "Gender",
+        items: [
+          {
+            id: 1,
+            title: "Men",
+            href: "/computer-glasses/gender/male",
+          },
+          {
+            id: 2,
+            title: "Women",
+            href: "/computer-glasses/gender/female",
+          },
+          {
+            id: 3,
+            title: "Kids",
+            href: "/computer-glasses/gender/kids",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 4,
+    heading: "Shop for Reading Glasses",
+    subCategories: [
+      {
+        id: 1,
+        title: "Gender",
+        items: [
+          {
+            id: 1,
+            title: "Men",
+            href: "/reading-glasses/gender/male",
+          },
+          {
+            id: 2,
+            title: "Women",
+            href: "/reading-glasses/gender/female",
+          },
+          {
+            id: 3,
+            title: "Kids",
+            href: "/reading-glasses/gender/kids",
+          },
+        ],
+      },
+    ],
+  },
+];
+
 export async function AccordionDemo() {
-  const res = await APISERVICES.home.get();
-  const data = res?.data;
-  // console.log(data?.categories)
-
-  if (!data) {
-    throw new Error(res?.message);
-  }
-
   return (
-    <Accordion type="single" collapsible className="w-full">
-      {data?.categories?.map((item: any, index: number) => {
-        const objects = { ...item };
-        delete objects.Category;
-
-        return (
-          <AccordionItem key={item?.Category?.slug} value={`item-${index}`}>
-            <AccordionTrigger className="capitalize">
-              Shop {item?.Category?.name}
-            </AccordionTrigger>
-            <AccordionContent className="w-full">
-              <ol className="list-disc grid w-[400px] gap-3 p-4 md:w-[300px] md:grid-cols-2 ">
-                {Object.entries(objects)?.map(([key, value]: any, index) => {
-                  return (
-                    <ListItem
-                      className={"py-2 w-full"}
-                      key={key}
-                      title={key}
-                      href={"value"}
-                    >
-                      {/* {component.description} */}
-                      <ul className="list-disc	">
-                        {value?.map((value: any, index: number) => {
-                          return (
-                            <li key={value?.slug}>
-                              <a
-                                href={
-                                  "/" +
-                                  item?.Category?.slug +
-                                  "/" +
-                                  key +
-                                  "/" +
-                                  value?.slug
-                                }
-                              >
-                                {value?.name}
-                              </a>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </ListItem>
-                  );
-                })}
-              </ol>
-            </AccordionContent>
-          </AccordionItem>
-        );
-      })}
-    </Accordion>
+    <>
+      <Accordion type="single" collapsible className="w-full">
+        {drawerData?.map((item, index) => {
+          return (
+            <AccordionItem value={`${item.id}`} key={index}>
+              <AccordionTrigger>
+                <div className="flex items-center justify-between">
+                  <div className=" font-medium leading-none capitalize">
+                    {item?.heading}
+                  </div>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent>
+                <ol className="list-disc grid w-[400px] gap-3 p-4 md:w-[300px] md:grid-cols-2 ">
+                  {item?.subCategories?.map((item, index) => {
+                    return (
+                      <ListItem
+                        className={"py-2 w-full"}
+                        key={index}
+                        title={item?.title}
+                      >
+                        <ul className="list-disc  ">
+                          {item?.items?.map((item, index) => {
+                            return (
+                              <li key={index}>
+                                <a href={item?.href}>{item?.title}</a>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </ListItem>
+                    );
+                  })}
+                </ol>
+              </AccordionContent>
+            </AccordionItem>
+          );
+        })}
+      </Accordion>
+    </>
   );
 }
 
