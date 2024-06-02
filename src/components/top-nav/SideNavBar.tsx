@@ -163,7 +163,7 @@ const drawerData = [
 export async function AccordionDemo() {
   return (
     <>
-      <Accordion type="single" collapsible className="w-full">
+      <Accordion type="single" collapsible className="">
         {drawerData?.map((item, index) => {
           return (
             <AccordionItem value={`${item.id}`} key={index}>
@@ -175,7 +175,7 @@ export async function AccordionDemo() {
                 </div>
               </AccordionTrigger>
               <AccordionContent>
-                <ol className="list-disc grid w-[400px] gap-3 p-4 md:w-[300px] md:grid-cols-2 ">
+                <ol className="list-disc grid  gap-3 p-4 md:w-[300px] md:grid-cols-2 ">
                   {item?.subCategories?.map((item, index) => {
                     return (
                       <ListItem
