@@ -19,9 +19,9 @@ const config = {
       },
     },
     extend: {
-      fontFamily: {
-        sans: ['Futura', 'sans-serif'],
-      },
+      // fontFamily: {
+      //   sans: ['Futura', 'sans-serif'],
+      // },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

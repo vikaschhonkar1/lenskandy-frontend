@@ -33,6 +33,7 @@ const UpdateToCart = async (id:number, quantity = 1) => {
 
 const DeleteFromCart = async (id:number) => {
   const res = await APISERVICES.cart.delete(id);
+  console.log(res)
   if (res?.statusCode === 200) {
     redirect("/cart");
   } else {

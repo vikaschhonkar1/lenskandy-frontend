@@ -20,10 +20,10 @@ const CartProductCard = ({ data }: any) => {
     CustomToast(res || "Item Removed successfully");
   };
   return (
-    <Card className="flex  gap-7 py-2 mx-2 mt-8">
-      <div className="pl-5">
+    <Card className="flex justify-center gap-7 py-2 mx-2 mt-8">
+      <div className="pl-5 flex flex-col justify-center">
         <Image
-          className="w-24 h-24 mt-3 rounded"
+          className=" mt-3 rounded"
           src={config.site.apiimageBaseUrl + data?.variant?.mainImage}
           alt="banner"
           height={135}
@@ -54,23 +54,29 @@ const CartProductCard = ({ data }: any) => {
             </h2>
           </div>
           <p className="font-[600] text-[13px]">
-            {data?.variant?.frameColor?.name}
-            {" | "} {data?.product?.name}
+          {data?.product?.name}  {" | "}  {data?.variant?.frameColor?.name}
+          
           </p>
           <div className="flex gap-1 text-gray-500 text-[12px] items-center">
             <span>{data?.product?.frameType?.name}</span>
             <BsDot />
             <span>{data?.product?.frameSize?.name}</span>
           </div>
-          <p
-            className="font-[600] text-[13px]"
-            dangerouslySetInnerHTML={{ __html: data?.product?.description }}
-          />
+          
 
-          <span className="font-[600] text-[14px]">
-            ₹{Number(data?.variant?.price) + Number(data?.lensPackage?.price)}{" "}
-            {`(Frame Price: ₹${data?.variant?.price} -- Lens Price: ₹${data?.lensPackage?.price})`}
-          </span>
+          <div className="flex justify-between items-center text-md mt-1 font-normal">
+            <div >Frame Price: </div>
+            <div>{`₹${data?.variant?.price}`}</div>
+          </div>
+          <div className="flex justify-between items-center text-md mt-1 font-normal">
+            <div >Lens Price: </div>
+            <div>{`₹${data?.lensPackage?.price}`}</div>
+          </div>
+          <div className="flex justify-between items-center text-md mt-1 font-normal">
+            <div className="font-bold">Total: </div>
+            <div className="font-bold">{`₹${parseFloat(data?.variant?.price) + parseFloat(data?.lensPackage?.price)}`}</div>
+          </div>
+
         </div>
 
         <Popover>
@@ -86,7 +92,7 @@ const CartProductCard = ({ data }: any) => {
                 onClick={() => handleDelete()}
                 className=" hover:bg-slate-200 cursor-pointer p-2"
               >
-                Delete form cart
+                Remove from Cart
               </li>
             </ul>
           </PopoverContent>

@@ -72,16 +72,17 @@ async function fetchData(url, method, data) {
 
     const response = await fetch(config.site.apiBaseUrl + apiUrl, options);
     const res = await response.json();
-    if (response.status === 423) {
-      addLoginParam();
-      // const isValid = await refreshToken();
-      // if (isValid) {
-      //   fetchData(url, method, data);
-      // } else {
-      // }
-    } else if (!response.ok) {
-      return res;
-    }
+    // if (response.status === 423) {
+    //   addLoginParam();
+    //   // const isValid = await refreshToken();
+    //   // if (isValid) {
+    //   //   fetchData(url, method, data);
+    //   // } else {
+    //   // }
+    // } else if (!response.ok) {
+    //   return res;
+    // }
+    return res;
 
     return res;
   } catch (error) {

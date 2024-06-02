@@ -170,15 +170,7 @@ export default function Home() {
           <TabStyle2 />
         </div>
       </section>
-      <section>
-        <Benefits />
-      </section>
-      <section>
-        <div
-          className="relative bg-[#D9D9D9]
-          w-full h-[51px] bottom-0"
-        ></div>
-      </section>
+      
     </>
   );
 }

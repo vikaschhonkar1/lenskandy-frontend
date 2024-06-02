@@ -1,9 +1,25 @@
 import React from "react";
+import { Benefits } from "@/components/home-page/BenefitsSection";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 p-8 mx-2  ml-4 mb-6 pb-10">
-      <div className=" mx-auto grid grid-cols-2 md:grid-cols-2 gap-9 pb-20">
+
+    <>
+    <footer >
+
+    <div>
+        <Benefits />
+      </div>
+      <div>
+        <div
+          className="relative bg-[#D9D9D9]
+          w-full h-[51px] bottom-0"
+        ></div>
+      </div>
+
+      <div className="px-4 mb-2 mt-4">
+
+      <div className=" mx-auto grid grid-cols-2 md:grid-cols-2 gap-3 ">
         <div>
           <h3 className="font-semibold mb-4 text-[20px]">Policies</h3>
           <ul>
@@ -69,7 +85,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="mt-4 pb-20">
+        <div className="mt-4 pb-10">
           <h3 className="font-semibold mb-4 text-[20px]">Download App</h3>
           <a href="#" className="block mb-2 pb-6">
             <svg
@@ -178,7 +194,12 @@ const Footer = () => {
           </svg>
         </div>
       </div>
+      </div>
+      
+
+      
     </footer>
+    </>
   );
 };
 
