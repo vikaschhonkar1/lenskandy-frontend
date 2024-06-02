@@ -51,11 +51,11 @@ const Page = async ({ params }: any) => {
     // Add more items as needed
   ];
   const skuId = getSKUFromURL(params?.id);
-  console.log(skuId);
+  
 
   const res = await APISERVICES.productVariants.get(skuId);
   const isLoggedIn = await accessToken();
-
+  
   const data = {};
   return (
     <>
@@ -84,7 +84,7 @@ const Page = async ({ params }: any) => {
               </div>
             </div>
             <div className=" top-4 right-4">
-              <button className="bg-blue-900 text-white rounded-lg py-2 px-3 text-xs font-bold flex items-center">
+              <button className="flex space-between gap-2 bg-blue-900 text-white rounded-lg py-2 px-3 text-xs font-bold flex items-center">
                 <svg
                   width="20"
                   height="20"
@@ -104,28 +104,28 @@ const Page = async ({ params }: any) => {
           {/* Size Icon */}
 
           {/* Checkout Delivery */}
-          <div className=" bottom-4 left-4">
+          <div className="my-3 mb-1">
             <span className="text-sm font-medium text-gray-800">
               Checkout Delivery
             </span>
           </div>
 
           {/* Enter Pincode */}
-          <div className=" bottom-4 right-4 flex items-center border rounded-md shadow-sm bg-white p-2 w-full max-w-xs">
+          <div className="mt-1  flex  border rounded-md shadow-sm bg-white p-2 w-full ">
             <input
               type="text"
               placeholder="Enter Pincode"
-              className="flex-grow text-sm font-medium text-gray-400 outline-none"
+              className="flex-grow text-sm font-medium text-gray-400 pl-2"
             />
-            <button className="text-orange-600 font-medium">Check</button>
+            <button className="text-orange-600 font-medium pr-2">Check</button>
           </div>
         </div>
       </section>
 
-      <section className="">
+      <section className="flex item-center my-3 mt-4">
         <svg
-          width="321"
-          height="76"
+          width="420"
+          height="86"
           viewBox="0 0 321 76"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -196,24 +196,28 @@ const Page = async ({ params }: any) => {
 
       <section className="p-4 shadow-lg ">
         <>
-          <div className="pb-6">
+          <div className="pb-3">
             <h5 className="text-[18px] font-[600] text-black">Frame</h5>
             <p className="pt-2 text-[12px] font-[500] text-gray-500">
               {
                 //@ts-ignore
                 data?.product?.frameType?.description
               }
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
+              veritatis eum t
             </p>
             <div>
               <Image
-                className="h-[70px] w-full"
-                src="/assets/image/categoriesImages/frame01.png"
+                className=" w-full my-3 mb-2"
+                src="/assets/images/frameimage.svg"
                 alt="truck"
                 height={100}
                 width={100}
               />
+      
+
             </div>
-            <div className="pt-7">
+            <div className="pt-3">
               <Accordion type="single" collapsible>
                 {accordionData.map((item) => (
                   <AccordionItem key={item.id} value={item.id}>

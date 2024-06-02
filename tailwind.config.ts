@@ -20,7 +20,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        'sans': ['futura'],
+        sans: ['Futura', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
