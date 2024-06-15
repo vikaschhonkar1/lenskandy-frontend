@@ -6,8 +6,10 @@ import CategoryIntro from "@/components/categories/Category Intro Area/CategoryI
 import ProductListing from "@/components/categories/Product Listing/ProductListing";
 import AdvertisementImage from "@/components/categories/Advertisement Image Area/AdvertisementImage";
 import APISERVICES from "@/lib/api-services";
+import Filter from "@/components/filters/Filter";
 
 const Page = async ({ params }: any) => {
+  const allFilters = await APISERVICES.getAllFilters.get()
   const arr = params?.slug;
   const res = await APISERVICES.product.get(`?cat=sunglasses`);
   let filter = {};
@@ -37,6 +39,7 @@ const Page = async ({ params }: any) => {
       />
       <ProductListing data={res?.data} />
       <AdvertisementImage />
+      <Filter allFilters={allFilters?.data}/>
     </>
   );
 };

@@ -38,6 +38,8 @@ const APISERVICES = {
 
   order: createApiFunction("order"),
   verifyPayment: createApiFunction("order/verify-payment"),
+
+  getAllFilters: createApiFunction("filter") 
 };
 
 export default APISERVICES;

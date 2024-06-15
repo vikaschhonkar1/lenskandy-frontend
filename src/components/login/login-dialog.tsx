@@ -58,8 +58,6 @@ function Login() {
                 onClose={() => {
                   // removeLoginParam();
                   if (pathname == "/account") {
-                   
-
                     router?.replace("/");
                   } else {
                     removeLoginParam();

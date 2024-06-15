@@ -51,7 +51,7 @@ const CategoryFilters = (props: any) => {
 
   return (
     <section className="flex mt-2">
-      <select
+      {/* <select
         value={gender || ""}
         className="border-2 border-gray-50 h-9 w-[100px] rounded-full outline-none my-3 ml-1 mr-1 p-1 bg-white"
         defaultValue={"women"}
@@ -64,7 +64,7 @@ const CategoryFilters = (props: any) => {
       >
         <option value="male">Men</option>
         <option value="female">Women</option>
-      </select>
+      </select> */}
       <ScrollArea className="flex">
         <CategoryFilterTabs
           defaultValue={defaultValue}
