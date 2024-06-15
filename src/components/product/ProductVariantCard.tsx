@@ -108,7 +108,7 @@ const ProductVariantCard = (props: ProductCardProps) => {
   } else {
     return (
       <>
-        <h1>sdf</h1>
+        <h1></h1>
       </>
     );
   }
