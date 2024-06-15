@@ -31,6 +31,8 @@ import { ScrollArea } from "../ui/scroll-area";
 import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { Separator } from "../ui/separator";
+import { accessToken, logOut, user } from "@/hooks/useAuth";
+import LogoutBtn from "../auth/LogoutBtn";
 
 const ListItem = ({ className, title, children, ...props }: any, ref: any) => {
   return (
@@ -206,6 +208,8 @@ export async function AccordionDemo() {
 }
 
 export async function SideNav() {
+  const isLoggedIn = await accessToken();
+  const userDetails = await user();
   return (
     <Drawer direction="left">
       <DrawerTrigger asChild>
@@ -243,9 +247,36 @@ export async function SideNav() {
           </div>
         </div>
         <Separator color="#000" />
+        {userDetails ? (
+          <Link href={"/account"}>
+            <DrawerClose className="w-full">
+              <div className="h-[100px] w-full bg-cover bg-center bg-[url('/assets/image/categoriesImages/dashboard01.png')] flex justify-center gap-3 py-4">
+                <Image
+                  className="w-12 h-12 mt-1"
+                  src="/assets/image/categoriesImages/dashboard7.png"
+                  alt="user"
+                  height={32}
+                  width={32}
+                />
+                <div>
+                  <h1 className="text-white font-[700] text-lg">
+                    Hello {userDetails?.name}!
+                  </h1>
+                  <span className="text-white font-[700] text-lg">
+                    +91 {userDetails?.phone}
+                  </span>
+                </div>
+              </div>
+            </DrawerClose>
+          </Link>
+        ) : (
+          ""
+        )}
         <ScrollArea>
           <div className="mx-auto w-full max-w-sm p-4 ">{AccordionDemo()}</div>
         </ScrollArea>
+
+     <LogoutBtn />
       </DrawerContent>
     </Drawer>
   );

@@ -19,7 +19,7 @@ export default async function middleware(req: NextRequest) {
   const currentUrl = req.nextUrl.clone();
   const urlPath = currentUrl.pathname;
   const isAccountsPage =
-    urlPath === "/account" || urlPath === "/account/addresses" ? true : false;
+    (urlPath === "/account" || urlPath === "/account/addresses" || urlPath === "/account/orders") ? true : false;
   const isLoggedIn = await accessToken();
 
   if (isAccountsPage && !isLoggedIn && !currentUrl.searchParams.has("login")) {
