@@ -261,8 +261,8 @@ export async function SideNav() {
                   width={32}
                 />
                 <div>
-                  <h1 className="text-white font-[700] text-lg">
-                    Hello {userDetails?.name}!
+                  <h1 className="text-white font-[700] text-left pl-1 text-lg">
+                    Hello {userDetails?.name || 'Guest'}!
                   </h1>
                   <span className="text-white font-[700] text-lg">
                     +91 {userDetails?.phone}
