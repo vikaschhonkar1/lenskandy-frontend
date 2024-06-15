@@ -33,6 +33,8 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 import { Separator } from "../ui/separator";
 import { accessToken, logOut, user } from "@/hooks/useAuth";
 import LogoutBtn from "../auth/LogoutBtn";
+import { LoginDialog } from "../login";
+import LogInBtn from "../auth/LoginBtn";
 
 const ListItem = ({ className, title, children, ...props }: any, ref: any) => {
   return (
@@ -276,7 +278,7 @@ export async function SideNav() {
           <div className="mx-auto w-full max-w-sm p-4 ">{AccordionDemo()}</div>
         </ScrollArea>
 
-     <LogoutBtn />
+     {isLoggedIn ? <LogoutBtn />:<LogInBtn />}
       </DrawerContent>
     </Drawer>
   );
