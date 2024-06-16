@@ -14,22 +14,31 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Link from "next/link";
+import APISERVICES from "@/lib/api-services";
 
-const typesOfGlasses = [
+const typesOfGlasses1 = [
   "EyeGlasses",
   "SunGlasses",
   "Computer Glass",
   "Reading Glasses",
 ];
+const typesOfGlasses = [
+  {name: "EyeGlasses", link: "/eyeglasses", image: "/assets/images/HomePage/Category/eyeglasses.webp"},
+  {name: "SunGlasses", link: "/sunglasses", image: "/assets/images/HomePage/Category/sunglasses.webp"},
+  {name: "Computer Glass", link: "/computer-glasses", image: "/assets/images/HomePage/Category/computer.webp"},
+  {name: "Reading Glass", link: "/reading-glasses", image: "/assets/image/homePageImages/product01.png"},
+  
+];
 
-export default function Home() {
+export default  async function Home() {
+  const {data} = await APISERVICES.home.get()
   const noSearch = false;
   return (
     <>
       <SearchBox />
       <ChatWhatsappBtn />
       <TopCarousel />
-      <CategorySection />
+      <CategorySection data={data} />
       <section className="mt-6">
         <div
           className="container bg-no-repeat bg-[length:51px_89px] pl-5  "
@@ -123,14 +132,14 @@ export default function Home() {
                 </div>
                 <Image
                   className="w-[151px] h-[86px]"
-                  src="/assets/image/homePageImages/product01.png"
+                  src={item?.image ||"/assets/image/homePageImages/product01.png"}
                   alt="banner"
                   height={135}
                   width={135}
                 />
                 <div className="h-[32px] bg-[#67A290] rounded-b-xl flex pb-2 mt-[4px] justify-between pl-1 pr-4">
                   <span className="text-[14px] font-[600] text-white pl-[7px] pt-[5px]">
-                    {item}
+                    {item?.name}
                   </span>
                   <Image
                     className="w-[5px] h-[10px] mt-[11px] ml-4"

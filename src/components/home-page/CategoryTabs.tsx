@@ -14,12 +14,14 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { CustomAvatar } from "./CustomAvatar";
 import Image from "next/image";
 import TrendingProducts, { TrendingProduct } from "./TrendingProducts";
+import { config } from "@/config";
 
 type TabsContent = {
   tabData: {
     value: string;
     label: any;
     content: React.ReactNode;
+    contentReal: any;
     descImage: string;
     glasses: string[];
   }[];
@@ -44,7 +46,9 @@ export function TabsStyle({ tabData }: TabsContent) {
         <ScrollBar className="mt-6 hidScrollbar" orientation="horizontal" />
       </ScrollArea>
 
-      {tabData?.map((item) => (
+      {tabData?.map((item) => {
+     
+        return (
         <TabsContent key={item?.value} value={item?.value}>
           <>
             <div className="px-2">{item?.content}</div>
@@ -64,20 +68,20 @@ export function TabsStyle({ tabData }: TabsContent) {
                   View All
                 </a>
               </div>
-              {item?.glasses?.map((item) => (
+              {item?.contentReal?.map((item: any) => (
                 <div key={item}>
-                  <TrendingProduct image={item} />
+                  <TrendingProduct image={config.site.apiimageBaseUrl + item?.mainImage} data={item}/>
                 </div>
               ))}
             </section>
           </>
         </TabsContent>
-      ))}
+      )})}
     </Tabs>
   );
 }
 
-export const CategoryTabs = () => {
+export const CategoryTabs = ({data}: any) => {
   return (
     <TabsStyle
       tabData={[
@@ -117,6 +121,7 @@ export const CategoryTabs = () => {
               />
             </div>
           ),
+          contentReal: data?.eyeglasses,
           descImage: "/assets/images/EyeGlasses/DescImage.png",
           glasses: [
             "/assets/images/EyeGlasses/One.png",
@@ -155,6 +160,7 @@ export const CategoryTabs = () => {
               />
             </div>
           ),
+          contentReal: data?.sunglasses,
           descImage: "/assets/images/SunGlasses/DescImage.png",
           glasses: [
             "/assets/images/SunGlasses/One.png",
@@ -193,6 +199,7 @@ export const CategoryTabs = () => {
               />
             </div>
           ),
+          contentReal: data?.computerglasses,
           descImage: "/assets/images/ComputerGlasses/DescImage.png",
           glasses: [
             "/assets/images/ComputerGlasses/One.png",
@@ -231,6 +238,7 @@ export const CategoryTabs = () => {
               />
             </div>
           ),
+          contentReal: data?.contactlenses,
           descImage: "/assets/images/ContactLenses/DescImage.png",
           glasses: [
             "/assets/images/ContactLenses/One.png",

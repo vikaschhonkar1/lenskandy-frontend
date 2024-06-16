@@ -2,10 +2,10 @@ import Image from "next/image";
 import { CategoryTabs } from "../CategoryTabs";
 import TrendingProducts from "../TrendingProducts";
 
-const CategorySection = () => {
+const CategorySection = ({data}: any) => {
   return (
     <>
-      <CategoryTabs />
+      <CategoryTabs data={data}/>
       
     </>
   );

@@ -1,8 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { BsDot } from "react-icons/bs";
+import Link from "next/link";
 
-export const TrendingProduct = ({image}: any) => {
+export const TrendingProduct = ({image,data}: any) => {
+ 
   return (
     <>
       {" "}
@@ -21,7 +24,7 @@ export const TrendingProduct = ({image}: any) => {
                 width="100"
                 style={{ height: "58px", width: "150px" }}
               />
-              <div className="flex -space-x-1 overflow-hidden pt-1 rounded-md">
+              {/* <div className="flex -space-x-1 overflow-hidden pt-1 rounded-md">
                 <img
                   className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
                   src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -45,14 +48,15 @@ export const TrendingProduct = ({image}: any) => {
                 <span className="h-[8px] w-[14px] text-[10px] inline-block pl-2 font-medium text-[#0000B7]">
                   +8
                 </span>
-              </div>
+              </div> */}
             </div>
-            <div className="w-full pl-2 h-full rounded-md ">
+           <div className="w-full pl-2 h-full rounded-md ">
+           <Link href={"/product/"+data?.sku}>
               <h3 className="text-[10px] font-semibold pt-5 ">
-                Lorem ipsum dolor sit amet consectetur
+                {data?.product?.name}
               </h3>
-              <p className="text-[7px] font-medium text-gray-400 ">
-                size: Extra wide,Lorem ipsum dolor sit amet.
+              <p className="text-[8px] font-medium text-gray-400 flex items-center">
+                {data?.product?.brand?.name} <BsDot/> {data?.product?.frameSize?.name}
               </p>
               <div className="flex">
                 <Image
@@ -68,7 +72,7 @@ export const TrendingProduct = ({image}: any) => {
               </div>
               <div className="flex justify-between items-center content-center w-full mt-[-6px]">
                 <p className="h-[8px] w-[14px] text-[16px] pl-1 font-medium text-black">
-                  ₹1999
+                  ₹{data?.price}
                 </p>
                 <div className="flex mr-3 mt-3">
                   <Badge className="rounded-full  px-2 text-[8px] h-[12px] w-[62px] bg-[#F2652F]">
@@ -92,8 +96,9 @@ export const TrendingProduct = ({image}: any) => {
                   {" "}
                   Buy 1 Get 1 + Free Membership
                 </p>
-              </div>
+              </div></Link>
             </div>
+            
           </div>
         </div>
       </section>
