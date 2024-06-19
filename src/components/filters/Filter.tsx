@@ -18,22 +18,58 @@ import {
 } from "../ui/accordion";
 import { Checkbox } from "../ui/checkbox";
 import { ScrollArea } from "../ui/scroll-area";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation'
 
 const Filter = (props: any) => {
-  const { allFilters } = props;
+  const { allFilters , selectedFilter , type } = props;
+  const router = useRouter()
 
-  const [selectedItems, setSelectedItems] = useState({});
 
-  const handleCheckboxChange = (filterId: any, itemId: any) => {
+  const [selectedItems, setSelectedItems] = useState(selectedFilter);
+
+  const handleCheckboxChange = (filterSlug: any, itemSlug: any) => {
     setSelectedItems((prevState: any) => ({
       ...prevState,
-      [filterId]: {
-        ...prevState[filterId],
-        [itemId]: !prevState[filterId]?.[itemId],
+      [filterSlug]: {
+        ...prevState[filterSlug],
+        [itemSlug]: !prevState[filterSlug]?.[itemSlug],
       },
     }));
   };
+  // @ts-ignore
+  const filterRouteBuilder = (selectedItems)=> {
+    const parentFilter = Object.keys(selectedItems)
+
+  // @ts-ignore
+    const route = parentFilter.reduce((prevValue , currValue , idx) => {
+      const subFilter = Object.keys(selectedItems[currValue]);
+      
+      const subFilterRoute = subFilter.reduce((prev , curr , idx) => {
+        if(selectedItems[currValue][curr] == false){
+          return prev
+        }
+
+        return prev === "" ? curr : prev + "_" + curr ;
+      } , "");
+
+      // If all the values are false
+      if(subFilterRoute === "")return prevValue;
+
+      return  prevValue + "/" + currValue + "/" + subFilterRoute
+
+    }, type);
+    return route
+  }
+
+  const applyFilter = () => {
+    const route = filterRouteBuilder(selectedItems)
+    console.log(route , selectedItems)
+    router.replace("/" + route)
+  }
+
+
+  
 
   return (
     <>
@@ -46,7 +82,7 @@ const Filter = (props: any) => {
             </div>
           </DrawerTrigger>
           <DrawerContent className="h-10/12">
-            <DrawerTitle className="w-full flex justify-between p-2 font-medium pl-5">
+            <DrawerTitle className="w-full flex justify-between p-2 font-medium pl-5 shadow-sm">
               Filters
               <Button variant={"ghost"}>Clear Filters</Button>
             </DrawerTitle>
@@ -54,7 +90,7 @@ const Filter = (props: any) => {
               <Accordion
                 type="single"
                 collapsible
-                className="px-3 max-h-[70vh]"
+                className="px-3 h-[70vh] max-h-[70vh]"
               >
                 {allFilters?.length > 0 ? (
                   allFilters?.map((filter: any, index: any) => (
@@ -77,12 +113,14 @@ const Filter = (props: any) => {
                                 <Checkbox
                                   id={`terms-${filter.id}-${item.id}`}
                                   //@ts-ignore
-                                  // checked={
-                                  //   //@ts-ignore
-                                  //   selectedItems[filter.id]?.[item.id] || false
-                                  // }
-                                  onChange={() =>
-                                    handleCheckboxChange(filter.id, item.id)
+                                  checked={
+                                    //@ts-ignore
+                                    selectedItems[filter.slug]?.[item.slug] || false
+                                  }
+                                  onCheckedChange={(e) =>{
+                                    console.log(e)
+                                    handleCheckboxChange(filter.slug, item.slug)
+                                  }
                                   }
                                 />
                               </div>
@@ -103,7 +141,7 @@ const Filter = (props: any) => {
                   Cancel
                 </Button>
               </DrawerClose>
-              <Button className="w-full">Submit</Button>
+              <Button className="w-full" onClick={applyFilter}>Submit</Button>
             </DrawerFooter>
           </DrawerContent>{" "}
         </Drawer>
