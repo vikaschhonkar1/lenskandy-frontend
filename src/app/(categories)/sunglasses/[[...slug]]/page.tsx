@@ -7,20 +7,39 @@ import ProductListing from "@/components/categories/Product Listing/ProductListi
 import AdvertisementImage from "@/components/categories/Advertisement Image Area/AdvertisementImage";
 import APISERVICES from "@/lib/api-services";
 import Filter from "@/components/filters/Filter";
+import _ from "lodash"
 
 const Page = async ({ params }: any) => {
-  const allFilters = await APISERVICES.getAllFilters.get()
-  const arr = params?.slug;
-  const res = await APISERVICES.product.get(`?cat=sunglasses`);
-  let filter = {};
+  const filter:any = {};
 
-  if (arr && arr.length > 0) {
-    filter = {};
-    for (let i = 0; i < arr.length - 1; i += 2) {
+  
+  const slugs = params.slug || []
+
+  let filterQuery = "";
+
+  if (slugs?.length > 0) {
+    for (let i = 0; i < slugs.length - 1; i += 2) {
+      filterQuery += slugs[i] + "=" +slugs[i+1] + "&";
+
+      const slugItems = slugs[i+1]?.split("_")
+      
+      if(!_.isObject(filter[slugs[i]])){
+        filter[slugs[i]] = {}
+      }
       //@ts-ignore
-      filter[arr[i]] = arr[i + 1]?.split("-");
+      slugItems.forEach((slug) => {
+        
+        filter[slugs[i]][slug] = true;
+      });
+      
     }
   }
+
+  console.log(filterQuery)
+
+  const allFilters = await APISERVICES.getAllFilters.get()
+  const res = await APISERVICES.product.get(`?cat=sunglasses&${filterQuery}`);
+
   const heroImage = "/assets/images/HeroImage/MenSunglasses.png";
 
   //@ts-ignore
@@ -39,7 +58,7 @@ const Page = async ({ params }: any) => {
       />
       <ProductListing data={res?.data} />
       <AdvertisementImage />
-      <Filter allFilters={allFilters?.data}/>
+      <Filter allFilters={allFilters?.data} selectedFilter={filter} type={"sunglasses"} />
     </>
   );
 };
