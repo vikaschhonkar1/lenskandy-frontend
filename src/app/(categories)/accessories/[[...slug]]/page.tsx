@@ -6,21 +6,43 @@ import CategoryIntro from "@/components/categories/Category Intro Area/CategoryI
 import ProductListing from "@/components/categories/Product Listing/ProductListing";
 import AdvertisementImage from "@/components/categories/Advertisement Image Area/AdvertisementImage";
 import APISERVICES from "@/lib/api-services";
-
+import _ from "lodash"
+import Filter from "@/components/filters/Filter";
 const Page = async({ params }: any) => {
   const arr = params?.slug;
-  const res = await APISERVICES.product.get(`?cat=accessories`) 
-  let category = "sunglasses";
-  let filter = {};
+  
+  const filter: any = {};
+  const allFilters = await APISERVICES.getAllFilters.get();
 
-  if (arr && arr.length > 0) {
-    category = arr[0];
-    filter = {};
-    for (let i = 1; i < arr.length - 1; i += 2) {
+  const filterData = allFilters?.data || [];
+
+  const slugs = params.slug || [];
+
+  let filterQuery = "";
+  let filterQueryArray = [];
+
+  if (slugs?.length > 0 && filterData?.length > 0) {
+    for (let i = 0; i < slugs.length - 1; i += 2) {
+      const value = filterData?.find(
+        (item: any) => item.slug === slugs[i]
+      )?.value;
+      filterQueryArray.push(value + "=" + slugs[i + 1]);
+      const slugItems = slugs[i + 1]?.split("_");
+
+      if (!_.isObject(filter[slugs[i]])) {
+        filter[slugs[i]] = {};
+      }
       //@ts-ignore
-      filter[arr[i]] = arr[i + 1]?.split("-");
+      slugItems.forEach((slug) => {
+        filter[slugs[i]][slug] = true;
+      });
     }
   }
+
+  filterQuery = filterQueryArray.join("&");
+
+  const res = await APISERVICES.product.get(`?cat=accessories&${filterQuery}`)
+ 
   const heroImage = "/assets/images/HeroImage/Accessories.png";
 
   return (
@@ -30,6 +52,8 @@ const Page = async({ params }: any) => {
       <CategoryIntro categoryName={"Accessories"} categoryDescription={"Lorem ipsum dolor si"}/>
       <ProductListing data={res?.data}/>
       <AdvertisementImage/>
+      
+      <Filter allFilters={allFilters?.data} selectedFilter={filter} type={"accessories"} />
     </>
   );
 };

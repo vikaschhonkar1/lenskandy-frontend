@@ -19,13 +19,11 @@ import {
 import { Checkbox } from "../ui/checkbox";
 import { ScrollArea } from "../ui/scroll-area";
 import { useEffect, useState } from "react";
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from "next/navigation";
 
 const Filter = (props: any) => {
-  const { allFilters , selectedFilter , type } = props;
-  const router = useRouter()
-
-
+  const { allFilters, selectedFilter, type } = props;
+  const router = useRouter();
   const [selectedItems, setSelectedItems] = useState(selectedFilter);
 
   const handleCheckboxChange = (filterSlug: any, itemSlug: any) => {
@@ -38,45 +36,41 @@ const Filter = (props: any) => {
     }));
   };
   // @ts-ignore
-  const filterRouteBuilder = (selectedItems)=> {
-    const parentFilter = Object.keys(selectedItems)
+  const filterRouteBuilder = (selectedItems) => {
+    const parentFilter = Object.keys(selectedItems);
 
-  // @ts-ignore
-    const route = parentFilter.reduce((prevValue , currValue , idx) => {
+    // @ts-ignore
+    const route = parentFilter.reduce((prevValue, currValue, idx) => {
       const subFilter = Object.keys(selectedItems[currValue]);
-      
-      const subFilterRoute = subFilter.reduce((prev , curr , idx) => {
-        if(selectedItems[currValue][curr] == false){
-          return prev
+
+      const subFilterRoute = subFilter.reduce((prev, curr, idx) => {
+        if (selectedItems[currValue][curr] == false) {
+          return prev;
         }
 
-        return prev === "" ? curr : prev + "_" + curr ;
-      } , "");
+        return prev === "" ? curr : prev + "_" + curr;
+      }, "");
 
       // If all the values are false
-      if(subFilterRoute === "")return prevValue;
+      if (subFilterRoute === "") return prevValue;
 
-      return  prevValue + "/" + currValue + "/" + subFilterRoute
-
+      return prevValue + "/" + currValue + "/" + subFilterRoute;
     }, type);
-    return route
-  }
+    return route;
+  };
 
   const applyFilter = () => {
-    const route = filterRouteBuilder(selectedItems)
-    console.log(route , selectedItems)
-    router.replace("/" + route)
-  }
-
-
-  
+    const route = filterRouteBuilder(selectedItems);
+    console.log(route, selectedItems);
+    router.replace("/" + route);
+  };
 
   return (
     <>
-      <section className="sticky bottom-0 w-full  mt-1 p-2 bg-gray-200 flex justify-around gap-2">
+      <section className="sticky bottom-0 w-full  mt-1 p-2  flex justify-around gap-2">
         <Drawer>
           <DrawerTrigger className="w-full items-center flex justify-center ">
-            <div className="w-full flex bg-white m-1 p-2 rounded justify-center font-bold gap-2 items-center">
+            <div className="w-full flex bg-white shadow m-1 p-2 rounded justify-center font-bold gap-2 items-center">
               <FilterIcon size={20} />
               Filter
             </div>
@@ -84,7 +78,14 @@ const Filter = (props: any) => {
           <DrawerContent className="h-10/12">
             <DrawerTitle className="w-full flex justify-between p-2 font-medium pl-5 shadow-sm">
               Filters
-              <Button variant={"ghost"}>Clear Filters</Button>
+              <Button
+                onClick={() => {
+                  router?.replace("/" + type);
+                }}
+                variant={"ghost"}
+              >
+                Clear Filters
+              </Button>
             </DrawerTitle>
             <ScrollArea>
               <Accordion
@@ -115,13 +116,16 @@ const Filter = (props: any) => {
                                   //@ts-ignore
                                   checked={
                                     //@ts-ignore
-                                    selectedItems[filter.slug]?.[item.slug] || false
+                                    selectedItems[filter.slug]?.[item.slug] ||
+                                    false
                                   }
-                                  onCheckedChange={(e) =>{
-                                    console.log(e)
-                                    handleCheckboxChange(filter.slug, item.slug)
-                                  }
-                                  }
+                                  onCheckedChange={(e) => {
+                                    console.log(e);
+                                    handleCheckboxChange(
+                                      filter.slug,
+                                      item.slug
+                                    );
+                                  }}
                                 />
                               </div>
                             ))}
@@ -141,7 +145,9 @@ const Filter = (props: any) => {
                   Cancel
                 </Button>
               </DrawerClose>
-              <Button className="w-full" onClick={applyFilter}>Submit</Button>
+              <Button className="w-full" onClick={applyFilter}>
+                Submit
+              </Button>
             </DrawerFooter>
           </DrawerContent>{" "}
         </Drawer>
