@@ -12,32 +12,35 @@ import _ from "lodash"
 const Page = async ({ params }: any) => {
   const filter:any = {};
 
+  const allFilters = await APISERVICES.getAllFilters.get()
+
+ const filterData = allFilters?.data || []
+  
   
   const slugs = params.slug || []
 
   let filterQuery = "";
-
-  if (slugs?.length > 0) {
+  let filterQueryArray = [];
+  
+  if (slugs?.length > 0 && filterData?.length > 0) {
     for (let i = 0; i < slugs.length - 1; i += 2) {
-      filterQuery += slugs[i] + "=" +slugs[i+1] + "&";
-
-      const slugItems = slugs[i+1]?.split("_")
+      const value = filterData?.find((item:any) => item.slug === slugs[i])?.value;
+      filterQueryArray.push(value + "=" + slugs[i + 1]);
+      const slugItems = slugs[i + 1]?.split("_");
       
-      if(!_.isObject(filter[slugs[i]])){
-        filter[slugs[i]] = {}
+      if (!_.isObject(filter[slugs[i]])) {
+        filter[slugs[i]] = {};
       }
       //@ts-ignore
       slugItems.forEach((slug) => {
-        
         filter[slugs[i]][slug] = true;
       });
-      
     }
   }
+  
+  filterQuery = filterQueryArray.join("&");
 
-  console.log(filterQuery)
 
-  const allFilters = await APISERVICES.getAllFilters.get()
   const res = await APISERVICES.product.get(`?cat=sunglasses&${filterQuery}`);
 
   const heroImage = "/assets/images/HeroImage/MenSunglasses.png";

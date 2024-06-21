@@ -72,6 +72,8 @@ async function fetchData(url, method, data) {
       apiUrl += "?sessionId=" + session;
     }
 
+    console.log(apiUrl);
+
     const response = await fetch(config.site.apiBaseUrl + apiUrl, options);
     const res = await response.json();
     // if (response.status === 423) {
