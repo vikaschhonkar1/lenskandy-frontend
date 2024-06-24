@@ -37,7 +37,7 @@ const ProductCard = (props: ProductCardProps) => {
       );
     return (
       <Link key={index} href={redirectionURL}>
-        <Card className=" w-full rounded-xl p-2">
+        <Card className=" w-full h-full rounded-xl p-2">
           <div className="flex flex-col justify-end items-end">
             <Image
               className="mt-1 mr-1"

@@ -92,7 +92,7 @@ const ProductDetail = (props: any) => {
                 <div>
                   <CardContent className="h-[206px] w-full lg:h-[360px]  flex  p-1 ">
                     <Image
-                      className="h-[204px] w-full "
+                      className="h-[204px] w-full object-contain"
                       src={item}
                       alt="item"
                       height={204}

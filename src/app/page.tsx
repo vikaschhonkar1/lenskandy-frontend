@@ -105,6 +105,7 @@ export default  async function Home() {
           {typesOfGlasses?.map((item, index) => {
             return (
               <Card key={index} className="w-[158px] h-[168px] ">
+                <Link href={item.link}>
                 <div className="flex -space-x-1 overflow-hidden pb-2 pt-[25px]">
                   <img
                     className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
@@ -149,6 +150,7 @@ export default  async function Home() {
                     width={5}
                   />
                 </div>
+                </Link>
               </Card>
             );
           })}
