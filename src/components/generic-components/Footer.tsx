@@ -1,5 +1,7 @@
 import React from "react";
 import { Benefits } from "@/components/home-page/BenefitsSection";
+import Link from "next/link";
+import { addLoginParam } from "../login";
 
 const Footer = () => {
   return (
@@ -24,29 +26,29 @@ const Footer = () => {
           <h3 className="font-semibold mb-4 text-[20px]">Policies</h3>
           <ul>
             <li className="mb-2">
-              <a href="#" className="text-gray-700 text-[15px]">
+              <Link  href="/return-and-refund" className="text-gray-700 text-[15px]">
                 Return & Refund
-              </a>
+              </Link>
             </li>
             <li className="mb-2">
-              <a href="#" className="text-gray-700 text-[15px]">
+              <Link  href="/policy" className="text-gray-700 text-[15px]">
                 Policy
-              </a>
+              </Link>
             </li>
             <li className="mb-2">
-              <a href="#" className="text-gray-700 text-[15px]">
+              <Link  href="/privacy-policy" className="text-gray-700 text-[15px]">
                 Privacy Policy
-              </a>
+              </Link>
             </li>
             <li className="mb-2">
-              <a href="#" className="text-gray-700 text-[15px]">
+              <Link  href="/terms-and-conditions" className="text-gray-700 text-[15px]">
                 Terms & Conditions
-              </a>
+              </Link>
             </li>
             <li className="mb-2">
-              <a href="#" className="text-gray-700 text-[15px]">
+              <Link  href="/cancellation-policy" className="text-gray-700 text-[15px]">
                 Cancellation Policy
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -54,40 +56,40 @@ const Footer = () => {
           <h3 className="font-semibold mb-4 text-[20px]">My Account</h3>
           <ul>
             <li className="mb-2">
-              <a href="#" className="text-gray-700 text-[15px]">
+              <button  onClick={addLoginParam} className="text-gray-700 text-[15px]">
                 Register
-              </a>
+              </button>
             </li>
             <li className="mb-2">
-              <a href="#" className="text-gray-700 text-[15px]">
+              <button  onClick={addLoginParam} className="text-gray-700 text-[15px]">
                 Login
-              </a>
+              </button>
             </li>
             <li className="mb-2">
-              <a href="#" className="text-gray-700 text-[15px]">
+              <Link  href="/" className="text-gray-700 text-[15px]">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="mb-2">
-              <a href="#" className="text-gray-700 text-[15px]">
+              <Link  href="/cart" className="text-gray-700 text-[15px]">
                 Shopping Cart
-              </a>
+              </Link>
             </li>
-            <li className="mb-2">
-              <a href="#" className="text-gray-700 text-[15px]">
+            {/* <li className="mb-2">
+              <Link  href="#" className="text-gray-700 text-[15px]">
                 My Coupons
-              </a>
-            </li>
+              </Link>
+            </li> */}
             <li className="mb-2">
-              <a href="#" className="text-gray-700 text-[15px]">
+              <Link  href="/account/orders" className="text-gray-700 text-[15px]">
                 Check Order Status
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
         <div className="mt-4 pb-10">
           <h3 className="font-semibold mb-4 text-[20px]">Download App</h3>
-          <a href="#" className="block mb-2 pb-6">
+          <Link  href="#" className="block mb-2 pb-6">
             <svg
               width="108"
               height="32"
@@ -117,7 +119,7 @@ const Footer = () => {
                 fill="black"
               />
             </svg>
-          </a>
+          </Link>
         </div>
         <div className="mt-4 ">
           <h3 className="font-semibold mb-4 text-[20px]">Payment Method</h3>
