@@ -139,28 +139,59 @@ const drawerData = [
     id: 4,
     heading: "Shop for Reading Glasses",
     subCategories: [
-      {
-        id: 1,
-        title: "Gender",
-        items: [
-          {
-            id: 1,
-            title: "Men",
-            href: "/reading-glasses/gender/male",
-          },
-          {
-            id: 2,
-            title: "Women",
-            href: "/reading-glasses/gender/female",
-          },
-          {
-            id: 3,
-            title: "Kids",
-            href: "/reading-glasses/gender/kids",
-          },
-        ],
-      },
+      // {
+      //   id: 1,
+      //   title: "Gender",
+      //   items: [
+      //     {
+      //       id: 1,
+      //       title: "Men",
+      //       href: "/reading-glasses/gender/male",
+      //     },
+      //     {
+      //       id: 2,
+      //       title: "Women",
+      //       href: "/reading-glasses/gender/female",
+      //     },
+      //     {
+      //       id: 3,
+      //       title: "Kids",
+      //       href: "/reading-glasses/gender/kids",
+      //     },
+      //   ],
+      // },
     ],
+    title: "Shop Now", 
+    href: "/reading-glasses"
+  },
+  {
+    id: 5,
+    heading: "Shop for Contact Lenses",
+    subCategories: [
+      // {
+      //   id: 1,
+      //   title: "Gender",
+      //   items: [
+      //     {
+      //       id: 1,
+      //       title: "Men",
+      //       href: "/reading-glasses/gender/male",
+      //     },
+      //     {
+      //       id: 2,
+      //       title: "Women",
+      //       href: "/reading-glasses/gender/female",
+      //     },
+      //     {
+      //       id: 3,
+      //       title: "Kids",
+      //       href: "/reading-glasses/gender/kids",
+      //     },
+      //   ],
+      // },
+    ],
+    title: "Shop Now", 
+    href: "/contact-lenses"
   },
 ];
 
@@ -180,7 +211,8 @@ export async function AccordionDemo() {
               </AccordionTrigger>
               <AccordionContent>
                 <ol className="list-disc grid  gap-3 p-4 md:w-[300px] md:grid-cols-2 ">
-                  {item?.subCategories?.map((item, index) => {
+                  {
+                  item?.subCategories?.length > 0 ? item?.subCategories?.map((item, index) => {
                     return (
                       <ListItem
                         className={"py-2 w-full"}
@@ -198,7 +230,12 @@ export async function AccordionDemo() {
                         </ul>
                       </ListItem>
                     );
-                  })}
+                  }): 
+                  <ul>
+                  <li className="list-disc">
+                    <a href={item?.href}>{item?.title}</a>
+                  </li></ul> 
+                  }
                 </ol>
               </AccordionContent>
             </AccordionItem>

@@ -47,41 +47,44 @@ export function TabsStyle({ tabData }: TabsContent) {
       </ScrollArea>
 
       {tabData?.map((item) => {
-     
         return (
-        <TabsContent key={item?.value} value={item?.value}>
-          <>
-            <div className="px-2">{item?.content}</div>
+          <TabsContent key={item?.value} value={item?.value}>
+            <>
+              <div className="px-2">{item?.content}</div>
 
-            <Image
-              className="w-full mt-5"
-              src={item?.descImage}
-              alt="banner"
-              height={122}
-              width={371}
-            />
+              <Image
+                className="w-full mt-5"
+                src={item?.descImage}
+                alt="banner"
+                height={122}
+                width={371}
+              />
 
-            <section className="container my- flex flex-col gap-2 bg-[#ebe2e4] p-4">
-              <div className="flex justify-between items-center">
-                <h1 className="text-xl font-bold pb-3">Now Trendings</h1>
-                <a href="#" className="text-xs">
-                  View All
-                </a>
-              </div>
-              {item?.contentReal?.map((item: any) => (
-                <div key={item}>
-                  <TrendingProduct image={config.site.apiimageBaseUrl + item?.mainImage} data={item}/>
+              <section className="container my- flex flex-col gap-2 bg-[#ebe2e4] p-4">
+                <div className="flex justify-between items-center">
+                  <h1 className="text-xl font-bold pb-3">Now Trendings</h1>
+                  <a href={`${item?.value}`} className="text-xs">
+                    View All
+                  </a>
                 </div>
-              ))}
-            </section>
-          </>
-        </TabsContent>
-      )})}
+                {item?.contentReal?.map((item: any) => (
+                  <div key={item}>
+                    <TrendingProduct
+                      image={config.site.apiimageBaseUrl + item?.mainImage}
+                      data={item}
+                    />
+                  </div>
+                ))}
+              </section>
+            </>
+          </TabsContent>
+        );
+      })}
     </Tabs>
   );
 }
 
-export const CategoryTabs = ({data}: any) => {
+export const CategoryTabs = ({ data }: any) => {
   return (
     <TabsStyle
       tabData={[
@@ -95,27 +98,27 @@ export const CategoryTabs = ({data}: any) => {
                   {
                     Image: "/assets/images/Eyeglasses/Men.png",
                     label: "Men",
-                    link:'/eyeglasses/gender/male'
+                    link: "/eyeglasses/gender/male",
                   },
                   {
                     Image: "/assets/images/Eyeglasses/Women.png",
                     label: "Women",
-                    link:'/eyeglasses/gender/female'
+                    link: "/eyeglasses/gender/female",
                   },
                   {
                     Image: "/assets/images/Eyeglasses/Kids.png",
                     label: "Kids",
-                    link:'/eyeglasses/gender/kids'
+                    link: "/eyeglasses/gender/kids",
                   },
                   {
                     Image: "/assets/images/Eyeglasses/Reading.png",
                     label: "Reading",
-                    link:'/reading-glasses'
+                    link: "/reading-glasses",
                   },
                   {
                     Image: "/assets/images/Eyeglasses/Accessories.png",
                     label: "Accessories",
-                    link:'/accessories'
+                    link: "/accessories",
                   },
                 ]}
               />
@@ -139,22 +142,22 @@ export const CategoryTabs = ({data}: any) => {
                   {
                     Image: "/assets/images/SunGlasses/Men.png",
                     label: "Men",
-                    link:'/sunglasses/gender/male'
+                    link: "/sunglasses/gender/male",
                   },
                   {
                     Image: "/assets/images/SunGlasses/Women.png",
                     label: "Women",
-                    link:'/sunglasses/gender/female'
+                    link: "/sunglasses/gender/female",
                   },
                   {
                     Image: "/assets/images/SunGlasses/Kids.png",
                     label: "Kids",
-                    link:'/sunglasses/gender/kids'
+                    link: "/sunglasses/gender/kids",
                   },
                   {
                     Image: "/assets/images/SunGlasses/WithPower.png",
                     label: "With Power",
-                    link:'/sunglasses/prescription/power'
+                    link: "/sunglasses/prescription/power",
                   },
                 ]}
               />
@@ -178,22 +181,22 @@ export const CategoryTabs = ({data}: any) => {
                   {
                     Image: "/assets/images/ComputerGlasses/re.png",
                     label: "Men",
-                    link:'/computer-glasses/gender/male'
+                    link: "/computer-glasses/gender/male",
                   },
                   {
                     Image: "/assets/images/ComputerGlasses/Women.png",
                     label: "Women",
-                    link:'/computer-glasses/gender/female'
+                    link: "/computer-glasses/gender/female",
                   },
                   {
                     Image: "/assets/images/ComputerGlasses/Kids.png",
                     label: "Kids",
-                    link:'/computer-glasses/gender/kids'
+                    link: "/computer-glasses/gender/kids",
                   },
                   {
                     Image: "/assets/images/ComputerGlasses/BLueBlock.png",
                     label: "Blue Block",
-                    link:'/computer-glasses/lens-technology-sunglasses/blue-block'
+                    link: "/computer-glasses/lens-technology-sunglasses/blue-block",
                   },
                 ]}
               />
@@ -217,22 +220,22 @@ export const CategoryTabs = ({data}: any) => {
                   {
                     Image: "/assets/images/ContactLenses/Men.png",
                     label: "Men",
-                    link:'/contact-lenses/gender/male'
+                    link: "/contact-lenses/gender/male",
                   },
                   {
                     Image: "/assets/images/ContactLenses/Women.png",
                     label: "Women",
-                    link:'/contact-lenses/gender/female'
+                    link: "/contact-lenses/gender/female",
                   },
                   {
                     Image: "/assets/images/ContactLenses/Kids.png",
                     label: "Kids",
-                    link:'/contact-lenses/gender/kids'
+                    link: "/contact-lenses/gender/kids",
                   },
                   {
                     Image: "/assets/images/ContactLenses/BlueRock.png",
                     label: "Blue Block",
-                    link:'/contact-lenses/lens-technology/blue-block'
+                    link: "/contact-lenses/lens-technology/blue-block",
                   },
                 ]}
               />
