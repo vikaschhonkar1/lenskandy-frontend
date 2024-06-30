@@ -28,13 +28,18 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import APISERVICES from "@/lib/api-services";
 import { ScrollArea } from "../ui/scroll-area";
-import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
+import {
+  IoCloseCircle,
+  IoCloseCircleOutline,
+  IoCloseOutline,
+} from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { Separator } from "../ui/separator";
 import { accessToken, logOut, user } from "@/hooks/useAuth";
 import LogoutBtn from "../auth/LogoutBtn";
 import { LoginDialog } from "../login";
 import LogInBtn from "../auth/LoginBtn";
+import { FaAngleRight, FaUser } from "react-icons/fa6";
 
 const ListItem = ({ className, title, children, ...props }: any, ref: any) => {
   return (
@@ -161,8 +166,8 @@ const drawerData = [
       //   ],
       // },
     ],
-    title: "Shop Now", 
-    href: "/reading-glasses"
+    title: "Shop Now",
+    href: "/reading-glasses",
   },
   {
     id: 5,
@@ -190,8 +195,8 @@ const drawerData = [
       //   ],
       // },
     ],
-    title: "Shop Now", 
-    href: "/contact-lenses"
+    title: "Shop Now",
+    href: "/contact-lenses",
   },
 ];
 
@@ -211,31 +216,33 @@ export async function AccordionDemo() {
               </AccordionTrigger>
               <AccordionContent>
                 <ol className="list-disc grid  gap-3 p-4 md:w-[300px] md:grid-cols-2 ">
-                  {
-                  item?.subCategories?.length > 0 ? item?.subCategories?.map((item, index) => {
-                    return (
-                      <ListItem
-                        className={"py-2 w-full"}
-                        key={index}
-                        title={item?.title}
-                      >
-                        <ul className="list-disc  ">
-                          {item?.items?.map((item, index) => {
-                            return (
-                              <li key={index}>
-                                <a href={item?.href}>{item?.title}</a>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </ListItem>
-                    );
-                  }): 
-                  <ul>
-                  <li className="list-disc">
-                    <a href={item?.href}>{item?.title}</a>
-                  </li></ul> 
-                  }
+                  {item?.subCategories?.length > 0 ? (
+                    item?.subCategories?.map((item, index) => {
+                      return (
+                        <ListItem
+                          className={"py-2 w-full"}
+                          key={index}
+                          title={item?.title}
+                        >
+                          <ul className="list-disc  ">
+                            {item?.items?.map((item, index) => {
+                              return (
+                                <li key={index}>
+                                  <a href={item?.href}>{item?.title}</a>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </ListItem>
+                      );
+                    })
+                  ) : (
+                    <ul>
+                      <li className="list-disc">
+                        <a href={item?.href}>{item?.title}</a>
+                      </li>
+                    </ul>
+                  )}
                 </ol>
               </AccordionContent>
             </AccordionItem>
@@ -268,7 +275,7 @@ export async function SideNav() {
         </svg>
       </DrawerTrigger>
       <DrawerContent className="border-none h-full w-9/12 hideTopBar rounded-none rounded-r-sm">
-        <div className="flex items-center justify-between px-2 pr-5 py-6">
+        <div className="flex items-center justify-between px-2 pr-5 py-6 pb-3">
           <Link href="/">
             <DrawerClose>
               <Image
@@ -281,15 +288,16 @@ export async function SideNav() {
           </Link>
           <div>
             <DrawerClose>
-              <IoMdCloseCircleOutline size={20} />
+              <IoCloseOutline size={24} />
             </DrawerClose>
           </div>
         </div>
         <Separator color="#000" />
+        {isLoggedIn ? <LogoutBtn /> : <LogInBtn />}
         {userDetails ? (
           <Link href={"/account"}>
-            <DrawerClose className="w-full">
-              <div className="h-[100px] w-full bg-cover bg-center bg-[url('/assets/image/categoriesImages/dashboard01.png')] flex justify-center gap-3 py-4">
+            <DrawerClose className="w-full ">
+              {/* <div className="h-[100px] w-full bg-cover bg-center bg-[url('/assets/image/categoriesImages/dashboard01.png')] flex justify-center gap-3 py-4">
                 <Image
                   className="w-12 h-12 mt-1"
                   src="/assets/image/categoriesImages/dashboard7.png"
@@ -299,11 +307,29 @@ export async function SideNav() {
                 />
                 <div>
                   <h1 className="text-white font-[700] text-left pl-1 text-lg">
-                    Hello {userDetails?.name || 'Guest'}!
+                    Hello {userDetails?.name || "Guest"}!
                   </h1>
                   <span className="text-white font-[700] text-lg">
                     +91 {userDetails?.phone}
                   </span>
+                </div>
+              </div> */}
+              <div className="p-2 px-4">
+                <div className="flex mt-2 gap-2 w-full">
+                  <div className="pt-2">
+                    <FaUser size={28} />
+                  </div>
+                  <div className="flex justify-between w-full items-center">
+                    <div className="pr-2 flex flex-col items-start">
+                      <p className="font-medium">
+                        Hi {userDetails?.name || "Guest"}!!
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        +91-{userDetails?.phone}
+                      </p>
+                    </div>
+                    <FaAngleRight />
+                  </div>
                 </div>
               </div>
             </DrawerClose>
@@ -314,8 +340,6 @@ export async function SideNav() {
         <ScrollArea>
           <div className="mx-auto w-full max-w-sm p-4 ">{AccordionDemo()}</div>
         </ScrollArea>
-
-     {isLoggedIn ? <LogoutBtn />:<LogInBtn />}
       </DrawerContent>
     </Drawer>
   );
