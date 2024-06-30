@@ -6,11 +6,11 @@ import { accessToken } from "./hooks/useAuth";
 export default async function middleware(req: NextRequest) {
   const response = NextResponse.next();
 
-  // Redirect HTTP to HTTPS
-  if (req.nextUrl.protocol === 'http:') {
-    const secureUrl = `https://${req.nextUrl.host}${req.nextUrl.pathname}${req.nextUrl.search}`;
-    return NextResponse.redirect(secureUrl);
-  }
+  // // Redirect HTTP to HTTPS
+  // if (req.nextUrl.protocol === 'http:') {
+  //   const secureUrl = `https://${req.nextUrl.host}${req.nextUrl.pathname}${req.nextUrl.search}`;
+  //   return NextResponse.redirect(secureUrl);
+  // }
 
   // Set a temporary session cookie if not already set
   if (!req.cookies.has("temp_session")) {
