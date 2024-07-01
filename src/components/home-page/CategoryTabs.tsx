@@ -47,7 +47,6 @@ export function TabsStyle({ tabData }: TabsContent) {
       </ScrollArea>
 
       {tabData?.map((item) => {
-        console.log(item);
         
         return (
           <TabsContent key={item?.value} value={item?.value}>
