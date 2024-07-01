@@ -47,6 +47,8 @@ export function TabsStyle({ tabData }: TabsContent) {
       </ScrollArea>
 
       {tabData?.map((item) => {
+        console.log(item);
+        
         return (
           <TabsContent key={item?.value} value={item?.value}>
             <>
@@ -63,7 +65,7 @@ export function TabsStyle({ tabData }: TabsContent) {
               <section className="container my- flex flex-col gap-2 bg-[#ebe2e4] p-4">
                 <div className="flex justify-between items-center">
                   <h1 className="text-xl font-bold pb-3">Now Trendings</h1>
-                  <a href={`${item?.value}`} className="text-xs">
+                  <a href={`/${item?.value}`} className="text-xs">
                     View All
                   </a>
                 </div>

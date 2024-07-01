@@ -75,7 +75,7 @@ export const TrendingProduct = ({image,data}: any) => {
                   ₹{data?.price}
                 </p>
                 <div className="flex mr-3 mt-3">
-                  <Badge className="rounded-full  px-2 text-[8px] h-[12px] w-[62px] bg-[#F2652F]">
+                  <Badge className="rounded-full  px-2 text-[8px] h-[12px]  bg-[#F2652F]">
                     Add to cart
                   </Badge>
                   <Image
