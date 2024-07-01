@@ -139,7 +139,7 @@ export default  async function Home() {
                   width={135}
                 />
                 <div className="h-[32px] bg-[#67A290] rounded-b-xl flex pb-2 mt-[4px] justify-between pl-1 pr-4">
-                  <span className="text-[14px] font-[600] text-white pl-[7px] pt-[5px]">
+                  <span className="text-ellipsis text-sm font-bold text-white pl-1 pt-[5px]">
                     {item?.name}
                   </span>
                   <Image

@@ -104,9 +104,9 @@ const ProductCard = (props: ProductCardProps) => {
           <p className=" text-[20px] font-medium text-black pl-1">
             ₹{productDetails?.Variant?.[0]?.price || 34}
           </p>
-          <p className="text-gray-500 text-[14px] pl-1">
+          {/* <p className="text-gray-500 text-[14px] pl-1">
             Inclusive of all taxes
-          </p>
+          </p> */}
         </Card>
       </Link>
     );
