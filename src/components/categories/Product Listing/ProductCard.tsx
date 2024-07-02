@@ -41,6 +41,7 @@ const ProductCard = (props: ProductCardProps) => {
       <Card className=" w-full h-full rounded-xl px-2 pb-2">
         <div className="flex flex-col justify-end items-end">
           <WishlistIcon
+            active={productDetails?.WishlistProduct?.length > 0}
             productId={productDetails?.Variant?.[0]?.productId}
             variantId={productDetails?.Variant?.[0]?.id}
           />
@@ -91,7 +92,11 @@ const ProductCard = (props: ProductCardProps) => {
             </Carousel> */}
           </Link>
         </div>
-        <Link key={index} href={redirectionURL} className="flex justify-between flex-col">
+        <Link
+          key={index}
+          href={redirectionURL}
+          className="flex justify-between flex-col"
+        >
           <h1 className="text-sm mt-1 capitalize ">
             {productDetails?.brand?.name || "Lenskandy"}
           </h1>

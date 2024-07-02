@@ -1,1 +1,1 @@
-export { AddToCart } from "./add-to-wishlist";
+export { AddToWishlist } from "./add-to-wishlist";

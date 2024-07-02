@@ -44,7 +44,7 @@ const formSchemaWithOTP = z.object({
   }),
 });
 
-function LoginForm({onClose}: any) {
+function LoginForm({ onClose }: any) {
   const [isOTPFieldActive, setIsOTPFieldActive] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -66,6 +66,7 @@ function LoginForm({onClose}: any) {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const res = await APISERVICES.login.post(values);
+
       if (res?.success) {
         setMessage(res?.message);
         formWithOTP.setValue("phone", values.phone);
@@ -85,7 +86,7 @@ function LoginForm({onClose}: any) {
         await createCookies("accessToken", res?.data?.accessToken);
         await createCookies("refreshToken", res?.data?.refreshToken);
         setIsOTPFieldActive(true);
-        if(onClose) onClose()
+        if (onClose) onClose();
       }
     } catch (err) {
       console.log(err);

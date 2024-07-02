@@ -1,23 +1,22 @@
 "use client";
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { Cross2Icon } from "@radix-ui/react-icons";
-
-import { Suspense, useCallback } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { LoginForm, removeLoginParam } from ".";
-import * as Dialog from "@radix-ui/react-dialog";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { Close } from "@radix-ui/react-dialog";
+import { IoIosCloseCircle } from "react-icons/io";
 
 function Login() {
   const searchParams = useSearchParams();
@@ -26,48 +25,43 @@ function Login() {
   const router = useRouter();
   const pathname = usePathname();
 
-  // Get a new searchParams string by merging the current
-  // searchParams with a provided key/value pair
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(!!search);
+  }, [search]);
+
   const createQueryString = useCallback(
-    (name: string, value: string) => {
+    (name, value) => {
       const params = new URLSearchParams(searchParams.toString());
-      params?.delete("login");
-      router?.replace(pathname + "?" + params.toString());
+      params.delete("login");
+      router.replace(pathname + "?" + params.toString());
     },
     [pathname, router, searchParams]
   );
 
   return (
     <>
-      <AlertDialog open={!!search}>
-        <AlertDialogContent className="rounded">
-          <button
-            onClick={removeLoginParam}
-            className="IconButton absolute right-0 -top-12  "
-            aria-label="Close"
-          >
-            <Cross2Icon
-              color="#000"
-              className="bg-white rounded-full h-6 w-6 p-1 "
+      <Drawer open={isOpen} onClose={() => removeLoginParam()}>
+        <DrawerContent>
+          <DrawerClose onClick={() => removeLoginParam()} className=" " asChild>
+            <IoIosCloseCircle className="absolute -top-0  right-0 h-8 w-8 " />
+          </DrawerClose>
+
+          <div className="mx-auto w-full max-w-sm pb-16 pt-4">
+            <LoginForm
+              onClose={() => {
+                // removeLoginParam();
+                if (pathname == "/account") {
+                  router?.replace("/");
+                } else {
+                  removeLoginParam();
+                }
+              }}
             />
-          </button>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Login/Signup</AlertDialogTitle>
-            <AlertDialogDescription>
-              <LoginForm
-                onClose={() => {
-                  // removeLoginParam();
-                  if (pathname == "/account") {
-                    router?.replace("/");
-                  } else {
-                    removeLoginParam();
-                  }
-                }}
-              />
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-        </AlertDialogContent>
-      </AlertDialog>
+          </div>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 }

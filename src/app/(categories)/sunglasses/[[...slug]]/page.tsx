@@ -43,6 +43,8 @@ const Page = async ({ params }: any) => {
 
   const res = await APISERVICES.product.get(`?cat=sunglasses&${filterQuery}`);
 
+  
+
   const heroImage = "/assets/images/HeroImage/MenSunglasses.png";
 
   //@ts-ignore
@@ -59,7 +61,7 @@ const Page = async ({ params }: any) => {
         categoryName={"Sunglasses"}
         categoryDescription={"Lorem ipsum dolor si"}
       />
-      <ProductListing data={res?.data} />
+      <ProductListing data={res?.data || []} />
       <AdvertisementImage />
       <Filter allFilters={allFilters?.data} selectedFilter={filter} type={"sunglasses"} />
     </>

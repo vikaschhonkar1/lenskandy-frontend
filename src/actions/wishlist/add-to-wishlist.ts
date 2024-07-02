@@ -4,18 +4,18 @@ import { error } from "console";
 import { redirect } from "next/navigation";
 
 const AddToWishlist = async (productId: number, variantId: number) => {
-  console.log({
-    productId,
-    variantId,
-  });
   const res = await APISERVICES.wishlist.post({
     productId,
     variantId,
   });
- 
-  
+
+  if (res?.statusCode === 423) {
+    redirect("?login=true");
+  }
+
   if (res?.statusCode === 200) {
-     // redirect("/");
+    redirect("?");
+    return res?.message;
   } else {
     return res?.message;
   }
@@ -23,7 +23,6 @@ const AddToWishlist = async (productId: number, variantId: number) => {
 
 const DeleteFromWishlist = async (id: number) => {
   const res = await APISERVICES.wishlist.delete(id);
-  console.log(res);
   if (res?.statusCode === 200) {
     // redirect("/");
   } else {

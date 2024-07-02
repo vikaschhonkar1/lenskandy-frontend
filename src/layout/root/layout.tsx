@@ -23,9 +23,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
         <Footer />
         <LoginDialog />
-      </body>
 
-      <Toaster theme="dark" position="top-center" />
+        <Toaster theme="dark" position="top-center" />
+      </body>
     </html>
   );
 }
