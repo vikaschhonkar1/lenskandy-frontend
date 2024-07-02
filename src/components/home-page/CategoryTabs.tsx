@@ -47,12 +47,10 @@ export function TabsStyle({ tabData }: TabsContent) {
       </ScrollArea>
 
       {tabData?.map((item) => {
-        
         return (
           <TabsContent key={item?.value} value={item?.value}>
             <>
               <div className="px-2">{item?.content}</div>
-
               <Image
                 className="w-full mt-5"
                 src={item?.descImage}
@@ -60,7 +58,6 @@ export function TabsStyle({ tabData }: TabsContent) {
                 height={122}
                 width={371}
               />
-
               <section className="container my- flex flex-col gap-2 bg-[#ebe2e4] p-4">
                 <div className="flex justify-between items-center">
                   <h1 className="text-xl font-bold pb-3">Now Trendings</h1>
@@ -116,11 +113,11 @@ export const CategoryTabs = ({ data }: any) => {
                     label: "Reading",
                     link: "/reading-glasses",
                   },
-                  {
-                    Image: "/assets/images/Eyeglasses/Accessories.png",
-                    label: "Accessories",
-                    link: "/accessories",
-                  },
+                  // {
+                  //   Image: "/assets/images/Eyeglasses/Accessories.png",
+                  //   label: "Accessories",
+                  //   link: "/accessories",
+                  // },
                 ]}
               />
             </div>
@@ -137,7 +134,7 @@ export const CategoryTabs = ({ data }: any) => {
           value: "sunglasses",
           label: "Sunglasses",
           content: (
-            <div className="flex pt-2">
+            <div className="flex pt-2 justify-center">
               <CustomAvatar
                 data={[
                   {
