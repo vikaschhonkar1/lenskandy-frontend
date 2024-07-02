@@ -31,14 +31,7 @@ function Login() {
     setIsOpen(!!search);
   }, [search]);
 
-  const createQueryString = useCallback(
-    (name, value) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.delete("login");
-      router.replace(pathname + "?" + params.toString());
-    },
-    [pathname, router, searchParams]
-  );
+
 
   return (
     <>
