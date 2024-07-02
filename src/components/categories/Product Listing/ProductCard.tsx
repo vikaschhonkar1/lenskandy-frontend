@@ -37,13 +37,15 @@ const ProductCard = (props: ProductCardProps) => {
         productDetails?.Variant?.[0]?.sku
       );
 
-      
     return (
-      <Card className=" w-full h-full rounded-xl p-2">
+      <Card className=" w-full h-full rounded-xl px-2 pb-2">
         <div className="flex flex-col justify-end items-end">
-          <WishlistIcon productId={productDetails?.Variant?.[0]?.productId} variantId={productDetails?.Variant?.[0]?.id} />
+          <WishlistIcon
+            productId={productDetails?.Variant?.[0]?.productId}
+            variantId={productDetails?.Variant?.[0]?.id}
+          />
           <Link key={index} href={redirectionURL}>
-            <div className="h-[203px] w-full flex items-center">
+            <div className=" w-full flex items-center">
               <CardContent className="w-full lg:h-[360px]  flex  p-1 ">
                 <Image
                   className=" w-full "
@@ -89,21 +91,22 @@ const ProductCard = (props: ProductCardProps) => {
             </Carousel> */}
           </Link>
         </div>
-        <Link key={index} href={redirectionURL}>
-          <h1 className="text-sm mt-1 capitalize pl-1">
-            {productDetails?.brand?.name || "Air India"}
+        <Link key={index} href={redirectionURL} className="flex justify-between flex-col">
+          <h1 className="text-sm mt-1 capitalize ">
+            {productDetails?.brand?.name || "Lenskandy"}
           </h1>
-          <h6 className="text-[16px] text-gray-500 capitalize pl-1">
+          <h6 className="text-[16px] text-gray-500 capitalize line-clamp-2">
             {productDetails?.name || "Lenskandy"}
           </h6>
-          <h6 className="text-[15px] font-[600] text-black capitalize pl-1">
+
+          <h6 className="text-[15px] font-[600] text-black capitalize ">
             Size: {productDetails?.frameSize?.name}
           </h6>
 
-          <p className=" text-[20px] font-medium text-black pl-1">
+          <p className="  text-[20px] font-medium text-black ">
             ₹{productDetails?.Variant?.[0]?.price || 34}
           </p>
-          {/* <p className="text-gray-500 text-[14px] pl-1">
+          {/* <p className="text-gray-500 text-[14px] ">
             Inclusive of all taxes
           </p> */}
         </Link>
