@@ -11,6 +11,7 @@ import React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { config } from "@/config";
 import { generateSlug } from "@/lib/generate-slug";
+import WishlistIcon from "../wishlist/wishlist-icon";
 
 type ProductCardProps = {
   variantDetail: any;
@@ -18,8 +19,6 @@ type ProductCardProps = {
 };
 const ProductVariantCard = (props: ProductCardProps) => {
   const { variantDetail, index } = props;
-
-  // console.log(variantDetail?.id, variantDetail);
 
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
@@ -34,17 +33,15 @@ const ProductVariantCard = (props: ProductCardProps) => {
         variantDetail?.sku
       );
     return (
-      <Link key={index} href={redirectionURL}>
-        <Card className=" w-full rounded-xl p-2">
-          <div className="flex flex-col justify-end items-end">
-            <Image
-              className="mt-1 mr-1"
-              src={"/assets/image/homePageImages/wishlist.png"}
-              alt="wishlist"
-              height={18}
-              width={18}
-            />
-            <div className="h-[203px] w-full flex items-center">
+      <Card className=" w-full rounded-xl p-2">
+        <div className="flex flex-col justify-end items-end">
+          <WishlistIcon
+            productId={variantDetail?.productId}
+            variantId={variantDetail?.id}
+            active={variantDetail?.WishlistProduct?.length > 0}
+          />
+          <Link key={index} href={redirectionURL}>
+            <div className=" w-full flex items-center">
               <CardContent className="w-full lg:h-[360px]  flex  p-1 ">
                 <Image
                   className=" w-full "
@@ -54,8 +51,9 @@ const ProductVariantCard = (props: ProductCardProps) => {
                   width={204}
                 />
               </CardContent>
-            </div>
-            {/* <Carousel
+            </div>{" "}
+          </Link>
+          {/* <Carousel
               plugins={[plugin.current]}
               onMouseEnter={plugin.current.stop}
               onMouseLeave={plugin.current.reset}
@@ -85,25 +83,26 @@ const ProductVariantCard = (props: ProductCardProps) => {
                 ))}
               </CarouselContent>
             </Carousel> */}
-          </div>
+        </div>
+        <Link key={index} href={redirectionURL}>
           <h1 className="text-sm mt-1 capitalize pl-1">
             {variantDetail?.product?.brand?.name || "Air India"}
           </h1>
-          <h6 className="text-[16px] text-gray-500 capitalize pl-1">
+          <h6 className="text-[16px] text-gray-500 capitalize line-clamp-2 pl-1">
             {variantDetail?.product?.name || "Lenskandy"}
           </h6>
-          <h6 className="text-[15px] font-[600] text-black capitalize pl-1">
+          <h6 className="text-[15px] font-[500] text-black capitalize  pl-1">
             Size: {variantDetail?.product?.frameSize?.name}
           </h6>
 
-          <p className=" text-[20px] font-medium text-black pl-1">
+          <p className=" text-[16px] font-medium text-black pl-1">
             ₹{variantDetail?.price || 34}
           </p>
           {/* <p className="text-gray-500 text-[14px] pl-1">
             Inclusive of all taxes
           </p> */}
-        </Card>
-      </Link>
+        </Link>
+      </Card>
     );
   } else {
     return (
