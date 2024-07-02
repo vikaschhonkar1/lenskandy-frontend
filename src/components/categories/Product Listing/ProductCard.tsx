@@ -11,6 +11,7 @@ import React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { config } from "@/config";
 import { generateSlug } from "@/lib/generate-slug";
+import WishlistIcon from "@/components/wishlist/wishlist-icon";
 
 type ProductCardProps = {
   productDetails: any;
@@ -18,7 +19,7 @@ type ProductCardProps = {
 };
 const ProductCard = (props: ProductCardProps) => {
   const { productDetails, index } = props;
- 
+
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
@@ -35,17 +36,13 @@ const ProductCard = (props: ProductCardProps) => {
         productDetails?.brand?.name,
         productDetails?.Variant?.[0]?.sku
       );
+
+      
     return (
-      <Link key={index} href={redirectionURL}>
-        <Card className=" w-full h-full rounded-xl p-2">
-          <div className="flex flex-col justify-end items-end">
-            <Image
-              className="mt-1 mr-1"
-              src={"/assets/image/homePageImages/wishlist.png"}
-              alt="wishlist"
-              height={18}
-              width={18}
-            />
+      <Card className=" w-full h-full rounded-xl p-2">
+        <div className="flex flex-col justify-end items-end">
+          <WishlistIcon productId={productDetails?.Variant?.[0]?.productId} variantId={productDetails?.Variant?.[0]?.id} />
+          <Link key={index} href={redirectionURL}>
             <div className="h-[203px] w-full flex items-center">
               <CardContent className="w-full lg:h-[360px]  flex  p-1 ">
                 <Image
@@ -90,7 +87,9 @@ const ProductCard = (props: ProductCardProps) => {
                 ))}
               </CarouselContent>
             </Carousel> */}
-          </div>
+          </Link>
+        </div>
+        <Link key={index} href={redirectionURL}>
           <h1 className="text-sm mt-1 capitalize pl-1">
             {productDetails?.brand?.name || "Air India"}
           </h1>
@@ -107,8 +106,8 @@ const ProductCard = (props: ProductCardProps) => {
           {/* <p className="text-gray-500 text-[14px] pl-1">
             Inclusive of all taxes
           </p> */}
-        </Card>
-      </Link>
+        </Link>
+      </Card>
     );
   } else return <></>;
 };
