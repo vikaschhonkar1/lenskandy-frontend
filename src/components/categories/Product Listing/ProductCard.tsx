@@ -99,11 +99,11 @@ const ProductCard = (props: ProductCardProps) => {
             {productDetails?.name || "Lenskandy"}
           </h6>
 
-          <h6 className="text-[15px] font-[600] text-black capitalize ">
+          <h6 className=" text-[15px] font-[500] text-black capitalize ">
             Size: {productDetails?.frameSize?.name}
           </h6>
 
-          <p className="  text-[20px] font-medium text-black ">
+          <p className="  text-[16px] font-medium text-black ">
             ₹{productDetails?.Variant?.[0]?.price || 34}
           </p>
           {/* <p className="text-gray-500 text-[14px] ">
