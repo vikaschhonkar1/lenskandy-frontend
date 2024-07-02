@@ -23,15 +23,30 @@ const typesOfGlasses1 = [
   "Reading Glasses",
 ];
 const typesOfGlasses = [
-  {name: "EyeGlasses", link: "/eyeglasses", image: "/assets/images/HomePage/Category/eyeglasses.webp"},
-  {name: "SunGlasses", link: "/sunglasses", image: "/assets/images/HomePage/Category/sunglasses.webp"},
-  {name: "Computer Glass", link: "/computer-glasses", image: "/assets/images/HomePage/Category/computer.webp"},
-  {name: "Reading Glass", link: "/reading-glasses", image: "/assets/image/homePageImages/product01.png"},
-  
+  {
+    name: "EyeGlasses",
+    link: "/eyeglasses",
+    image: "/assets/images/HomePage/Category/eyeglasses.webp",
+  },
+  {
+    name: "SunGlasses",
+    link: "/sunglasses",
+    image: "/assets/images/HomePage/Category/sunglasses.webp",
+  },
+  {
+    name: "Computer Glass",
+    link: "/computer-glasses",
+    image: "/assets/images/HomePage/Category/computer.webp",
+  },
+  {
+    name: "Reading Glass",
+    link: "/reading-glasses",
+    image: "/assets/image/homePageImages/product01.png",
+  },
 ];
 
-export default  async function Home() {
-  const {data} = await APISERVICES.home.get()
+export default async function Home() {
+  const { data } = await APISERVICES.home.get();
   const noSearch = false;
   return (
     <>
@@ -106,50 +121,53 @@ export default  async function Home() {
             return (
               <Card key={index} className="w-[158px] h-[168px] ">
                 <Link href={item.link}>
-                <div className="flex -space-x-1 overflow-hidden pb-2 pt-[25px]">
-                  <img
-                    className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
-                    src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                  <img
-                    className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
-                    src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                  <img
-                    className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
-                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
-                    alt=""
-                  />
-                  <img
-                    className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                  <span className="h-[8px] w-[14px] text-[10px] inline-block pl-2 font-medium text-[#0000B7]">
-                    +8
-                  </span>
-                </div>
-                <Image
-                  className="w-[151px] h-[86px]"
-                  src={item?.image ||"/assets/image/homePageImages/product01.png"}
-                  alt="banner"
-                  height={135}
-                  width={135}
-                />
-                <div className="h-[32px] bg-[#67A290] rounded-b-xl flex pb-2 mt-[4px] justify-between pl-1 pr-4">
-                  <span className="text-ellipsis text-sm font-bold text-white pl-1 pt-[5px]">
-                    {item?.name}
-                  </span>
+                  <div className="flex -space-x-1 overflow-hidden pb-2 pt-[25px]">
+                    <img
+                      className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
+                      src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                    <img
+                      className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
+                      src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                    <img
+                      className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
+                      src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
+                      alt=""
+                    />
+                    <img
+                      className="inline-block h-3 w-3 rounded-full ring-2 ring-white"
+                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt=""
+                    />
+                    <span className="h-[8px] w-[14px] text-[10px] inline-block pl-2 font-medium text-[#0000B7]">
+                      +8
+                    </span>
+                  </div>
                   <Image
-                    className="w-[5px] h-[10px] mt-[11px] ml-4"
-                    src="/assets/image/homePageImages/arrow01.png"
+                    className="w-[151px] h-[86px]"
+                    src={
+                      item?.image ||
+                      "/assets/image/homePageImages/product01.png"
+                    }
                     alt="banner"
-                    height={5}
-                    width={5}
+                    height={135}
+                    width={135}
                   />
-                </div>
+                  <div className=" bg-[#67A290] rounded-b-xl flex pb-2 mt-[4px] justify-between pl-1 pr-4">
+                    <span className="text-ellipsis text-sm font-bold text-white pl-1 pt-[5px]">
+                      {item?.name}
+                    </span>
+                    <Image
+                      className="w-[5px] h-[10px] mt-[11px] ml-4"
+                      src="/assets/image/homePageImages/arrow01.png"
+                      alt="banner"
+                      height={5}
+                      width={5}
+                    />
+                  </div>
                 </Link>
               </Card>
             );
@@ -181,7 +199,6 @@ export default  async function Home() {
           <TabStyle2 />
         </div>
       </section>
-      
     </>
   );
 }
