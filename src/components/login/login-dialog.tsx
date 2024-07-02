@@ -36,12 +36,12 @@ function Login() {
   return (
     <>
       <Drawer open={isOpen} onClose={() => removeLoginParam()}>
-        <DrawerContent>
+        <DrawerContent className="">
           <DrawerClose onClick={() => removeLoginParam()} className=" " asChild>
             <IoIosCloseCircle className="absolute -top-0  right-0 h-8 w-8 " />
           </DrawerClose>
 
-          <div className="mx-auto w-full max-w-sm pb-16 pt-4">
+          <div className=" h-[360px] mx-auto w-full max-w-sm pb-16 pt-4">
             <LoginForm
               onClose={() => {
                 // removeLoginParam();
@@ -52,6 +52,7 @@ function Login() {
                 }
               }}
             />
+            
           </div>
         </DrawerContent>
       </Drawer>
