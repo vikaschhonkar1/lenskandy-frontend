@@ -251,7 +251,6 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
                     setLensPackageId(item?.id);
                   }}
                 >
-                  
                   <Label
                     htmlFor={"package_" + item?.id}
                     className="flex flex-col  justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
@@ -264,7 +263,7 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
                         className=""
                       />
                     </div>
-                    
+
                     <div className="mb-2 flex gap-2">
                       {item?.tags &&
                         JSON.parse(item?.tags)?.map(
@@ -282,7 +281,10 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
                         JSON.parse(item?.features).map(
                           (val: any, index: number) => {
                             return (
-                              <div key={index} className="flex gap-2 items-center">
+                              <div
+                                key={index}
+                                className="flex gap-2 items-center"
+                              >
                                 <div>
                                   <Image
                                     src={
@@ -293,7 +295,9 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
                                     width={10}
                                   />
                                 </div>
-                                <div className="capitalize text-gray-800">{val?.feature}</div>
+                                <div className="capitalize text-gray-800">
+                                  {val?.feature}
+                                </div>
                               </div>
                             );
                           }
@@ -315,20 +319,12 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
           disabled={selectedLensPackageId ? false : true}
           onClick={() => {
             // router.push(paths.checkout.cart);
-            if (isLoggedIn) {
-              AddToCart(
-                parseInt(productDetails?.productId),
-                parseInt(productDetails?.id),
-                Number(selectedLensPackageId)
-              );
-            } else {
-              AddToCart(
-                parseInt(productDetails?.productId),
-                parseInt(productDetails?.id),
-                Number(selectedLensPackageId)
-              );
-            }
-            // console.log(id)
+
+            AddToCart(
+              parseInt(productDetails?.productId),
+              parseInt(productDetails?.id),
+              Number(selectedLensPackageId)
+            );
           }}
         >
           Proceed To Cart
