@@ -63,7 +63,7 @@ export default async function Home() {
         >
           <h2 className=" text-[18px] text-black font-semibold">Get up to</h2>
           <h1 className=" text-[47px] text-black font-semibold">60% OFF</h1>
-          <div className="flex justify-around">
+          <div className="flex justify-between">
             {[
               {
                 image: "/assets/image/homePageImages/sunglasses.png",
@@ -109,13 +109,13 @@ export default async function Home() {
         />
       </section>
 
-      <section className="mt-3">
+      <section className="mt-2">
         <Card1 />
       </section>
       <section className="mt-2">
         <MidLevelCarousel />
       </section>
-      <section className="py-0">
+      <section className="py-0 mt-2">
         <div className=" w-full flex flex-wrap gap-y-3	 justify-around pt-7 p-2 pr-2 bg-[#E9E9DD] pb-5">
           {typesOfGlasses?.map((item, index) => {
             return (
@@ -156,7 +156,7 @@ export default async function Home() {
                     height={135}
                     width={135}
                   />
-                  <div className=" bg-[#67A290] rounded-b-xl flex pb-2 mt-[4px] justify-between pl-1 pr-4">
+                  <div className="h-[32px] bg-[#67A290] rounded-b-xl flex pb-2 mt-[4px] justify-between pl-1 pr-4">
                     <span className="text-ellipsis text-sm font-bold text-white pl-1 pt-[5px]">
                       {item?.name}
                     </span>

@@ -6,8 +6,8 @@ import Link from "next/link";
 
 export function CustomAvatar({ data = [] }: any) {
   return (
-    <ScrollArea className="w-full rounded-md flex">
-      <div className="w-max flex content-center items-center  justify-around ">
+    <ScrollArea className="w-full rounded-md flex justify-center">
+      <div className="w-full flex content-center items-center  justify-around ">
         {data?.map((item: any, index: number) =>
           item?.link ? (
             <Link
@@ -18,8 +18,8 @@ export function CustomAvatar({ data = [] }: any) {
               <Image
                 src={item.Image}
                 alt="avatar"
-                height={79}
-                width={67}
+                height={70}
+                width={60}
                 className="oval mt-[5px] mr-1 "
               />
               <span>{item.label}</span>
