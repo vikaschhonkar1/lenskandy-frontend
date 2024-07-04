@@ -24,7 +24,7 @@ const AddToWishlist = async (productId: number, variantId: number) => {
 const DeleteFromWishlist = async (id: number) => {
   const res = await APISERVICES.wishlist.delete(id);
   if (res?.statusCode === 200) {
-    // redirect("/");
+    redirect("/wishlist");
   } else {
     return res?.message || res?.errors[0]?.quantity;
   }
