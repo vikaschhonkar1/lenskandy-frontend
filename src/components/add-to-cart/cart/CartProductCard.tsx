@@ -63,7 +63,8 @@ const CartProductCard = ({ data }: any) => {
             <span>{data?.product?.frameSize?.name}</span>
           </div>
           
-
+        {
+          data?.lensPackage ? <>
           <div className="flex justify-between items-center text-md mt-1 font-normal">
             <div >Frame Price: </div>
             <div>{`₹${data?.variant?.price}`}</div>
@@ -76,7 +77,11 @@ const CartProductCard = ({ data }: any) => {
             <div className="font-bold">Total: </div>
             <div className="font-bold">{`₹${parseFloat(data?.variant?.price) + parseFloat(data?.lensPackage?.price)}`}</div>
           </div>
-
+</> : <div className="flex justify-between items-center text-md mt-1 font-normal">
+            <div className="font-bold">Total: </div>
+            <div className="font-bold">{`₹${parseFloat(data?.variant?.price) }`}</div>
+          </div>
+        }
         </div>
 
         <Popover>

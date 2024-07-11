@@ -25,6 +25,7 @@ import APISERVICES from "@/lib/api-services";
 import { LensTypeDrawerDialog } from "@/components/add-to-cart/lens-type/LensTypeDrawerDialog";
 import { accessToken } from "@/hooks/useAuth";
 import RelatedProducts from "@/components/product/RelatedProducts";
+import FrameOnlyBuyNow from "@/components/product/FrameOnlyBuyNow";
 
 const getSKUFromURL = (slug: string): string => {
   const parts = slug.split("_");
@@ -51,11 +52,10 @@ const Page = async ({ params }: any) => {
     // Add more items as needed
   ];
   const skuId = getSKUFromURL(params?.id);
-  
 
   const res = await APISERVICES.productVariants.get(skuId);
   const isLoggedIn = await accessToken();
-  
+  const isFrameOnly = res?.data?.product?.frameOnly;
   const data = {};
   return (
     <>
@@ -214,8 +214,6 @@ const Page = async ({ params }: any) => {
                 height={100}
                 width={100}
               />
-      
-
             </div>
             <div className="pt-3">
               <Accordion type="single" collapsible>
@@ -249,11 +247,16 @@ const Page = async ({ params }: any) => {
             <RelatedProducts productId={res?.data?.productId} />
 
             <section className="left-0 right-0 bottom-0 fixed w-full p-2">
-              <LensTypeDrawerDialog
-                categoryId={res?.data?.product?.Category?.id}
-                productDetails={res?.data}
-                isLoggedIn={isLoggedIn ? true : false}
-              />
+              {isFrameOnly ? (
+                <FrameOnlyBuyNow  categoryId={res?.data?.product?.Category?.id}
+                productDetails={res?.data}/>
+              ) : (
+                <LensTypeDrawerDialog
+                  categoryId={res?.data?.product?.Category?.id}
+                  productDetails={res?.data}
+                  isLoggedIn={isLoggedIn ? true : false}
+                />
+              )}
             </section>
           </div>
         </>

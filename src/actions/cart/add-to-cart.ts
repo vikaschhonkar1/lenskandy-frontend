@@ -5,13 +5,13 @@ import { redirect } from "next/navigation";
 
 
 
-const AddToCart = async (productId:number, variantId:number, lensPackageId: number) => {
-  
-  const res = await APISERVICES.cart.post({
+const AddToCart = async (productId:number, variantId:number, lensPackageId?: number) => {
+  const payload = {
     productId,
     variantId,
-    lensPackageId,
-  });
+    ...(lensPackageId && { lensPackageId })
+  }
+  const res = await APISERVICES.cart.post(payload);
   if (res?.statusCode === 200) {
     redirect("/cart");
   } else {

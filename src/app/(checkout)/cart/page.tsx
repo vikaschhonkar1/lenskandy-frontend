@@ -20,7 +20,6 @@ const Page = async () => {
   const isLoggedIn = await accessToken();
   const cartItems = res?.data;
 
-
   return (
     <>
     {cartItems?.length ? <>

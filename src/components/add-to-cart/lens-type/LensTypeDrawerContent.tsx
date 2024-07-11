@@ -21,7 +21,7 @@ const LensTypeDrawerContent = ({categoryId, productDetails, isLoggedIn}: any) =>
     <DrawerContent>
       <DrawerHeader className="text-left">
         <div className="flex items-center justify-between mx-1">
-          <DrawerTitle>Which eyeglasses do you wear</DrawerTitle>
+          <DrawerTitle>What do you wear</DrawerTitle>
           <DrawerClose asChild>
             <Cross1Icon />
           </DrawerClose>
