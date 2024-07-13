@@ -4,12 +4,16 @@ import React from "react";
 import { RxDotFilled } from "react-icons/rx";
 import { IoIosArrowForward } from "react-icons/io";
 import APISERVICES from "@/lib/api-services";
+import { config } from "@/config";
+import dayjs from "dayjs"
+import { ReadableDateTime } from "@/lib/utils";
+import { BsDot } from "react-icons/bs";
 
 const Page = async ({ params }: any) => {
   const orderId = params?.id;
 
   const res = await APISERVICES.order.get(orderId);
- 
+  console.log(ReadableDateTime(res?.data?.createdAt));
   return (
     <>
       <section>
@@ -26,35 +30,51 @@ const Page = async ({ params }: any) => {
             </div>
             <div className="text-[#F2652F] ">
               <h5 className="font-[600] text-[12px]">Arriving date ,01 Feb</h5>
-              <h6 className="font-[400] text-[10px]">Order Created</h6>
+              <h6 className="font-[400] text-[10px]">Order Placed On: {ReadableDateTime(res?.data?.createdAt)}</h6>
+
             </div>
           </section>
           <section className=" my-2">
             {res?.data?.items?.map((item: any, index: number) => {
-              return (<div key={item} className="flex gap-6 items-center mt-3">
-              <div className="mx-4 py-3">
-                <Image
-                  src="/assets/image/categoriesImages/cartGlass.png"
-                  alt="CartGlass"
-                  height={100}
-                  width={90}
-                />
-              </div>
-              <div>
-                <h5 className="text-nowrap text-[15px] font-[500] ">
-                  {/* {res?.items?.[0]?.product?.name} */}
-                  {res?.data?.items?.[0]?.product?.name}
-                </h5>
-                <h5 className="font-[500] text-[15px]">
+              console.log(index == 0 && item)
+              return (
+                <div key={item} className="flex gap-6 items-center mt-3">
+                  <div className="mx-4 py-3">
+                    <Image
+                      src={
+                        config.site.apiimageBaseUrl + item?.variant?.mainImage
+                      }
+                      alt={item?.product?.name}
+                      height={100}
+                      width={90}
+                    />
+                  </div>
                   
-                  ({res?.data?.items?.[0]?.lensPackage?.name})
-                </h5>
-              </div>
-            </div>)
-            })
-            
-            
-            }
+                  <div>
+                        <div className="flex gap-32 mb-1 items-center">
+                          <h2 className="font-[600] text-[12px] text-gray-600">
+                            {item?.product?.brand?.name}
+                          </h2>
+                        </div>
+                        <p className="font-[600] text-[13px]">
+                          {item?.product?.name} {" | "}{" "}
+                          {item?.variant?.frameColor?.name}
+                        </p>
+                        {item?.lensPackageId && <div className="flex gap-1 text-gray-500 text-[12px] items-center">
+                          <span>{item?.product?.frameType?.name}</span>
+                          <BsDot />
+                          <span>{item?.product?.frameSize?.name}</span>
+                        </div>}
+                        <div className="flex gap-1 text-gray-500 text-[12px] items-center">
+                          <span> ₹{item?.productPrice} (product)</span>
+                          {item?.lensPackageId && <>
+                          <BsDot />
+                          <span>₹{item?.lensPackagePrice} (lens)</span></>}
+                        </div>
+                      </div>
+                </div>
+              );
+            })}
             {/*<div className="mx-2">
               <h2 className="text-[12px] font-[600]" >Tracking Details</h2>
               <div className="mx-2 flex flex-col">

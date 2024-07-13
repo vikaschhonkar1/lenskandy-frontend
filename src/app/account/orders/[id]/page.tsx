@@ -8,6 +8,7 @@ import { config } from "@/config";
 import Link from "next/link";
 import { generateSlug } from "@/lib/generate-slug";
 import { BsDot } from "react-icons/bs";
+import { ReadableDateTime } from "@/lib/utils";
 
 const Page = async ({ params }: any) => {
   const orderId = params?.id;
@@ -31,7 +32,7 @@ const Page = async ({ params }: any) => {
             </div>
             <div className="text-[#F2652F] ">
               <h5 className="font-[600] text-[12px]">Arriving date ,01 Feb</h5>
-              <h6 className="font-[400] text-[10px]">Order Created {(data?.updatedAt)}</h6>
+              <h6 className="font-[400] text-[10px]">Order Placed On: {ReadableDateTime(data?.createdAt)}</h6>
             </div>
           </section>
           <section className=" my-2">
@@ -62,8 +63,6 @@ const Page = async ({ params }: any) => {
                     </Link>
                   </div>
                   <div>
-                    <div className="flex justify-between items-start  mr-3 w-full">
-                      <div>
                         <div className="flex gap-32 mb-1 items-center">
                           <h2 className="font-[600] text-[12px] text-gray-600">
                             {item?.product?.brand?.name}
@@ -73,19 +72,18 @@ const Page = async ({ params }: any) => {
                           {item?.product?.name} {" | "}{" "}
                           {item?.variant?.frameColor?.name}
                         </p>
-                        <div className="flex gap-1 text-gray-500 text-[12px] items-center">
+                        {item?.lensPackageId && <div className="flex gap-1 text-gray-500 text-[12px] items-center">
                           <span>{item?.product?.frameType?.name}</span>
                           <BsDot />
                           <span>{item?.product?.frameSize?.name}</span>
-                        </div>
+                        </div>}
                         <div className="flex gap-1 text-gray-500 text-[12px] items-center">
                           <span> ₹{item?.productPrice} (product)</span>
+                          {item?.lensPackageId && <>
                           <BsDot />
-                          <span>₹{item?.lensPackagePrice} (lens)</span>
+                          <span>₹{item?.lensPackagePrice} (lens)</span></>}
                         </div>
                       </div>
-                    </div>
-                  </div>
                 </div>
               );
             })}

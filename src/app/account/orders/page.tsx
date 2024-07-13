@@ -3,7 +3,6 @@ import APISERVICES from "@/lib/api-services";
 
 import React from "react";
 
-// const data: any= [1,2];
 async function Page() {
 const {data} = await APISERVICES.order.get()
 
@@ -15,7 +14,7 @@ const {data} = await APISERVICES.order.get()
       <section className="p-2 space-y-3">
         {data?.length
           ? data?.map((item: any) => (
-              <OrderCard key={item?.id} data={item} />
+              <>{item?.items?.length > 0 && <OrderCard key={item?.id} data={item} />}</>
             ))
           : ""}
       </section>
