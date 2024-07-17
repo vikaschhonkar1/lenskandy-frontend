@@ -17,6 +17,13 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import ProductNav from "@/components/product/ProductNav";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { InfoIcon } from "lucide-react";
 
 const ProductDetail = (props: any) => {
   const { data } = props;
@@ -105,7 +112,7 @@ const ProductDetail = (props: any) => {
           }
         </CarouselContent>
       </Carousel>
-      <div className="flex justify-between bg-gradient-to-b from-transparent to-blue-100 h-12 w-full">
+      {/* <div className="flex justify-between bg-gradient-to-b from-transparent to-blue-100 h-12 w-full">
         <a className="flex items-center px-2 ">
           <svg
             width="34"
@@ -162,7 +169,7 @@ const ProductDetail = (props: any) => {
             }
           </span>
         </a>
-        {/* <a>
+         <a>
           <div className="flex items-center mr-2 mt-4">
             <span className="text-[8px] border-2 px-2 rounded-[3px] font-semibold">
               Try On
@@ -175,9 +182,9 @@ const ProductDetail = (props: any) => {
               width={18}
             />
           </div>
-        </a> */}
-      </div>
-      <section>
+        </a> 
+      </div> */}
+      <section className="mt-2">
         <div className="px-2 pt-4  w-full border-dotted border-gray-500 flex justify-between">
           <div className="ml-2">
             <h1 className="text-[18px] font-[600] capitalize">
@@ -194,13 +201,30 @@ const ProductDetail = (props: any) => {
                 data?.sku || "LK001"
               }
             </h5>
+            <div className="flex items-center gap-2">
             <span className="text-[#000080] text-[23px] font-[700]">
               ₹
               {
                 //@ts-ignore
                 data?.price || 200
               }
+              
             </span>
+            <div>
+            <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger><InfoIcon size={20}/></TooltipTrigger>
+                  <TooltipContent>
+                    <p>You will get free lenses worth Rs. 2000</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+
+              
+            </div>
+            </div>
+            
+            
           </div>
           <div className="h-[20px]  bg-[#FFF2F2] rounded-3xl mt-1 mr-3 flex pl-1 pr-1 items-center">
             <svg
@@ -227,21 +251,22 @@ const ProductDetail = (props: any) => {
           </div>
         </div>
       </section>
-      <section className="px-4 mt-2"><svg
-        width="321"
-        height="2"
-        viewBox="0 0 321 2"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0 1H320.5"
-          stroke="#CFCDCD"
-          stroke-width="0.7"
-          stroke-dasharray="2 2"
-        />
-      </svg></section>
-      
+      <section className="px-4 mt-2">
+        <svg
+          width="321"
+          height="2"
+          viewBox="0 0 321 2"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 1H320.5"
+            stroke="#CFCDCD"
+            stroke-width="0.7"
+            stroke-dasharray="2 2"
+          />
+        </svg>
+      </section>
     </section>
   );
 };
