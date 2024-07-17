@@ -34,30 +34,31 @@ const getSKUFromURL = (slug: string): string => {
 };
 
 const Page = async ({ params }: any) => {
-  const accordionData = [
-    {
-      id: "item-1",
-      question: "Features",
-      answer: "Yes. It adheres to the WAI-ARIA design pattern.",
-    },
-    {
-      id: "item-2",
-      question: "Specifications",
-      answer: "Yes. It adheres to the WAI-ARIA design pattern.",
-    },
-    {
-      id: "item-3",
-      question: "Description",
-      answer: "Yes. It adheres to the WAI-ARIA design pattern.",
-    },
-    // Add more items as needed
-  ];
+  
   const skuId = getSKUFromURL(params?.id);
 
   const res = await APISERVICES.productVariants.get(skuId);
   const isLoggedIn = await accessToken();
   const isFrameOnly = res?.data?.product?.frameOnly;
   const data = {};
+  const accordionData = [
+    {
+      id: "item-1",
+      question: "Features",
+      answer: "Yes. It adheres to the WAI-ARIA design pattern.",
+    },
+    // {
+    //   id: "item-2",
+    //   question: "Specifications",
+    //   answer: "Yes. It adheres to the WAI-ARIA design pattern.",
+    // },
+    {
+      id: "item-3",
+      question: "Description",
+      answer: res?.data?.product?.description,
+    },
+    // Add more items as needed
+  ];
   return (
     <>
       <ProductNav
