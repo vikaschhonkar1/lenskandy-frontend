@@ -222,15 +222,14 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
   const [selectedLensPackageId, setLensPackageId] = useState("");
   const fetchLensPackage = async () => {
     const res = await APISERVICES.lensPackage.get(`?lensPower=${id}`);
-    // console.log(res);
     setLensPackageData(res?.data);
   };
-  // console.log(isLoggedIn);
   useEffect(() => {
     fetchLensPackage();
   }, [id]);
+
+  console.log(productDetails)
   const router = useRouter();
-  // console.log(id)
   return (
     <section className="px-4 mt-2 ">
       <section className=" pt-3">
@@ -305,7 +304,10 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
                     </div>
                     <span>{item?.combo}</span>
                     <Separator />
-                    <span className="mt-3">Price: ₹ {item?.price}</span>
+                    <div className="flex justify-between mt-3">
+                        <div>Price: ₹ {item?.price}</div>
+                        <div>Total Price: ₹ {parseFloat(productDetails?.price) + parseFloat(item?.price)}</div>
+                    </div>
                   </Label>
                 </div>
               );
