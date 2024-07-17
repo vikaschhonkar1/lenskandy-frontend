@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -11,6 +11,19 @@ import Image from "next/image";
 import { ScrollArea } from "../ui/scroll-area";
 import { ScrollAreaScrollbar } from "@radix-ui/react-scroll-area";
 import { usePathname } from "next/navigation";
+
+const frameSizeMapping = {
+  "Extra Narrow": "XS",
+  "extra-narrow": "XS",
+  Medium: "M",
+  medium: "M",
+  Oversize: "XL",
+  oversize: "XL",
+  Large: "L",
+  large: "L",
+  Small: "S",
+  small: "S",
+};
 
 const SizeGuide = () => {
   return (
@@ -64,8 +77,39 @@ const SizeGuide = () => {
 };
 
 const SizeGuideDeliveryDialog = ({ productDetails }: any) => {
-  console.log(productDetails);
+  
+
   const pathName = window.location.href;
+
+  const [pincode, setPincode] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleInputChange = (e: any) => {
+    const value = e.target.value;
+    if (/^\d{0,6}$/.test(value)) {
+      setPincode(value);
+    }
+  };
+  const handleCheck = () => {
+    if (/^\d{6}$/.test(pincode)) {
+      const deliveryDate = new Date();
+      deliveryDate.setDate(deliveryDate.getDate() + 2);
+      const options = { weekday: "short", day: "numeric", month: "short" };//@ts-ignore
+      const formattedDate = deliveryDate.toLocaleDateString("en-GB", options);
+      setMessage(
+        `<div class="mt-2 p-2 bg-gray-100 text-green-600 rounded-md">
+          <p class="font-[1px] text-sm">✅ Home Delivery by ${formattedDate}</p>
+          <p class="font-[1px] text-sm">✅ Easy 14 days Return & Exchange</p>
+        </div>`
+      );
+    } else {
+      setMessage(
+        `<div class="mt-2 p-2 bg-gray-100 text-red-600 rounded-md">
+          <p class="font-[1px] text-sm">❌ Pincode is invalid</p>
+        </div>`
+      );
+    }
+  };
   return (
     <section>
       <div className=" bg-white shadow-md rounded-lg p-4 max-w-sm mx-auto">
@@ -73,7 +117,12 @@ const SizeGuideDeliveryDialog = ({ productDetails }: any) => {
           {" "}
           <div className=" top-4 left-4 flex items-center">
             <div className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-semibold">M</span>
+              <span className="text-white font-semibold">
+                {
+                  //@ts-ignore
+                  frameSizeMapping[productDetails?.product?.frameSize?.name]
+                }
+              </span>
             </div>
             <div className="ml-2">
               <div className="flex items-center">
@@ -99,11 +148,14 @@ const SizeGuideDeliveryDialog = ({ productDetails }: any) => {
                   </Dialog>
                 </span>
               </div>
-              <span className="text-xs text-gray-600">51-54 mm</span>
+              <span className="text-xs text-gray-600">
+                {`${productDetails?.product?.lensWidth}-${productDetails?.product?.bridgeWidth}-${productDetails?.product?.templeLength}`}{" "}
+                mm
+              </span>
             </div>
           </div>
           <a
-            href={`https://wa.me/918010224201?text=Hi%20Lenskandy,%20help%20me%20get%20started!%20I%20need%20help%20with%20product%20${pathName}`}
+            href={`https://wa.me/917703911937?text=Hi%20Lenskandy,%20help%20me%20get%20started!%20I%20need%20help%20with%20product%20${pathName}`}
             target="_blank"
             className=" top-4 right-4"
           >
@@ -134,13 +186,23 @@ const SizeGuideDeliveryDialog = ({ productDetails }: any) => {
         </div>
 
         {/* Enter Pincode */}
-        <div className="mt-1  flex  border rounded-md shadow-sm bg-white p-2 w-full ">
-          <input
-            type="text"
-            placeholder="Enter Pincode"
-            className="flex-grow text-sm font-medium text-gray-400 pl-2"
-          />
-          <button className="text-orange-600 font-medium pr-2">Check</button>
+        <div>
+          <div className="mt-1 flex border rounded-md shadow-sm bg-white gap-1 p-2 w-full">
+            <input
+              type="text"
+              placeholder="Enter Pincode"
+              className="flex-grow text-sm font-medium text-gray-500 pl-2"
+              value={pincode}
+              onChange={handleInputChange}
+            />
+            <button
+              className="text-orange-600 font-medium pr-2"
+              onClick={handleCheck}
+            >
+              Check
+            </button>
+          </div>
+          <div dangerouslySetInnerHTML={{ __html: message }} />
         </div>
       </div>
     </section>

@@ -35,8 +35,8 @@ function Login() {
 
   return (
     <>
-      <Drawer open={isOpen} onClose={() => removeLoginParam()}>
-        <DrawerContent className="">
+      <Drawer open={isOpen} onClose={() => removeLoginParam()} >
+        <DrawerContent className="z-[9999]">
           <DrawerClose onClick={() => removeLoginParam()} className=" " asChild>
             <IoIosCloseCircle className="absolute -top-0  right-0 h-8 w-8 " />
           </DrawerClose>
