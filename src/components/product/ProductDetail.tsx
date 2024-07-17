@@ -202,29 +202,21 @@ const ProductDetail = (props: any) => {
               }
             </h5>
             <div className="flex items-center gap-2">
-            <span className="text-[#000080] text-[23px] font-[700]">
-              ₹
-              {
-                //@ts-ignore
-                data?.price || 200
-              }
-              
-            </span>
-            <div>
-            <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger><InfoIcon size={20}/></TooltipTrigger>
-                  <TooltipContent>
-                    <p>You will get free lenses worth Rs. 2000</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              
+              <span className="text-[#000080] text-[23px] font-[700]">
+                ₹
+                {
+                  //@ts-ignore
+                  data?.price || 200
+                }
+              </span>
+             
             </div>
+            <div className="flex items-center gap-1 mt-1">
+              <InfoIcon size={14}/>
+              <div className="font-medium text-sm ">
+                Free Lenses worth Rs 2000
+              </div>
             </div>
-            
-            
           </div>
           <div className="h-[20px]  bg-[#FFF2F2] rounded-3xl mt-1 mr-3 flex pl-1 pr-1 items-center">
             <svg
