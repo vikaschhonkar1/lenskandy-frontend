@@ -13,10 +13,10 @@ export function startConfettiAnimation() {
     let animationEnd = Date.now() + duration;
     let defaults = { startVelocity: 25, spread: 360, ticks: 60, zIndex: 0 };
   //@ts-ignore
-    function randomInRange(min, max) {
+    function randomInRange(min, max) {//@ts-ignore
       return Math.random() * (max - min) + min;
     }
-  
+  //@ts-ignore
     let interval = setInterval(function() {
       let timeLeft = animationEnd - Date.now();
   
