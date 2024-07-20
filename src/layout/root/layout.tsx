@@ -20,7 +20,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <TopNav />
           {children}
         </main>
-
+        
         <Footer />
         <LoginDialog />
 

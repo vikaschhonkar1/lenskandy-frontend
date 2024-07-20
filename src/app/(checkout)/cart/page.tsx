@@ -1,3 +1,4 @@
+import ApplyCoupon from "@/components/add-to-cart/cart/ApplyCoupon";
 import BillDetailsCard from "@/components/add-to-cart/cart/BillDetailsCard";
 import CartProductCard from "@/components/add-to-cart/cart/CartProductCard";
 import CartTopNav from "@/components/add-to-cart/cart/CartTopNav";
@@ -36,29 +37,9 @@ const Page = async () => {
           : ""}
        
       </section>
-      <section className="mx-3">
-        <h1 className="mt-3 text-[16px] font-[600]">Coupons & Offers</h1>
-        <Card className="mt-2">
-          <div className="border-b-2 border-dotted border-slate-500 flex gap-3 p-2">
-            <h5 className="text-[16px] font-[500]">Use Coupon </h5>
-            <Image
-              src="/assets/image/categoriesImages/coupon.png"
-              alt="coupon"
-              height={20}
-              width={20}
-            />
-          </div>
-          <div className="flex justify-between py-3 items-center ml-2 ">
-            <Input type="text" className="border-[#9f9e9e] mr-3" />
-            <div className="flex justify-evenly gap-2">
-              <span className="rounded-sm mr-2 px-3 py-3 bg-[#F2652F] text-[10px] text-white font-[500] ">
-                APPLY
-              </span>
-              
-            </div>
-          </div>
-        </Card>
-      </section>
+      <ApplyCoupon coupon ={
+            cartItems?.length ? cartItems?.[0]?.cart?.coupon: {}
+          }/>
       <section className="mx-3">
         <h1 className="mt-3 text-[18px] font-[600]">Bill Details</h1>
         <BillDetailsCard
@@ -70,6 +51,9 @@ const Page = async () => {
                   return accumulator + itemPrice;
                 }, 0)
               : 0
+          }
+          coupon ={
+            cartItems?.length ? cartItems?.[0]?.cart?.coupon: {}
           }
         />
       </section>

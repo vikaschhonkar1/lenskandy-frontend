@@ -7,6 +7,7 @@ import { addLoginParam } from "@/components/login";
 const APISERVICES = {
   //Cart
   cart: createApiFunction("cart"),
+  coupon: createApiFunction("coupon/apply"),
   wishlist: createApiFunction("wishlist"),
   address: createApiFunction("address"),
 
