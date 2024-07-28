@@ -41,7 +41,8 @@ const ProductCard = (props: ProductCardProps) => {
       <Card className=" w-full h-full rounded-xl px-2 pb-2">
         <div className="flex flex-col justify-end items-end">
           <WishlistIcon
-            active={productDetails?.WishlistProduct?.length > 0}
+            active={productDetails?.Variant?.[0]?.WishlistProduct ? productDetails?.Variant?.[0]?.WishlistProduct?.length > 0:false}
+            // active={false}
             productId={productDetails?.Variant?.[0]?.productId}
             variantId={productDetails?.Variant?.[0]?.id}
           />

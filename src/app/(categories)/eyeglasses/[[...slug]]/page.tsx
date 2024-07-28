@@ -43,7 +43,6 @@ const Page = async ({ params }: any) => {
 
   const res = await APISERVICES.product.get(`?cat=eyeglasses&${filterQuery}`);
 
-
   const heroImage = "/assets/images/HeroImage/MenEyeglassses.png";
   return (
     <>
