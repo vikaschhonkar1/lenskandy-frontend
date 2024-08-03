@@ -22,7 +22,7 @@ export function CustomAvatar({ data = [] }: any) {
                 width={60}
                 className="oval mt-[5px] mr-1 "
               />
-              <span>{item.label}</span>
+              <div className="text-center"><span>{item?.label}</span></div>
             </Link>
           ) : (
             <div key={index} className="flex flex-col items-center">
@@ -33,7 +33,7 @@ export function CustomAvatar({ data = [] }: any) {
                 width={67}
                 className="oval mt-[5px] mr-1 "
               />
-              <span>{item.label}</span>
+              <div className="text-center"><span>{item?.label}</span></div>
             </div>
           )
         )}

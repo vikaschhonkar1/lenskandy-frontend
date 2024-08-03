@@ -110,7 +110,7 @@ export const CategoryTabs = ({ data }: any) => {
                   },
                   {
                     Image: "/assets/images/Eyeglasses/Reading.png",
-                    label: "Reading",
+                    label: "Blue Block",
                     link: "/reading-glasses",
                   },
                   // {
@@ -193,7 +193,7 @@ export const CategoryTabs = ({ data }: any) => {
                   },
                   {
                     Image: "/assets/images/ComputerGlasses/BLueBlock.png",
-                    label: "Blue Block",
+                    label: "With Power",
                     link: "/computer-glasses/lens-technology-sunglasses/blue-block",
                   },
                 ]}
@@ -217,22 +217,22 @@ export const CategoryTabs = ({ data }: any) => {
                 data={[
                   {
                     Image: "/assets/images/ContactLenses/Men.png",
-                    label: "Men",
+                    label: "Clear Lenses",
                     link: "/contact-lenses/gender/male",
                   },
                   {
                     Image: "/assets/images/ContactLenses/Women.png",
-                    label: "Women",
+                    label: "Colored Lenses",
                     link: "/contact-lenses/gender/female",
                   },
                   {
                     Image: "/assets/images/ContactLenses/Kids.png",
-                    label: "Kids",
+                    label: "Toric Lenses",
                     link: "/contact-lenses/gender/kids",
                   },
                   {
                     Image: "/assets/images/ContactLenses/BlueRock.png",
-                    label: "Blue Block",
+                    label: "Multifocal Lenses",
                     link: "/contact-lenses/lens-technology/blue-block",
                   },
                 ]}
