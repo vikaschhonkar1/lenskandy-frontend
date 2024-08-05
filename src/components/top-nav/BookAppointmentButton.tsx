@@ -10,7 +10,7 @@ const BookAppointmentButton: React.FC = () => {
   const closeDialog = () => setIsOpen(false);
 
   const handleFormSubmit = (data: any) => {
-    console.log(data);
+    
     closeDialog();
   };
 
