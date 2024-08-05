@@ -28,37 +28,44 @@ import RelatedProducts from "@/components/product/RelatedProducts";
 import FrameOnlyBuyNow from "@/components/product/FrameOnlyBuyNow";
 import SizeGuideDeliveryDialog from "@/components/product/SizeGuideDeliveryDialog";
 
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
 const getSKUFromURL = (slug: string): string => {
   const parts = slug.split("_");
   return parts[parts.length - 1];
 };
 
+const renderRow = (key: string, value: any) => {
+  return (
+    <TableRow>
+      <TableCell className=" capitalize text-sm" align="left">
+        {key}
+      </TableCell>
+      <TableCell className=" capitalize text-sm text-gray-600" align="right">
+        {value}
+      </TableCell>
+    </TableRow>
+  );
+};
 const Page = async ({ params }: any) => {
-  
   const skuId = getSKUFromURL(params?.id);
 
   const res = await APISERVICES.productVariants.get(skuId);
   const isLoggedIn = await accessToken();
   const isFrameOnly = res?.data?.product?.frameOnly;
-  const data = {};
-  const accordionData = [
-    {
-      id: "item-1",
-      question: "Features",
-      answer: "Yes. It adheres to the WAI-ARIA design pattern.",
-    },
-    // {
-    //   id: "item-2",
-    //   question: "Specifications",
-    //   answer: "Yes. It adheres to the WAI-ARIA design pattern.",
-    // },
-    {
-      id: "item-3",
-      question: "Description",
-      answer: res?.data?.product?.description,
-    },
-    // Add more items as needed
-  ];
+  const data = res?.data || {};
+
+  console.log(JSON.stringify(data));
+  const isContactLens = data?.product?.Category?.slug == "contact-lenses";
+
   return (
     <>
       <ProductNav
@@ -68,7 +75,7 @@ const Page = async ({ params }: any) => {
       <ProductDetail data={res?.data} />
       {/* <CouponCard /> */}
 
-     <SizeGuideDeliveryDialog productDetails={res?.data}/>
+      <SizeGuideDeliveryDialog productDetails={res?.data} />
 
       <section className="flex item-center my-3 mt-4">
         <svg
@@ -144,39 +151,147 @@ const Page = async ({ params }: any) => {
 
       <section className="p-4 shadow-lg ">
         <>
-          <div className="pb-3">
-            <h5 className="text-[18px] font-[600] text-black">Frame</h5>
-            <p className="pt-2 text-[12px] font-[500] text-gray-500">
-              {
-                //@ts-ignore
-                data?.product?.frameType?.description
-              }
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
-              veritatis eum t
-            </p>
-            <div>
-              <Image
-                className=" w-full my-3 mb-2"
-                src="/assets/images/frameimage.svg"
-                alt="truck"
-                height={100}
-                width={100}
-              />
+          {!isContactLens && (
+            <div className="pb-3">
+              <h5 className="text-[18px] font-[600] text-black">Frame</h5>
+              <p className="pt-2 text-[12px] font-[500] text-gray-500">
+                {
+                  //@ts-ignore
+                  data?.product?.frameType?.description
+                }
+                {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
+              veritatis eum t */}
+              </p>
+              <div>
+                <div className=" p-2 flex justify-between">
+                  <div className="px-2 text-center ">
+                    <Image
+                      alt="eye"
+                      loading="lazy"
+                      src="https://d3995ea24pmi7m.cloudfront.net/media/theme/product-details/compatibility/eye.svg"
+                      width="65"
+                      height="30"
+                      className="mb-4 mx-auto"
+                    />
+                    <span className="font-semibold block">
+                      {data?.product?.lensWidth} mm
+                    </span>
+                    <span>Lens Width</span>
+                  </div>
+                  <div className="px-2 text-center ">
+                    <Image
+                      alt="bridge"
+                      loading="lazy"
+                      src="https://d3995ea24pmi7m.cloudfront.net/media/theme/product-details/compatibility/bridge.svg"
+                      width="65"
+                      height="30"
+                      className="mb-4 mx-auto"
+                    />
+                    <span className="font-semibold block">
+                      {data?.product?.bridgeWidth} mm
+                    </span>
+                    <span>Bridge Width</span>
+                  </div>
+                  <div className="px-2 text-center ">
+                    <Image
+                      alt="temple"
+                      loading="lazy"
+                      src="https://d3995ea24pmi7m.cloudfront.net/media/theme/product-details/compatibility/temple.svg"
+                      width="65"
+                      height="30"
+                      className="mb-4 mx-auto"
+                    />
+                    <span className="font-semibold block">
+                      {data?.product?.templeLength} mm
+                    </span>
+                    <span>Temple Length</span>
+                  </div>
+                  {/* <div className="px-5 text-center w-1/3">
+            <img alt="lens" loading="lazy" src="https://d3995ea24pmi7m.cloudfront.net/media/theme/product-details/compatibility/lens.svg" width="65" height="30" className="mb-4 mx-auto" />
+            <span className="font-semibold block">-</span>
+            <span>Lens Height</span>
+        </div> */}
+                </div>
+              </div>
             </div>
-            <div className="pt-3">
-              <Accordion type="single" collapsible>
-                {accordionData.map((item) => (
-                  <AccordionItem key={item.id} value={item.id}>
-                    <AccordionTrigger className="font-[600] text-[15px] ">
-                      {item.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-[12px] font-[500]">
-                      {item.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+          )}
+          <div className="pt-3">
+            <Accordion type="single" collapsible>
+              <AccordionItem value={"features"}>
+                <AccordionTrigger className="font-[600] text-[15px] ">
+                  Product Information
+                </AccordionTrigger>
+                <AccordionContent className="text-[12px] font-[500]">
+                  <Table>
+                    <TableBody>
+                      {renderRow("SKU", skuId)}
+                      {renderRow("Availability", "in stock")}
+                      {data?.product?.brand?.name &&
+                        renderRow("Brand", data?.product?.brand?.name)}
+                      {data?.product?.gender?.name &&
+                        renderRow("Gender", data?.product?.gender?.name)}
+                      {!isContactLens &&
+                        data?.product?.frameMaterial?.name &&
+                        renderRow(
+                          "Frame Material",
+                          data?.product?.frameMaterial?.name
+                        )}
+                      {!isContactLens &&
+                        data?.frontColor?.name &&
+                        renderRow("Front Color", data?.frontColor?.name)}
+                      {!isContactLens &&
+                        data?.templeColor?.name &&
+                        renderRow("Temple Color", data?.templeColor?.name)}
+                      {!isContactLens &&
+                        data?.product?.templeMaterial?.name &&
+                        renderRow(
+                          "Temple Material",
+                          data?.product?.templeMaterial?.name
+                        )}
+                      {!isContactLens &&
+                        data?.product?.frameType?.name &&
+                        renderRow("Rim", data?.product?.frameType?.name)}
+                      {!isContactLens &&
+                        data?.product?.frameSize?.name &&
+                        renderRow("Size", data?.product?.frameSize?.name)}
+                      {!isContactLens &&
+                        data?.product?.frameShape?.name &&
+                        renderRow(
+                          "Frame Shape",
+                          data?.product?.frameShape?.name
+                        )}
+                      {isContactLens &&
+                        data?.product?.lensType?.name &&
+                        renderRow("Lens Type", data?.product?.lensType?.name)}
+                      {isContactLens &&
+                        data?.product?.disposability &&
+                        renderRow(
+                          "Disposability ",
+                          data?.product?.disposability
+                        )}
+                      {/* {data?.product?.brand?.name && renderRow("Country of Origin", data?.product?.brand?.name)}
+                        {data?.product?.brand?.name && renderRow("Manufactured by:", data?.product?.brand?.name)}
+                        {data?.product?.brand?.name && renderRow("Imported by:", data?.product?.brand?.name)}
+                        {data?.product?.brand?.name && renderRow("Gender", data?.product?.brand?.name)}
+                        {data?.product?.brand?.name && renderRow("Gender", data?.product?.brand?.name)} */}
+                    </TableBody>
+                  </Table>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value={"description"}>
+                <AccordionTrigger className="font-[600] text-[15px] ">
+                  Description
+                </AccordionTrigger>
+                <AccordionContent className="text-[12px] font-[500]">
+                  <div
+                    className="m-1"
+                    dangerouslySetInnerHTML={{
+                      __html: data?.product?.description,
+                    }}
+                  />
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </>
       </section>
@@ -195,9 +310,11 @@ const Page = async ({ params }: any) => {
             <RelatedProducts productId={res?.data?.productId} />
 
             <section className="left-0 right-0 bottom-0 fixed w-full p-2">
-              {isFrameOnly ? (
-                <FrameOnlyBuyNow  categoryId={res?.data?.product?.Category?.id}
-                productDetails={res?.data}/>
+              {isFrameOnly || isContactLens ? (
+                <FrameOnlyBuyNow
+                  categoryId={res?.data?.product?.Category?.id}
+                  productDetails={res?.data}
+                />
               ) : (
                 <LensTypeDrawerDialog
                   categoryId={res?.data?.product?.Category?.id}
