@@ -14,7 +14,9 @@ import {
 import { DeleteFromCart } from "@/actions/cart/add-to-cart";
 import { CustomToast } from "@/components/generic-components/custom-toast";
 
-const CartProductCard = ({ data }: any) => {
+const CartProductCard = ({ data, isContactLens = false }: any) => {
+  
+
   const handleDelete = async () => {
     const res = await DeleteFromCart(data?.id);
     CustomToast(res || "Item Removed successfully");
@@ -29,21 +31,23 @@ const CartProductCard = ({ data }: any) => {
           height={135}
           width={135}
         />
-        <div className="flex">
-          <div className="h-[20px] w-[50px] bg-[#FFF2F2] rounded-3xl mt-1 mr-3 flex pl-1 items-center">
-            <Image
-              className="h-3 w-3"
-              src="/assets/image/categoriesImages/ratingStar.png"
-              alt="banner"
-              height={90}
-              width={190}
-            />
-            <span className="text-[12px] ml-1">4.7+</span>
+        {!isContactLens && (
+          <div className="flex">
+            <div className="h-[20px] w-[50px] bg-[#FFF2F2] rounded-3xl mt-1 mr-3 flex pl-1 items-center">
+              <Image
+                className="h-3 w-3"
+                src="/assets/image/categoriesImages/ratingStar.png"
+                alt="banner"
+                height={90}
+                width={190}
+              />
+              <span className="text-[12px] ml-1">4.7+</span>
+            </div>
+            <div className="h-[20px] w-[30px] bg-[#FFF2F2] rounded-3xl mt-1 mr-3 flex pl-1 items-center">
+              <span className="text-[12px] ml-1 font-[600]">M</span>
+            </div>
           </div>
-          <div className="h-[20px] w-[30px] bg-[#FFF2F2] rounded-3xl mt-1 mr-3 flex pl-1 items-center">
-            <span className="text-[12px] ml-1 font-[600]">M</span>
-          </div>
-        </div>
+        )}
       </div>
 
       <div className="flex justify-between items-start  mr-3 w-full">
@@ -54,34 +58,48 @@ const CartProductCard = ({ data }: any) => {
             </h2>
           </div>
           <p className="font-[600] text-[13px]">
-          {data?.product?.name}  {" | "}  {data?.variant?.frameColor?.name}
-          
+            {data?.product?.name} {" | "} {data?.variant?.frameColor?.name}
           </p>
-          <div className="flex gap-1 text-gray-500 text-[12px] items-center">
-            <span>{data?.product?.frameType?.name}</span>
-            <BsDot />
-            <span>{data?.product?.frameSize?.name}</span>
-          </div>
-          
-        {
-          data?.lensPackage ? <>
-          <div className="flex justify-between items-center text-md mt-1 font-normal">
-            <div >Frame Price: </div>
-            <div>{`₹${data?.variant?.price}`}</div>
-          </div>
-          <div className="flex justify-between items-center text-md mt-1 font-normal">
-            <div >Lens Price: </div>
-            <div>{`₹${data?.lensPackage?.price}`}</div>
-          </div>
-          <div className="flex justify-between items-center text-md mt-1 font-normal">
-            <div className="font-bold">Total: </div>
-            <div className="font-bold">{`₹${parseFloat(data?.variant?.price) + parseFloat(data?.lensPackage?.price)}`}</div>
-          </div>
-</> : <div className="flex justify-between items-center text-md mt-1 font-normal">
-            <div className="font-bold">Total: </div>
-            <div className="font-bold">{`₹${parseFloat(data?.variant?.price) }`}</div>
-          </div>
-        }
+          {isContactLens ? (
+            <div className="flex gap-1 text-gray-500 text-[12px] items-center">
+              <span>{data?.product?.lensType?.name}</span>
+              {data?.product?.disposabilit && <BsDot />}
+              <span>{data?.product?.disposability}</span>
+            </div>
+          ) : (
+            <div className="flex gap-1 text-gray-500 text-[12px] items-center">
+              <span>{data?.product?.frameType?.name}</span>
+              <BsDot />
+              <span>{data?.product?.frameSize?.name}</span>
+            </div>
+          )}
+
+          {data?.lensPackage ? (
+            <>
+              <div className="flex justify-between items-center text-md mt-1 font-normal">
+                <div>Frame Price: </div>
+                <div>{`₹${data?.variant?.price}`}</div>
+              </div>
+              <div className="flex justify-between items-center text-md mt-1 font-normal">
+                <div>Lens Price: </div>
+                <div>{`₹${data?.lensPackage?.price}`}</div>
+              </div>
+              <div className="flex justify-between items-center text-md mt-1 font-normal">
+                <div className="font-bold">Total: </div>
+                <div className="font-bold">{`₹${
+                  parseFloat(data?.variant?.price) +
+                  parseFloat(data?.lensPackage?.price)
+                }`}</div>
+              </div>
+            </>
+          ) : (
+            <div className="flex justify-end gap-2 items-center text-sm mt-1 font-normal">
+              <div className="font-bold">Total: </div>
+              <div className="font-bold">{`₹${parseFloat(
+                data?.variant?.price
+              )}`}</div>
+            </div>
+          )}
         </div>
 
         <Popover>

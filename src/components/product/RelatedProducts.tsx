@@ -5,7 +5,7 @@ import APISERVICES from "@/lib/api-services";
 import ProductVariantCard from "./ProductVariantCard";
 
 async function RelatedProducts({ productId }: { productId: number }) {
-  console.log(productId);
+  
 
   const { data = [] } = await APISERVICES.relatedVariantsbyProductId.get(
     productId

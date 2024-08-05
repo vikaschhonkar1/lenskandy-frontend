@@ -228,7 +228,6 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
     fetchLensPackage();
   }, [id]);
 
-  console.log(productDetails)
   const router = useRouter();
   return (
     <section className="px-4 mt-2 ">
@@ -246,7 +245,6 @@ const LensPackageForm = ({ id, productDetails, isLoggedIn }: any) => {
                 <div
                   key={item?.name}
                   onClick={() => {
-                    console.log(item?.id);
                     setLensPackageId(item?.id);
                   }}
                 >

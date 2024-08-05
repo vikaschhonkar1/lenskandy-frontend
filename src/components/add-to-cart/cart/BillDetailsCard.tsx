@@ -2,7 +2,7 @@ import { Card } from '@/components/ui/card'
 import React from 'react'
 
 const BillDetailsCard = ({ itemTotal = 0, discount = 0, coupon }: any) => {
-  console.log(coupon)
+
   const couponValue = itemTotal >= coupon?.min_purchase ? coupon?.value : 0
   return (
     <>

@@ -26,7 +26,7 @@ import {
 import { InfoIcon } from "lucide-react";
 
 const ProductDetail = (props: any) => {
-  const { data } = props;
+  const { data, isContactLens = false } = props;
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
@@ -35,11 +35,11 @@ const ProductDetail = (props: any) => {
       <div className="h-[57px] mt-4">
         <div className="px-3 w-full ">
           <section className="flex justify-between">
-            <span className="rounded-full h-[28px] w-18 bg-[#F2652F] text-[14px] text-white ml-1 px-2 py-1">
+            {/* <span className="rounded-full h-[28px] w-18 bg-[#F2652F] text-[14px] text-white ml-1 px-2 py-1">
               30% off
-            </span>
+            </span> */}
 
-            <section className="md:ml-auto flex bg  gap-6 items-center ">
+            {/* <section className="md:ml-auto flex bg  gap-6 items-center ">
               <a className=" hover:text-gray-900">
                 <svg
                   width="15"
@@ -68,7 +68,7 @@ const ProductDetail = (props: any) => {
                   />
                 </svg>
               </a>
-            </section>
+            </section> */}
           </section>
         </div>
       </div>
@@ -209,16 +209,17 @@ const ProductDetail = (props: any) => {
                   data?.price || 200
                 }
               </span>
-             
             </div>
-            <div className="flex items-center gap-1 mt-1">
-              <InfoIcon size={14}/>
-              <div className="font-medium text-sm ">
-                Free Lenses worth Rs 2000
+            {!isContactLens && (
+              <div className="flex items-center gap-1 mt-1">
+                <InfoIcon size={14} />
+                <div className="font-medium text-sm ">
+                  Free Lenses worth Rs 2000
+                </div>
               </div>
-            </div>
+            )}
           </div>
-          <div className="h-[20px]  bg-[#FFF2F2] rounded-3xl mt-1 mr-3 flex pl-1 pr-1 items-center">
+          {/* <div className="h-[20px]  bg-[#FFF2F2] rounded-3xl mt-1 mr-3 flex pl-1 pr-1 items-center">
             <svg
               width="10"
               height="10"
@@ -240,7 +241,7 @@ const ProductDetail = (props: any) => {
             </svg>
 
             <span className="text-[10px] ml-1">4.7+</span>
-          </div>
+          </div> */}
         </div>
       </section>
       <section className="px-4 mt-2">

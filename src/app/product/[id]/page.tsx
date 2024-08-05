@@ -63,7 +63,6 @@ const Page = async ({ params }: any) => {
   const isFrameOnly = res?.data?.product?.frameOnly;
   const data = res?.data || {};
 
-  console.log(JSON.stringify(data));
   const isContactLens = data?.product?.Category?.slug == "contact-lenses";
 
   return (
@@ -72,10 +71,10 @@ const Page = async ({ params }: any) => {
         productName={res?.data?.product?.name}
         frameColor={res?.data?.frameColor?.name}
       />
-      <ProductDetail data={res?.data} />
+      <ProductDetail data={res?.data} isContactLens={isContactLens} />
       {/* <CouponCard /> */}
 
-      <SizeGuideDeliveryDialog productDetails={res?.data} />
+      <SizeGuideDeliveryDialog productDetails={res?.data} isContactLens={isContactLens} />
 
       <section className="flex item-center my-3 mt-4">
         <svg

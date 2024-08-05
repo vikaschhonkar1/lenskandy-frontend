@@ -20,7 +20,6 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 const Page = async () => {
   const res = await APISERVICES.wishlist.get();
   const cartItems = res?.data;
-  console.log(cartItems)
 
   return (
     <>

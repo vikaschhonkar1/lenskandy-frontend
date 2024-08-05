@@ -13,7 +13,6 @@ const Page = async ({ params }: any) => {
   const orderId = params?.id;
 
   const res = await APISERVICES.order.get(orderId);
-  console.log(ReadableDateTime(res?.data?.createdAt));
   return (
     <>
       <section>
@@ -36,7 +35,7 @@ const Page = async ({ params }: any) => {
           </section>
           <section className=" my-2">
             {res?.data?.items?.map((item: any, index: number) => {
-              console.log(index == 0 && item)
+            
               return (
                 <div key={item} className="flex gap-6 items-center mt-3">
                   <div className="mx-4 py-3">

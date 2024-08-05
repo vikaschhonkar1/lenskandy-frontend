@@ -28,7 +28,6 @@ const CurrentAddressList = ({ addressList }: any) => {
         razorpay_signature: signature,
       });
       if (res?.success) {
-        console.log(res);
         const successfulOrderId = res?.data?.orderId;
         router.push(`/order-confirmation/${successfulOrderId}`);
       }

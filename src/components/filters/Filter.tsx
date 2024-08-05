@@ -61,7 +61,7 @@ const Filter = (props: any) => {
 
   const applyFilter = () => {
     const route = filterRouteBuilder(selectedItems);
-    console.log(route, selectedItems);
+   
     router.replace("/" + route);
   };
 
@@ -120,7 +120,7 @@ const Filter = (props: any) => {
                                     false
                                   }
                                   onCheckedChange={(e) => {
-                                    console.log(e);
+                             
                                     handleCheckboxChange(
                                       filter.slug,
                                       item.slug

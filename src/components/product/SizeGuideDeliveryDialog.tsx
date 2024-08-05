@@ -76,9 +76,10 @@ const SizeGuide = () => {
   );
 };
 
-const SizeGuideDeliveryDialog = ({ productDetails }: any) => {
-  
-
+const SizeGuideDeliveryDialog = ({
+  productDetails,
+  isContactLens = false,
+}: any) => {
   const pathName = window.location.href;
 
   const [pincode, setPincode] = useState("");
@@ -93,8 +94,8 @@ const SizeGuideDeliveryDialog = ({ productDetails }: any) => {
   const handleCheck = () => {
     if (/^\d{6}$/.test(pincode)) {
       const deliveryDate = new Date();
-      deliveryDate.setDate(deliveryDate.getDate() + 2);
-      const options = { weekday: "short", day: "numeric", month: "short" };//@ts-ignore
+      deliveryDate.setDate(deliveryDate.getDate() + 5);
+      const options = { weekday: "short", day: "numeric", month: "short" }; //@ts-ignore
       const formattedDate = deliveryDate.toLocaleDateString("en-GB", options);
       setMessage(
         `<div class="mt-2 p-2 bg-gray-100 text-green-600 rounded-md">
@@ -112,48 +113,50 @@ const SizeGuideDeliveryDialog = ({ productDetails }: any) => {
   };
   return (
     <section>
-      <div className=" bg-white shadow-md rounded-lg p-4 max-w-sm mx-auto">
+      <div className=" bg-white shadow my-4  rounded-lg p-4 max-w-md mx-auto">
         <div className="flex justify-between">
           {" "}
-          <div className=" top-4 left-4 flex items-center">
-            <div className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-semibold">
-                {
-                  //@ts-ignore
-                  frameSizeMapping[productDetails?.product?.frameSize?.name]
-                }
-              </span>
-            </div>
-            <div className="ml-2">
-              <div className="flex items-center">
-                <span className="text-sm font-medium underline text-gray-800">
-                  <Dialog>
-                    <DialogTrigger>
-                      <span className="text-sm font-medium underline text-gray-800">
-                        Size Guide
-                      </span>
-                    </DialogTrigger>
-                    <DialogContent className="h-[90vh]">
-                      <DialogHeader>
-                        <div className="text-orange-600 font-large text-xl">
-                          Size Guide
-                        </div>
-                      </DialogHeader>
-                      <ScrollArea>
-                        <DialogDescription className="h-full">
-                          <SizeGuide />
-                        </DialogDescription>
-                      </ScrollArea>
-                    </DialogContent>
-                  </Dialog>
+          {!isContactLens ? (
+            <div className=" top-4 left-4 flex items-center">
+              <div className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center">
+                <span className="text-white font-semibold">
+                  {
+                    //@ts-ignore
+                    frameSizeMapping[productDetails?.product?.frameSize?.name]
+                  }
                 </span>
               </div>
-              <span className="text-xs text-gray-600">
-                {`${productDetails?.product?.lensWidth}-${productDetails?.product?.bridgeWidth}-${productDetails?.product?.templeLength}`}{" "}
-                mm
-              </span>
+              <div className="ml-2">
+                <div className="flex items-center">
+                  <span className="text-sm font-medium underline text-gray-800">
+                    <Dialog>
+                      <DialogTrigger>
+                        <span className="text-sm font-medium underline text-gray-800">
+                          Size Guide
+                        </span>
+                      </DialogTrigger>
+                      <DialogContent className="h-[90vh]">
+                        <DialogHeader>
+                          <div className="text-orange-600 font-large text-xl">
+                            Size Guide
+                          </div>
+                        </DialogHeader>
+                        <ScrollArea>
+                          <DialogDescription className="h-full">
+                            <SizeGuide />
+                          </DialogDescription>
+                        </ScrollArea>
+                      </DialogContent>
+                    </Dialog>
+                  </span>
+                </div>
+                <span className="text-xs text-gray-600">
+                  {`${productDetails?.product?.lensWidth}-${productDetails?.product?.bridgeWidth}-${productDetails?.product?.templeLength}`}{" "}
+                  mm
+                </span>
+              </div>
             </div>
-          </div>
+          ):<div></div>}
           <a
             href={`https://wa.me/917703911937?text=Hi%20Lenskandy,%20help%20me%20get%20started!%20I%20need%20help%20with%20product%20${pathName}`}
             target="_blank"
