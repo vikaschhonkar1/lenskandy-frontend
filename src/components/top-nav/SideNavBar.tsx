@@ -339,13 +339,13 @@ export async function SideNav() {
           ""
         )}
         <a
-          href="tel:91-7703911937"
+          href="tel:+91-7703911937"
           className=" text-[#250c78] flex justify-between text-base font-semibold px-4 py-2"
         >
           <span>Talk to us</span>
           <span className="flex items-center gap-2">
             <PhoneCall />
-            <span>91-7703911937</span>
+            <span>+91-7703911937</span>
           </span>
         </a>
         <ScrollArea>

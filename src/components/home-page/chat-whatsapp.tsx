@@ -6,7 +6,7 @@ import Link from "next/link";
 function ChatWhatsappBtn() {
   return (
     <section className="grid grid-cols-2 py-2 justify-around container gap-2 rounded-lg px-3">
-      <Link href={"tel:91-7703911937"} className="w-full h-full">
+      <Link href={"tel:+91-7703911937"} className="w-full h-full">
         <Button
           variant={"outline"}
           style={{
