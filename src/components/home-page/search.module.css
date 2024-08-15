@@ -1,0 +1,47 @@
+@keyframes slideUp {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes slideDown {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .placeholder-container {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .placeholder-text {
+    position: absolute;
+    left: 10px; /* Adjust based on your input padding */
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    pointer-events: none;
+    color: #999; /* Placeholder color */
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .placeholder-enter {
+    animation: slideDown 0.5s ease-in-out forwards;
+  }
+  
+  .placeholder-leave {
+    animation: slideUp 0.5s ease-in-out forwards;
+  }
+  

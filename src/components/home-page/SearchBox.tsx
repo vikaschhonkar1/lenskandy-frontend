@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { useRouter } from "next/navigation";
 
@@ -21,6 +21,29 @@ const SearchBox = ({ noSearch = false, search = "" }) => {
     setSearchTerm("");
     router.push(`/product`);
   };
+  const phrases = [
+    "Search premium bestsellers",
+    "Find the best deals",
+    "Discover new products",
+    "Shop your favorites",
+  ];
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [currentPlaceholder, setCurrentPlaceholder] = useState("");
+ 
+
+  useEffect(() => {
+    const changePlaceholder = () => {
+      setPlaceholderIndex((prevIndex) => (prevIndex + 1) % phrases.length);
+    };
+
+    const interval = setInterval(() => {
+      setCurrentPlaceholder(phrases[placeholderIndex]);
+      changePlaceholder();
+    }, 2000); // Adjust delay between phrases here
+
+    return () => clearInterval(interval); // Clear the interval on component unmount
+  }, [placeholderIndex]);
+
 
   return (
     <>
@@ -28,7 +51,7 @@ const SearchBox = ({ noSearch = false, search = "" }) => {
         <div className="relative container rounded-md h-[45px] mt-[6px] mb-1 px-3">
           <Input
             type="text"
-            placeholder="Search premium bestsellers"
+            placeholder={currentPlaceholder}
             className="my-3 py-2 h-12 shadow-md pr-10"
             value={searchTerm}
             onChange={handleInputChange}

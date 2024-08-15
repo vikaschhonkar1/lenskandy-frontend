@@ -2,12 +2,15 @@
 import * as React from "react";
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
+import EmblaCarousel from "@/components/embla-carousel/EmblaCarousel";
 
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 export function TopCarousel() {
@@ -15,9 +18,19 @@ export function TopCarousel() {
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
 
+  const OPTIONS = { dragFree: false, loop: true };
+  const SLIDES = [
+    "/assets/images/Banner1.png",
+    "/assets/images/Banner2.png",
+    "/assets/images/Banner3.png",
+    "/assets/images/Banner4.png",
+  ];
+
   return (
     <div className="">
-      <Carousel
+      <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+
+      {/* <Carousel
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}
@@ -45,7 +58,9 @@ export function TopCarousel() {
             </CarouselItem>
           ))}
         </CarouselContent>
-      </Carousel>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel> */}
     </div>
   );
 }

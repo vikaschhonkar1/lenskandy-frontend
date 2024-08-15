@@ -35,7 +35,7 @@ export function TabsStyle({ tabData }: TabsContent) {
           {tabData?.map((item) => (
             <TabsTrigger
               className=" rounded-3xl text-gray-400 mr-3 px-[9px] py-[6px] border-2 border-gray-200 
-            data-[state=active]:bg-[#0000B7] data-[state=active]:text-white data-[state=active]:shadow"
+            data-[state=active]:bg-[#250c78] data-[state=active]:text-white data-[state=active]:shadow"
               key={item?.value}
               value={item?.value}
             >

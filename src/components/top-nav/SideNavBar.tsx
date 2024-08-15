@@ -40,6 +40,7 @@ import LogoutBtn from "../auth/LogoutBtn";
 import { LoginDialog } from "../login";
 import LogInBtn from "../auth/LoginBtn";
 import { FaAngleRight, FaUser } from "react-icons/fa6";
+import { Phone, PhoneCall } from "lucide-react";
 
 const ListItem = ({ className, title, children, ...props }: any, ref: any) => {
   return (
@@ -61,7 +62,7 @@ const ListItem = ({ className, title, children, ...props }: any, ref: any) => {
 const drawerData = [
   {
     id: 1,
-    heading: "Shop for Eyeglasses",
+    heading: "Eyeglasses",
     subCategories: [
       {
         id: 1,
@@ -88,7 +89,7 @@ const drawerData = [
   },
   {
     id: 2,
-    heading: "Shop for Sunglasses",
+    heading: "Sunglasses",
     subCategories: [
       {
         id: 1,
@@ -115,7 +116,7 @@ const drawerData = [
   },
   {
     id: 3,
-    heading: "Shop for Computer Glasses",
+    heading: "Computer Glasses",
     subCategories: [
       {
         id: 1,
@@ -142,7 +143,7 @@ const drawerData = [
   },
   {
     id: 4,
-    heading: "Shop for Reading Glasses",
+    heading: "Reading Glasses",
     subCategories: [
       // {
       //   id: 1,
@@ -171,7 +172,7 @@ const drawerData = [
   },
   {
     id: 5,
-    heading: "Shop for Contact Lenses",
+    heading: "Contact Lenses",
     subCategories: [
       // {
       //   id: 1,
@@ -206,7 +207,7 @@ export async function AccordionDemo() {
       <Accordion type="single" collapsible className="">
         {drawerData?.map((item, index) => {
           return (
-            <AccordionItem value={`${item.id}`} key={index}>
+            <AccordionItem value={`${item.id}`} key={item?.id}>
               <AccordionTrigger>
                 <div className="flex items-center justify-between">
                   <div className=" font-medium leading-none capitalize">
@@ -337,8 +338,18 @@ export async function SideNav() {
         ) : (
           ""
         )}
+        <a
+          href="tel:91-7703911937"
+          className=" text-[#250c78] flex justify-between text-base font-semibold px-4 py-2"
+        >
+          <span>Talk to us</span>
+          <span className="flex items-center gap-2">
+            <PhoneCall />
+            <span>91-7703911937</span>
+          </span>
+        </a>
         <ScrollArea>
-          <div className="mx-auto w-full max-w-sm p-4 ">{AccordionDemo()}</div>
+          <div className="mx-auto w-full mr-2  p-4 ">{AccordionDemo()}</div>
         </ScrollArea>
       </DrawerContent>
     </Drawer>

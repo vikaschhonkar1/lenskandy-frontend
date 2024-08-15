@@ -138,6 +138,7 @@
 
 .hideTopBar > div.bg-muted {
   position: absolute;
+  display: none;
   right: 8px;
   top: 0;
   bottom: 0;

@@ -23,28 +23,28 @@ export function TabStyle2() {
             <TabsTrigger
               value="collection"
               className="inline-block rounded-3xl text-gray-400 mr-1 border-2 border-gray-200 
-            data-[state=active]:bg-[#0000B7] data-[state=active]:text-white data-[state=active]:shadow"
+            data-[state=active]:bg-[#250c78] data-[state=active]:text-white data-[state=active]:shadow"
             >
               The Collection
             </TabsTrigger>
             <TabsTrigger
               value="engraving"
               className="inline-block rounded-3xl text-gray-400 mr-2 border-2 border-gray-200 
-            data-[state=active]:bg-[#0000B7] data-[state=active]:text-white data-[state=active]:shadow"
+            data-[state=active]:bg-[#250c78] data-[state=active]:text-white data-[state=active]:shadow"
             >
               Engraving
             </TabsTrigger>
             <TabsTrigger
               value="prints"
               className="inline-block rounded-3xl text-gray-400 mr-2 py-1 border-2 border-gray-200 
-            data-[state=active]:bg-[#0000B7] data-[state=active]:text-white data-[state=active]:shadow"
+            data-[state=active]:bg-[#250c78] data-[state=active]:text-white data-[state=active]:shadow"
             >
               Prints
             </TabsTrigger>
             <TabsTrigger
               value="Embossing"
               className="inline-block rounded-3xl text-gray-400 mr-2 py-1 border-2 border-gray-200 
-            data-[state=active]:bg-[#0000B7] data-[state=active]:text-white data-[state=active]:shadow"
+            data-[state=active]:bg-[#250c78] data-[state=active]:text-white data-[state=active]:shadow"
             >
               Embossing
             </TabsTrigger>
