@@ -304,10 +304,10 @@ const Page = async ({ params }: any) => {
             <h5 className="text-[20px] font-[500] pl-2">
               Explore More Product
             </h5>
-            <p className="pt-2 text-[12px] font-[400] text-gray-500 pl-2">
+            {/* <p className="pt-2 text-[12px] font-[400] text-gray-500 pl-2">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
               ex perferendis veritatis quas accusamus
-            </p>
+            </p> */}
 
             <RelatedProducts productId={res?.data?.productId} />
 

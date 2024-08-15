@@ -219,7 +219,7 @@ const ProductDetail = (props: any) => {
               </div>
             )}
           </div>
-          {/* <div className="h-[20px]  bg-[#FFF2F2] rounded-3xl mt-1 mr-3 flex pl-1 pr-1 items-center">
+          <div className="h-[20px]  bg-[#FFF2F2] rounded-3xl mt-1 mr-3 flex pl-1 pr-1 items-center">
             <svg
               width="10"
               height="10"
@@ -241,7 +241,7 @@ const ProductDetail = (props: any) => {
             </svg>
 
             <span className="text-[10px] ml-1">4.7+</span>
-          </div> */}
+          </div>
         </div>
       </section>
       <section className="px-4 mt-2">
