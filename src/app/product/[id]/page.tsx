@@ -67,14 +67,17 @@ const Page = async ({ params }: any) => {
 
   return (
     <>
-      <ProductNav
+      {/* <ProductNav
         productName={res?.data?.product?.name}
         frameColor={res?.data?.frameColor?.name}
-      />
+      /> */}
       <ProductDetail data={res?.data} isContactLens={isContactLens} />
       {/* <CouponCard /> */}
 
-      <SizeGuideDeliveryDialog productDetails={res?.data} isContactLens={isContactLens} />
+      <SizeGuideDeliveryDialog
+        productDetails={res?.data}
+        isContactLens={isContactLens}
+      />
 
       <section className="flex item-center my-3 mt-4">
         <svg
@@ -309,13 +312,14 @@ const Page = async ({ params }: any) => {
             <RelatedProducts productId={res?.data?.productId} />
 
             <section className="left-0 right-0 bottom-0 fixed w-full p-2">
-              {isFrameOnly || isContactLens ? (
+              {isContactLens ? (
                 <FrameOnlyBuyNow
                   categoryId={res?.data?.product?.Category?.id}
                   productDetails={res?.data}
                 />
               ) : (
                 <LensTypeDrawerDialog
+                  isFrameOnly={isFrameOnly}
                   categoryId={res?.data?.product?.Category?.id}
                   productDetails={res?.data}
                   isLoggedIn={isLoggedIn ? true : false}
